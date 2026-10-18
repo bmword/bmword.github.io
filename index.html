@@ -856,6 +856,25 @@
     </section>
   </div>
 
+  <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <section class="auth-card">
+      <button type="button" class="auth-close" id="auth-close" aria-label="Kapat">✕</button>
+      <h2 id="auth-title">BM Words hesabın</h2>
+      <p>İlerlemeni kaydetmek için giriş yap veya ücretsiz hesap oluştur.</p>
+      <div class="auth-switch" role="tablist" aria-label="Hesap işlemi">
+        <button type="button" id="auth-tab-login" class="active" role="tab" aria-selected="true">Giriş yap</button>
+        <button type="button" id="auth-tab-signup" role="tab" aria-selected="false">Üye ol</button>
+      </div>
+      <form id="auth-form" autocomplete="on">
+        <label for="auth-email">E-posta</label>
+        <input id="auth-email" name="email" type="email" autocomplete="email" required placeholder="ornek@eposta.com">
+        <label for="auth-password">Şifre</label>
+        <input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="En az 6 karakter">
+        <button type="submit" class="auth-submit" id="auth-submit">Giriş yap</button>
+      </form>
+      <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
+    </section>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     (function () {
