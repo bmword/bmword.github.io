@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BM Words ile A1–C2 seviyelerinde İngilizce kelime bilginizi A’dan Z’ye pratik yaparak geliştirin.">
+  <meta name="theme-color" content="#f2f5fa">
+  <title>BM Words — English Vocabulary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f2f5fa;
+      --ink: #1b2a4a;
+      --mut: #6b7a99;
+      --card: #ffffff;
+      --line: #d9e0ee;
+      --ok: #1fa971;
+      --no: #e5484d;
+      --ps: #f2a33a;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]), :root[data-theme="classic"] {
+        --bg: #10192e;
+        --ink: #eaf0ff;
+        --mut: #93a2c4;
+        --card: #18233e;
+        --line: #2a3a5f;
+        --ok: #1fa971;
+        --no: #e5484d;
+        --ps: #f2a33a;
+      }
+    }
+
+    :root[data-theme="lavender"] {
+      --bg: #efeaff;
+      --ink: #3d3470;
+      --mut: #746a9e;
+      --card: #faf8ff;
+      --line: #d8cff6;
+      --ok: #1fa971;
+      --no: #e5484d;
+      --ps: #f2a33a;
+    }
+
+    :root[data-theme="mint"] {
+      --bg: #e4f6ee;
+      --ink: #1f4d43;
+      --mut: #56857a;
+      --card: #f6fcf9;
+      --line: #c4e6d8;
+      --ok: #179b64;
+      --no: #e5484d;
+      --ps: #f2a33a;
+    }
+
+    :root[data-theme="peach"] {
+      --bg: #ffeee3;
+      --ink: #6a3b2a;
+      --mut: #9e6d5b;
+      --card: #fffaf6;
+      --line: #f5d4c1;
+      --ok: #1fa971;
+      --no: #d93d42;
+      --ps: #e89527;
+    }
+
+    :root[data-theme="sky"] {
+      --bg: #e3f1fc;
+      --ink: #1f4468;
+      --mut: #5b7f9e;
+      --card: #f5faff;
+      --line: #c5def4;
+      --ok: #1fa971;
+      --no: #e5484d;
+      --ps: #f2a33a;
+    }
+
+    :root[data-theme="rose"] {
+      --bg: #fde7ee;
+      --ink: #6b2f4a;
+      --mut: #9e627d;
+      --card: #fff7fa;
+      --line: #f3c8d8;
+      --ok: #1fa971;
+      --no: #d93848;
+      --ps: #f2a33a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 20px 16px 40px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    button, input {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    /* Reklam Kutuları (Gelir için) */
+    .ad-box {
+      position: fixed;
+      border: 2px dashed var(--line);
+      background-color: var(--card);
+      color: var(--mut);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-align: center;
+      z-index: 20;
+      user-select: none;
+    }
+
+    .ad-tl { top: 16px; left: 16px; width: 160px; height: 600px; }
+    .ad-tr { top: 16px; right: 16px; width: 160px; height: 600px; }
+    .ad-bl { bottom: 16px; left: 16px; width: 300px; height: 100px; }
+    .ad-br { bottom: 16px; right: 16px; width: 300px; height: 100px; }
+
+    .ad-mobile {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 50px;
+      background-color: var(--card);
+      border-top: 2px dashed var(--line);
+      color: var(--mut);
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 999;
+    }
+
+    .ad-mobile-inner {
+      width: 320px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 1100px) {
+      .ad-tl, .ad-tr, .ad-bl, .ad-br {
+        display: none;
+      }
+      .ad-mobile {
+        display: flex;
+      }
+      body {
+        padding-bottom: 90px;
+      }
+    }
+
+    /* Ana Konteyner */
+    .app-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Üst Çubuk: Temalar ve Dil Seçimi */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .theme-picker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .theme-swatch[aria-pressed="true"] {
+      border-color: var(--ink);
+      transform: scale(1.18);
+      box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ink);
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 5px 11px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--mut);
+    }
+
+    .lang-btn.active {
+      background: var(--ink);
+      color: var(--card);
+    }
+
+    /* Başlık Alanı */
+    .header {
+      text-align: center;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--mut);
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-bottom: 4px;
+    }
+
+    .header h1 {
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: var(--mut);
+      margin-top: 2px;
+    }
+
+    /* Seviye Seçici */
+    .level-bar {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .level-pill {
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 6px 15px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .level-pill:hover {
+      border-color: var(--ink);
+    }
+
+    .level-pill.active {
+      background: var(--ink);
+      color: var(--card);
+      border-color: var(--ink);
+    }
+
+    /* Süre ve İlerleme Çubuğu */
+    .timer-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 100%;
+      background: var(--ink);
+      transition: width 0.3s linear;
+    }
+
+    .timer-text {
+      font-size: 15px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      min-width: 46px;
+      text-align: right;
+    }
+
+    /* 26 Harf Halkası (Grid) */
+    .letter-grid {
+      display: grid;
+      grid-template-columns: repeat(13, 1fr);
+      gap: 6px;
+      max-width: 640px;
+      width: 100%;
+      margin: 0 auto;
+      justify-items: center;
+    }
+
+    @media (max-width: 560px) {
+      .letter-grid {
+        grid-template-columns: repeat(9, 1fr);
+      }
+    }
+
+    .letter-pill {
+      width: 100%;
+      max-width: 46px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(14px, 3.4vw, 20px);
+      font-weight: 700;
+      user-select: none;
+      transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .letter-pill.active {
+      background: var(--ink);
+      color: var(--card);
+      border-color: var(--ink);
+      transform: scale(1.12);
+      z-index: 2;
+    }
+
+    .letter-pill.ok {
+      background: var(--ok);
+      color: #ffffff;
+      border-color: var(--ok);
+    }
+
+    .letter-pill.no {
+      background: var(--no);
+      color: #ffffff;
+      border-color: var(--no);
+    }
+
+    .letter-pill.ps {
+      background: var(--card);
+      color: var(--ps);
+      border: 2px dashed var(--ps);
+    }
+
+    .letter-pill.ps.active {
+      background: var(--ink);
+      color: var(--card);
+      border: 2px dashed var(--ps);
+      transform: scale(1.12);
+    }
+
+    /* Soru Kartı */
+    .question-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--mut);
+    }
+
+    .q-def {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .q-sent {
+      font-size: 15px;
+      color: var(--mut);
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-style: italic;
+    }
+
+    /* Giriş ve Butonlar */
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .answer-input {
+      flex: 1 1 220px;
+      font-size: 18px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 2px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .answer-input::placeholder {
+      color: var(--mut);
+      opacity: 0.7;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: opacity 0.15s ease;
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-submit {
+      background: var(--ink);
+      color: var(--card);
+    }
+
+    .btn-pass {
+      background: var(--card);
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    @keyframes shakeAnim {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .shake {
+      animation: shakeAnim 0.32s ease-in-out;
+      border-color: var(--no) !important;
+    }
+
+    @media (max-width: 520px) {
+      .end-header { align-items: flex-start; }
+      .end-actions { width: 100%; }
+      .end-actions .btn { flex: 1 1 auto; }
+      .word-review-item { gap: 8px; }
+      .word-review-copy { flex: 1 1 calc(100% - 34px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .shake {
+        animation: none;
+      }
+      .letter-pill, .theme-swatch, .progress-fill {
+        transition: none;
+      }
+    }
+
+    /* Sayaçlar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .stat-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stat-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Oyun Sonu Ekranı */
+    .end-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px 20px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .end-card.visible {
+      display: flex;
+    }
+
+    .end-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+
+    .end-score {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .end-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .word-review-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .word-example { color: var(--mut); font-size: 13px; overflow-wrap: anywhere; }
+    .word-review-item { align-items: flex-start; flex-wrap: wrap; }
+    .word-badge.ps { background: var(--ps); }
+    .word-badge.unanswered { background: var(--mut); }
+    .word-user-answer { color: var(--no); font-size: 12px; }
+    .best-score-note { color: var(--mut); font-size: 13px; margin-top: -8px; }
+    .answer-input:focus-visible, button:focus-visible { outline: 3px solid var(--mut); outline-offset: 3px; }
+
+    .word-review-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .word-review-item {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-size: 14px;
+      padding: 7px 10px;
+      border-radius: 8px;
+      background: var(--bg);
+    }
+
+    .word-badge {
+      font-weight: 700;
+      font-size: 12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
+    }
+
+    .word-badge.ok { background: var(--ok); }
+    .word-badge.no { background: var(--no); }
+
+    .word-term {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .word-sep {
+      color: var(--mut);
+    }
+
+    .word-meaning {
+      color: var(--mut);
+    }
+
+    /* Alt Bilgi (Günlük Kelime Sayacı) */
+    .footer-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--mut);
+      margin-top: 4px;
+    }
+
+    .top-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .admin-open-btn { border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:12px; padding:9px 12px; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; }
+    .admin-open-btn:hover { border-color:var(--mut); }
+    .admin-overlay { position:fixed; inset:0; z-index:1000; background:rgba(10,18,35,.62); display:none; align-items:center; justify-content:center; padding:16px; }
+    .admin-overlay.visible { display:flex; }
+    .admin-panel { width:min(820px,100%); max-height:90vh; overflow:auto; background:var(--card); color:var(--ink); border:1px solid var(--line); border-radius:20px; padding:22px; box-shadow:0 24px 80px rgba(0,0,0,.25); }
+    .admin-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:14px; }
+    .admin-head h2 { margin:0 0 5px; font-size:22px; }
+    .admin-head p,.admin-help { color:var(--mut); font-size:13px; line-height:1.55; margin:0; }
+    .admin-close { border:1px solid var(--line); border-radius:10px; padding:7px 11px; color:var(--ink); background:transparent; cursor:pointer; }
+    .admin-tabs { display:flex; gap:8px; flex-wrap:wrap; margin:16px 0; }
+    .admin-tab { border:1px solid var(--line); background:transparent; color:var(--ink); border-radius:10px; padding:9px 12px; cursor:pointer; }
+    .admin-tab.active { background:var(--ink); color:var(--card); }
+    .admin-pane { display:none; }
+    .admin-pane.active { display:block; }
+    .admin-field { display:flex; flex-direction:column; gap:6px; margin:10px 0; font-size:13px; font-weight:600; }
+    .admin-field input,.admin-field select,.admin-field textarea { width:100%; box-sizing:border-box; border:1px solid var(--line); background:var(--bg); color:var(--ink); border-radius:10px; padding:11px 12px; font-family:inherit; font-size:14px; font-weight:400; }
+    .admin-field textarea { min-height:210px; resize:vertical; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; line-height:1.5; }
+    .admin-row { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .admin-buttons { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .admin-action { border:0; border-radius:10px; padding:11px 14px; background:var(--ink); color:var(--card); font-weight:700; cursor:pointer; }
+    .admin-action.secondary { background:var(--bg); color:var(--ink); border:1px solid var(--line); }
+    .admin-status { min-height:20px; margin-top:12px; font-size:13px; color:var(--ok); }
+    .admin-status.error { color:var(--no); }
+    .admin-count { margin:10px 0; color:var(--mut); font-size:13px; }
+    @media(max-width:560px) { .top-actions { width:100%; justify-content:space-between; } .admin-panel { padding:16px; } .admin-row { grid-template-columns:1fr; } .admin-head h2 { font-size:19px; } }
+
+
+    .account-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .account-btn { border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:12px; padding:9px 12px; font:inherit; font-size:13px; font-weight:600; cursor:pointer; }
+    .account-btn.primary { background:var(--ink); color:var(--card); }
+    .account-name { color:var(--mut); font-size:12px; max-width:180px; overflow:hidden; text-overflow:ellipsis; }
+    .auth-overlay { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(10,18,35,.55); backdrop-filter:blur(5px); }
+    .auth-overlay.visible { display:flex; }
+    .auth-card { width:min(100%,430px); max-height:90vh; overflow:auto; background:var(--card); color:var(--ink); border:1px solid var(--line); border-radius:22px; padding:24px; box-shadow:0 24px 80px rgba(0,0,0,.22); }
+    .auth-card h2 { margin:0 0 6px; font-size:22px; }
+    .auth-card p { color:var(--mut); font-size:13px; line-height:1.5; }
+    .auth-card label { display:block; font-size:13px; margin:13px 0 6px; font-weight:600; }
+    .auth-card input { box-sizing:border-box; width:100%; padding:12px 13px; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink); font:inherit; }
+    .auth-card button { font:inherit; cursor:pointer; }
+    .auth-card .auth-submit { width:100%; margin-top:16px; padding:12px; border:0; border-radius:11px; background:var(--ink); color:var(--card); font-weight:700; }
+    .auth-card .auth-close { float:right; border:1px solid var(--line); background:transparent; color:var(--ink); border-radius:9px; padding:5px 10px; }
+    .auth-switch { display:flex; gap:8px; margin:15px 0; }
+    .auth-switch button { flex:1; border:1px solid var(--line); border-radius:10px; padding:9px; background:transparent; color:var(--ink); }
+    .auth-switch button.active { background:var(--soft); border-color:var(--mut); font-weight:700; }
+    .auth-message { min-height:20px; margin-top:12px; font-size:13px; color:var(--mut); overflow-wrap:anywhere; }
+    .auth-message.error { color:#c43d4b; }
+    .progress-panel { display:none; width:min(100% - 32px,760px); margin:0 auto 18px; padding:15px 18px; border:1px solid var(--line); border-radius:16px; background:var(--card); color:var(--ink); }
+    .progress-panel.visible { display:block; }
+    .progress-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:10px; }
+    .progress-stat { padding:10px; border-radius:11px; background:var(--soft); }
+    .progress-stat strong { display:block; font-size:20px; }
+    .progress-stat span { color:var(--mut); font-size:11px; }
+    @media(max-width:600px) { .progress-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .account-name { display:none; } }
+
+  </style>
+</head>
+<body>
+
+  <!-- Reklam kodunu (örn. Google AdSense <ins> etiketi) bu kutuların içine yapıştırın -->
+  <aside class="ad-box ad-tl" aria-label="Advertisement">REKLAM 160×600</aside>
+  <aside class="ad-box ad-tr" aria-label="Advertisement">REKLAM 160×600</aside>
+  <aside class="ad-box ad-bl" aria-label="Advertisement">REKLAM 300×100</aside>
+  <aside class="ad-box ad-br" aria-label="Advertisement">REKLAM 300×100</aside>
+  <aside class="ad-mobile" aria-label="Mobile Advertisement">
+    <div class="ad-mobile-inner">REKLAM 320×50</div>
+  </aside>
+
+  <main class="app-wrap">
+    <!-- Üst Çubuk: Tema ve Dil -->
+    <div class="top-bar">
+      <div class="theme-picker" role="group" aria-label="Theme Selector">
+        <button type="button" class="theme-swatch" data-theme-val="classic" style="background: linear-gradient(135deg, #f2f5fa 50%, #1b2a4a 50%);" title="Classic" aria-pressed="true"></button>
+        <button type="button" class="theme-swatch" data-theme-val="lavender" style="background: #efeaff;" title="Lavender" aria-pressed="false"></button>
+        <button type="button" class="theme-swatch" data-theme-val="mint" style="background: #e4f6ee;" title="Mint" aria-pressed="false"></button>
+        <button type="button" class="theme-swatch" data-theme-val="peach" style="background: #ffeee3;" title="Peach" aria-pressed="false"></button>
+        <button type="button" class="theme-swatch" data-theme-val="sky" style="background: #e3f1fc;" title="Sky" aria-pressed="false"></button>
+        <button type="button" class="theme-swatch" data-theme-val="rose" style="background: #fde7ee;" title="Rose" aria-pressed="false"></button>
+      </div>
+
+      <div class="top-actions">
+        <div class="lang-toggle" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" data-lang="tr">TR</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <div class="account-actions">
+          <span class="account-name" id="account-name"></span>
+          <button type="button" class="account-btn" id="auth-open">Giriş yap / Üye ol</button>
+          <button type="button" class="account-btn" id="auth-logout" hidden>Çıkış</button>
+        </div>
+        <button type="button" class="admin-open-btn" id="admin-open" hidden>⚙ Kelime yönetimi</button>
+      </div>
+    </div>
+
+    <!-- Başlık -->
+    <header class="header">
+      <span class="brand-badge">BM WORDS</span>
+      <h1 id="ui-title">English Vocabulary</h1>
+      <p id="ui-subtitle">A'dan Z'ye 26 İngilizce kelimeyi 10 dakikada tamamla.</p>
+    </header>
+
+    <section class="progress-panel" id="progress-panel" aria-live="polite">
+      <strong>İlerlemen</strong><span id="progress-level-note" style="float:right;color:var(--mut);font-size:12px">Hesabına kaydediliyor</span>
+      <div class="progress-grid">
+        <div class="progress-stat"><strong id="progress-sessions">0</strong><span>Tamamlanan quiz</span></div>
+        <div class="progress-stat"><strong id="progress-accuracy">—</strong><span>Doğruluk oranı</span></div>
+        <div class="progress-stat"><strong id="progress-streak">0</strong><span>Günlük seri</span></div>
+        <div class="progress-stat"><strong id="progress-learned">0</strong><span>Doğru bilinen kelime</span></div>
+      </div>
+      <p id="progress-levels" style="margin:10px 0 0;font-size:12px;color:var(--mut)">Seviye istatistikleri yükleniyor…</p>
+    </section>
+
+    <!-- Seviye Seçimi -->
+    <nav class="level-bar" aria-label="CEFR Levels" id="level-bar">
+      <button type="button" class="level-pill active" data-level="A1">A1</button>
+      <button type="button" class="level-pill" data-level="A2">A2</button>
+      <button type="button" class="level-pill" data-level="B1">B1</button>
+      <button type="button" class="level-pill" data-level="B2">B2</button>
+      <button type="button" class="level-pill" data-level="C1">C1</button>
+      <button type="button" class="level-pill" data-level="C2">C2</button>
+    </nav>
+
+    <!-- Zamanlayıcı -->
+    <div class="timer-row">
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="timer-bar"></div>
+      </div>
+      <div class="timer-text" id="timer-text" aria-live="off">10:00</div>
+    </div>
+
+    <!-- 26 Harf Halkası -->
+    <div class="letter-grid" id="letter-grid" role="list"></div>
+
+    <!-- Aktif Oyun Alanı -->
+    <section id="play-area" style="display: flex; flex-direction: column; gap: 14px;">
+      <div class="question-card">
+        <div class="q-header">
+          <span id="q-letter-indicator">HARF: A</span>
+          <span id="q-level-indicator">A1</span>
+        </div>
+        <div class="q-def" id="q-def"></div>
+        <div class="q-sent" id="q-sent"></div>
+      </div>
+
+      <form class="controls" id="answer-form" autocomplete="off">
+        <input
+          type="text"
+          id="answer-input"
+          class="answer-input"
+          placeholder="A..."
+          aria-label="Cevabınızı yazın"
+          autocapitalize="none"
+          autocorrect="off"
+          spellcheck="false"
+        >
+        <button type="submit" class="btn btn-submit" id="btn-submit">Gönder</button>
+        <button type="button" class="btn btn-pass" id="btn-pass">Pas</button>
+      </form>
+    </section>
+
+    <!-- Oyun Sonu Ekranı -->
+    <section class="end-card" id="end-area" aria-live="polite">
+      <div class="end-header">
+        <div class="end-score" id="end-score">0 / 26 doğru</div>
+        <div class="end-actions">
+          <button type="button" class="btn btn-pass" id="btn-review-missed">Eksikleri tekrar et</button>
+          <button type="button" class="btn btn-submit" id="btn-retry">Tekrar dene</button>
+        </div>
+      </div>
+      <ul class="word-review-list" id="word-review-list"></ul>
+    </section>
+
+    <!-- Sayaçlar -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-dot" style="background: var(--ok);"></span>
+        <span id="stat-ok-label">Doğru</span>: <span id="stat-ok-val">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-dot" style="background: var(--no);"></span>
+        <span id="stat-no-label">Yanlış</span>: <span id="stat-no-val">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-dot" style="background: var(--ps);"></span>
+        <span id="stat-ps-label">Pas</span>: <span id="stat-ps-val">0</span>
+      </div>
+    </div>
+
+    <!-- Günlük Değişim Geri Sayımı -->
+    <footer class="footer-note" id="daily-countdown"></footer>
+  </main>
+
+
+  <div class="admin-overlay" id="admin-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-title">
+    <section class="admin-panel">
+      <div class="admin-head">
+        <div><h2 id="admin-title">Kelime yönetimi</h2><p>Kelime ekle, toplu liste yapıştır veya listenin yedeğini indir. Supabase bağlıysa ortak listeye kaydedilir.</p></div>
+        <button type="button" class="admin-close" id="admin-close" aria-label="Kapat">✕</button>
+      </div>
+      <div class="admin-count" id="admin-count"></div>
+      <div class="admin-tabs" role="tablist">
+        <button type="button" class="admin-tab active" data-pane="bulk">Toplu ekle</button>
+        <button type="button" class="admin-tab" data-pane="single">Tek kelime</button>
+        <button type="button" class="admin-tab" data-pane="backup">Yedekle / içe aktar</button>
+      </div>
+      <div class="admin-pane active" id="pane-bulk">
+        <p class="admin-help">Her satıra bir kelime, alanları noktalı virgülle ayırarak yapıştır. Sıra: <b>Seviye;Kelime;Türkçe anlam;İngilizce açıklama;Örnek cümle</b>. Seviye A1, A2, B1, B2, C1 veya C2 olmalı. Örnek: <code>B1;achieve;başarmak;To succeed in doing something;She worked hard to achieve her goal.</code></p>
+        <label class="admin-field">Kelime listesi<textarea id="admin-bulk" placeholder="B1;achieve;başarmak;To succeed in doing something;She worked hard to achieve her goal.&#10;B2;alleviate;hafifletmek;To make something less severe;This medicine can alleviate pain."></textarea></label>
+        <div class="admin-buttons"><button type="button" class="admin-action" id="admin-import-bulk">Listeyi ekle</button><button type="button" class="admin-action secondary" id="admin-example">Örnek listeyi doldur</button></div>
+      </div>
+      <div class="admin-pane" id="pane-single">
+        <div class="admin-row">
+          <label class="admin-field">Seviye<select id="admin-level"><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option></select></label>
+          <label class="admin-field">İngilizce kelime<input id="admin-word" placeholder="e.g. achieve" autocomplete="off"></label>
+        </div>
+        <label class="admin-field">Türkçe anlam<input id="admin-def" placeholder="başarmak"></label>
+        <label class="admin-field">English definition<input id="admin-def-en" placeholder="To succeed in doing something"></label>
+        <label class="admin-field">Örnek cümle<input id="admin-sentence" placeholder="She worked hard to achieve her goal."></label>
+        <div class="admin-buttons"><button type="button" class="admin-action" id="admin-add-single">Kelimeyi ekle</button></div>
+      </div>
+      <div class="admin-pane" id="pane-backup">
+        <p class="admin-help">Eklediğin kelimeler bu tarayıcıda kalır. Farklı cihazda kullanmak veya yedek almak için JSON dosyasını indir. Yedek içe aktarma, mevcut ek kelimeleri yedekteki listeyle değiştirir.</p>
+        <div class="admin-buttons"><button type="button" class="admin-action" id="admin-export">JSON yedeği indir</button><label class="admin-action secondary" for="admin-file" style="display:inline-flex;align-items:center;cursor:pointer">JSON yedeği yükle</label><input type="file" id="admin-file" accept="application/json,.json" hidden></div>
+      </div>
+      <div class="admin-status" id="admin-status" role="status" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      // Supabase proje ayarlarını aşağıdaki alanlara ekle. Publishable/anon key tarayıcıda kullanılabilir;
+      // service_role/secret key'i ASLA buraya koyma.
+      const SUPABASE_URL = "https://rjgxsvtssempugqeyqns.supabase.co";
+      const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_b3HRUmzYy3kzBRxfO_TODQ_IKUzuj1t";
+      const SUPABASE_CONFIGURED = SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("BURAYA") && !SUPABASE_PUBLISHABLE_KEY.includes("BURAYA");
+      let supabaseClient = null;
+      let authUser = null;
+      let authRole = "member";
+      let authMode = "login";
+      let cloudWordsLoaded = false;
+      const progressPanel = document.getElementById("progress-panel");
+
+      /* =====================================================================
+         1. KELİME VERİ SETİ (6 Seviye × 26 Harf = 156 Kelime)
+         Format: kelime;Türkçe açıklama;örnek cümle
+         ===================================================================== */
+      const RAW_WORDS = {
+        A1: `apple;Elma, kırmızı veya yeşil kabuklu tatlı meyve;She eats a red apple every morning.
+bread;Un, su ve mayadan yapılan temel yiyecek, ekmek;I buy fresh bread from the bakery.
+cat;Evcil, bıyıklı ve fare avlayan küçük hayvan, kedi;The black cat is sleeping on the sofa.
+dog;Sadık, havlayan dört ayaklı evcil hayvan, köpek;My dog loves playing in the park.
+egg;Tavukların yaptığı, kahvaltıda yenen kabuklu besin, yumurta;He boiled an egg for breakfast.
+fish;Suda yaşayan ve solungaçla nefes alan canlı, balık;We saw a big orange fish in the sea.
+girl;Genç dişi birey, kız çocuk;The little girl is riding her bicycle.
+house;İnsanların içinde yaşadığı yapı, müstakil ev;They live in a small house near the river.
+ice;Donmuş su, buz;Please put some ice in my cold drink.
+juice;Meyve veya sebzelerin sıkılmasıyla elde edilen içecek, meyve suyu;I drink a glass of orange juice every day.
+key;Kapı veya kilit açmaya yarayan metal araç, anahtar;I cannot find the key to my front door.
+lemon;Ekşi sulu ve sarı kabuklu narenciye meyvesi, limon;She added a slice of lemon to her tea.
+milk;İnek gibi memelilerden sağılan beyaz besleyici içecek, süt;Children drink warm milk before going to bed.
+night;Güneş battıktan sabah doğana kadar geçen karanlık süre, gece;The stars shine brightly in the night sky.
+orange;Turuncu renkli, C vitamini deposu sulu meyve, portakal;He peeled a sweet orange for his snack.
+pen;Mürekkep kullanarak yazı yazmaya yarayan araç, tükenmez kalem;Can I borrow your blue pen to sign this?
+queen;Bir ülkeyi yöneten kadın hükümdar veya kralın eşi, kraliçe;The queen waved to the crowd from the palace.
+rain;Bulutlardan su damlaları halinde düşen yağış, yağmur;Take your umbrella because the rain is starting.
+sun;Dünyamızı ısıtan ve aydınlatan büyük yıldız, güneş;The sun rises in the east every morning.
+tree;Gövdesi odunsu ve dalları yapraklı büyük bitki, ağaç;We sat under a tall tree to rest in the shade.
+umbrella;Yağmurdan veya güneşten korunmak için elde taşınan eşya, şemsiye;She opened her umbrella when the storm began.
+van;Eşya veya yolcu taşımak için kullanılan kapalı panelvan, minibüs;The delivery van stopped in front of our street.
+water;Yaşam için vazgeçilmez olan renksiz ve kokusuz sıvı, su;Remember to drink plenty of water after running.
+x-ray;Vücudun içindeki kemikleri görüntüleyen tıbbi ışın, röntgen;The doctor looked at the x-ray of my broken arm.
+yellow;Limon ve güneşin rengi olan ana renk, sarı;She painted her bedroom walls bright yellow.
+zoo;Çeşitli vahşi hayvanların sergilendiği büyük bahçe, hayvanat bahçesi;We visited the city zoo to see the giraffes.`,
+
+        A2: `airport;Uçakların iniş ve kalkış yaptığı büyük tesis, havalimanı;We arrived at the airport two hours before the flight.
+bridge;İki yakayı birbirine bağlayan geçit yapısı, köprü;The old stone bridge crosses the wide river.
+castle;Eski çağlarda korunma amacıyla yapılmış kalın duvarlı yapı, kale;Tourists love visiting the medieval castle on the hill.
+desert;Çok az yağış alan kurak ve kumluk bölge, çöl;Camels can walk for days across the hot desert.
+engine;Enerjiyi harekete dönüştüren makine düzeneği, motor;The mechanic repaired the car engine quickly.
+forest;Ağaçlarla ve bitkilerle kaplı geniş doğal alan, orman;We went hiking through the deep green forest.
+garden;Evlerin çevresinde çiçek veya sebze yetiştirilen alan, bahçe;My grandmother grows red roses in her garden.
+hotel;Yolcuların ücret karşılığında konakladığı tesis, otel;We booked a quiet room at a seaside hotel.
+island;Dört tarafı sularla çevrili kara parçası, ada;They took a small boat to reach the tropical island.
+jacket;Üst bedene giyilen önden açılır kısa dış giysi, ceket;Put on your warm jacket before going outside.
+kitchen;Evde yemek hazırlanan ve pişirilen bölüm, mutfak;Something smells delicious in the kitchen right now.
+library;Kitapların okunduğu ve ödünç alındığı kurum, kütüphane;She studied silently at the university library.
+mountain;Çevresine göre çok yüksek olan büyük yeryüzü şekli, dağ;Snow covers the top of the highest mountain.
+notebook;Not almak için kullanılan çizgili veya kareli defter;He wrote all the new vocabulary in his notebook.
+ocean;Kıtaları birbirinden ayıran dev su kütlesi, okyanus;Whales swim freely across the deep ocean.
+pocket;Giysilerin üzerine dikilmiş küçük eşya gözü, cep;He kept the coins safe inside his coat pocket.
+question;Cevap almak amacıyla yöneltilen söz, soru;The student raised her hand to ask a question.
+river;Denize veya göle dökülen büyük akarsu, nehir;Fishermen sat quietly along the bank of the river.
+station;Tren veya otobüslerin yolcu indirdiği durak yeri, istasyon;The train leaves the central station at noon.
+ticket;Sinema, konser veya yolculuğa giriş hakkı sağlayan belge, bilet;I bought a concert ticket for Friday evening.
+uniform;Aynı kurumda çalışanların giydiği tek tip kıyafet, üniforma;Every pilot wears a neat dark uniform at work.
+village;Şehirden uzak, nüfusu az küçük yerleşim yeri, köy;My family spends every summer in a peaceful village.
+window;Duvarlarda ışık ve hava girmesi için bırakılan camlı açıklık, pencere;Please open the window to let some fresh air in.
+xylophone;Tahta veya metal çubuklara tokmakla vurularak çalınan çalgı, ksilofon;The music teacher played a cheerful tune on the xylophone.
+yogurt;Sütün mayalanmasıyla elde edilen kıvamlı besin, yoğurt;She mixed fresh berries and honey into her yogurt.
+zipper;Giysi ve çantaları kapatmaya yarayan dişli şerit mekanizma, fermuar;The zipper on my winter backpack got stuck again.`,
+
+        B1: `ambition;Başarılı olma veya yükselme konusunda güçlü istek, hırs;Her biggest ambition is to become a flight captain.
+behavior;Bir kişinin veya canlının dış dünyaya karşı tutumu, davranış;Good behavior is always rewarded in this classroom.
+climate;Bir bölgede uzun yıllar boyunca görülen hava koşulları, iklim;The Mediterranean climate is warm and sunny in summer.
+decade;On yıllık zaman dilimi, on yıl;Technology has changed rapidly over the past decade.
+effort;Bir işi başarmak için harcanan beden veya düşünce gücü, çaba;You can pass the exam if you put in enough effort.
+fortune;Büyük miktarda mal ve para, servet veya talih;He made a small fortune by selling his software company.
+gesture;Duygu ve düşünceleri destekleyen el, kol veya baş hareketi, jest;Offering her a seat was a very polite gesture.
+habit;Sürekli tekrarlanarak yerleşmiş davranış biçimi, alışkanlık;Waking up early is a healthy habit to develop.
+issue;Üzerinde tartışılan önemli konu veya sorun, mesele;Traffic congestion is a major issue in big cities.
+journey;Bir yerden başka bir yere yapılan uzun gezi, yolculuk;The train journey across Europe took three days.
+knowledge;Öğrenme veya deneyim yoluyla kazanılan anlayış, bilgi;Reading books expands your general knowledge of the world.
+leisure;Çalışma dışındaki serbest ve dinlenme vakti, boş zaman;He enjoys gardening during his weekend leisure hours.
+method;Bir amaca ulaşmak için izlenen düzenli yol, yöntem;This new teaching method helps students learn faster.
+network;Birbirine bağlı sistemlerin veya kişilerin oluşturduğu yapı, ağ;The company built a reliable delivery network nationwide.
+opinion;Bir konu hakkındaki kişisel düşünce ve yargı, görüş;Everyone is welcome to share their honest opinion here.
+purpose;Ulaşılmak istenen sonuç, gaye, amaç;The main purpose of the meeting is to plan our budget.
+quality;Bir şeyin ne derece iyi olduğunu gösteren özellik, nitelik, kalite;We prefer buying shoes of high quality that last longer.
+routine;Her gün aynı düzende yapılan işlerin bütünü, rutin;Running in the morning is part of my daily routine.
+shelter;Tehlikeden veya kötü havadan korunacak sığınak, barınak;We found a dry shelter before the heavy storm hit.
+tradition;Kuşaktan kuşağa aktarılan kültürel alışkanlık, gelenek;Gathering for a big family dinner is an old tradition.
+urgent;Geciktirilmeden hemen yapılması gereken, acil;She received an urgent phone call from the hospital.
+variety;Aynı türden şeylerin farklılık göstermesi, çeşitlilik;The local market offers a wide variety of fresh spices.
+wealth;Zenginlik, bolluk, varlık;True wealth is measured by health and good friendships.
+xenophobia;Yabancılara veya dışarıdan gelenlere karşı duyulan korku, yabancı düşmanlığı;Education helps society overcome prejudice and xenophobia.
+youth;İnsan hayatının çocuklukla yetişkinlik arasındaki dönemi, gençlik;He spent his youth traveling around coastal towns.
+zone;Belirli bir özelliği veya amacı olan ayrılmış alan, bölge;Please drive slowly because this street is a school zone.`,
+
+        B2: `abandon;Bir yeri, kişiyi veya işi tamamen bırakmak, terk etmek;The crew had to abandon the sinking ship before dawn.
+bargain;Normal değerinin altında alınan karlı alışveriş, kelepir;This vintage leather coat was a real bargain at the market.
+capacity;Bir şeyin alabileceği miktar veya üretme gücü, kapasite;The stadium has a seating capacity of fifty thousand people.
+debate;Farklı görüşlerin savunulduğu resmi tartışma, münazara;There was a lively debate about renewable energy policies.
+emerge;Saklı olduğu yerden çıkmak, belirmek, ortaya çıkmak;The sun began to emerge from behind the dark clouds.
+fragile;Kolayca kırılabilen veya zarar görebilen, kırılgan, hassas;Be careful with that box because the glass inside is fragile.
+genuine;Sahte olmayan, özgün, gerçek ve samimi;She showed genuine interest in helping the new students.
+hesitate;Bir şey yapmadan önce kararsızlık yaşamak, tereddüt etmek;Do not hesitate to call me if you need any assistance.
+inevitable;Önlenmesi mümkün olmayan, kaçınılmaz;Change is an inevitable part of growing up.
+justify;Bir davranışın haklılığını kanıtlamak, gerekçelendirmek;Nothing can justify treating other people with disrespect.
+keen;Bir şeye karşı çok istekli, hevesli ve meraklı;My brother is a keen photographer who loves nature shots.
+launch;Yeni bir ürünü veya projeyi başlatmak, piyasaya sürmek;The studio will launch their new video game next month.
+maintain;Bir durumu veya yapıyı bozulmadan sürdürmek, korumak;It is important to maintain a balanced diet during winter.
+neglect;Gereken ilgiyi göstermemek, savsaklamak, ihmal etmek;You should never neglect your sleep before an important test.
+obstacle;Bir amaca ulaşmayı zorlaştıran güçlük, mania, engel;Lack of funding was the biggest obstacle to our project.
+perceive;Duyular veya zihin yoluyla farkına varmak, algılamak;Children often perceive the world very differently than adults.
+quota;İzin verilen veya ayrılan belirli pay, kontenjan, kota;The factory reached its monthly production quota ahead of time.
+reluctant;Bir işi yapmaya gönülsüz, çekingen, isteksiz;He was reluctant to leave his warm bed on a cold morning.
+scarce;Bulunması zor, miktarı yetersiz, kıt, nadir;Clean drinking water is becoming scarce in many dry regions.
+thrive;Gelişmek, serpilmek, başarılı olup güçlenmek;Tropical plants thrive in warm and humid environments.
+undergo;Zorlu bir süreçten, değişimden veya ameliyattan geçmek;The historic building will undergo major repairs this year.
+vacant;İçinde kimse bulunmayan, tutulmamış, boş;There is still one vacant apartment on the top floor.
+widespread;Çok geniş bir alana yayılmış olan, yaygın;The new software update received widespread praise from users.
+xerox;Belgelerin kopyasını çıkarmak, fotokopi çekmek;Could you please xerox these contract pages before noon?
+yield;Ürün vermek, sonuç doğurmak veya teslim olmak;Our long hours of research finally began to yield good results.
+zeal;Bir işe duyulan coşkulu istek, şevk, gayret;She approached her new teaching role with remarkable zeal.`,
+
+        C1: `alleviate;Acıyı, sorunu veya yükü hafifletmek, dindirmek;The new medicine helped alleviate his severe headache.
+benevolent;İyiliksever, hayırsever, başkalarının iyiliğini isteyen;A benevolent donor funded the entire scholarship program.
+coherent;Kendi içinde mantıklı ve uyumlu, tutarlı;She presented a coherent argument that convinced the jury.
+diligent;İşini özenle ve yorulmadan yapan, çalışkan, gayretli;Diligent preparation is the secret to achieving high exam scores.
+eloquent;Etkileyici, akıcı ve güzel konuşan, belagatli;The professor gave an eloquent speech at the graduation ceremony.
+feasible;Eldeki imkanlarla uygulanabilir, yapılabilir, mümkün;Building a tunnel under the bay is economically feasible now.
+gregarious;Topluluk içinde olmayı seven, girişken, sosyal;As a gregarious person, he makes friends wherever he travels.
+hypocrisy;Özü sözü bir olmama durumu, ikiyüzlülük, riyakarlık;Voters quickly noticed the hypocrisy in the politician's promises.
+imminent;Çok yakında gerçekleşmesi beklenen, eli kulağında;Dark storm clouds warned us that heavy rain was imminent.
+jeopardize;Bir şeyi tehlikeye atmak, riske sokmak;One careless mistake could jeopardize the entire operation.
+kinship;Akrabalık veya ortak değerlerden doğan yakınlık bağı;She felt a strong sense of kinship with her fellow musicians.
+lucid;Anlaşılması kolay, berrak, açık ve net;Despite his advanced age, his memories remained completely lucid.
+mitigate;Olumsuz bir durumun şiddetini veya etkisini azaltmak, yatıştırmak;Planting more trees along the coast helps mitigate soil erosion.
+notorious;Genellikle kötü bir özellikle tanınan, adı çıkmış;This mountain pass is notorious for sudden snowstorms.
+obsolete;Artık kullanılmayan, modası geçmiş, eskimiş;Floppy disks became obsolete once flash drives appeared.
+plausible;Akla yatkın, mantıklı ve inanılır görünen, makul;The detective could not find a plausible explanation for the clue.
+quell;Bir ayaklanmayı veya korkuyu bastırmak, yatıştırmak;The manager spoke calmly to quell the team's anxieties.
+resilient;Zorluklar karşısında çabuk toparlanan, dirençli, esnek;Children are often more resilient than we expect them to be.
+scrutiny;Dikkatli ve ayrıntılı inceleme, denetim, gözetim;The company's financial records came under strict scrutiny.
+transient;Kısa süreli, kalıcı olmayan, geçici;Summer storms in this valley are usually brief and transient.
+ubiquitous;Her yerde aynı anda bulunan veya rastlanan, çok yaygın;Smartphones have become ubiquitous in modern daily life.
+vulnerable;Saldırıya veya zarara açık, savunmasız, incinebilir;Young seedlings are extremely vulnerable to freezing temperatures.
+wary;Olası tehlikelere karşı dikkatli, tedbirli, ihtiyatlı;Consumers should be wary of emails asking for bank passwords.
+xenophile;Yabancı kültürlere, dillere ve insanlara ilgi duyan kimse;As a true xenophile, she spent years learning five languages.
+yearn;Bir şeye derin bir özlem duymak, hasret çekmek;After months at sea, the sailors began to yearn for home.
+zealous;Bir dava veya amaç uğruna aşırı gayretli, ateşli, coşkulu;The zealous volunteers worked through the night to clean the beach.`,
+
+        C2: `aberration;Normal ve beklenen yoldan sapma, anormallik;The freezing weather in July was a rare climatic aberration.
+belligerent;Kavgacı, saldırgan, düşmanca tutum sergileyen;His belligerent tone made a peaceful negotiation impossible.
+cacophony;Uyumsuz ve kulak tırmalayıcı seslerin karmaşası, kakofoni;A cacophony of car horns echoed through the busy intersection.
+deleterious;Sağlığa veya duruma gizlice zarar veren, yıkıcı, zararlı;Lack of sleep has a deleterious effect on cognitive performance.
+ephemeral;Ömrü çok kısa olan, fanî, gelip geçici;Fame on social media is often ephemeral and unpredictable.
+fastidious;Ayrıntılara aşırı özen gösteren, titiz, müşkülpesent;The fastidious chef inspected every plate before it left the kitchen.
+garrulous;Önemsiz konularda durmadan konuşan, geveze, çenesi düşük;The garrulous passenger talked nonstop during the four-hour flight.
+harbinger;Gelecek bir olayın habercisi, müjdecisi, öncüsü;Warm southern winds are a sure harbinger of spring.
+iconoclast;Yerleşik inançlara ve geleneklere karşı çıkan kimse;The director was an iconoclast who broke every rule of cinema.
+juxtapose;Farklı iki şeyi karşılaştırmak amacıyla yan yana koymak;The exhibition aims to juxtapose classic paintings with modern digital art.
+knell;Ölüm veya yıkım haberi veren uğursuz çan sesi, sonun işareti;The rise of streaming services sounded the knell for video rental shops.
+lethargic;Uyuşuk, halsiz, enerjisiz ve harektsiz;The oppressive afternoon heat made everyone in the office feel lethargic.
+magnanimous;Özellikle rakiplerine karşı yüce gönüllü, bağışlayıcı;The champion was magnanimous in victory and praised his opponent.
+nefarious;Son derece kötü niyetli, alçakça, hain;Cybersecurity experts blocked the hackers' nefarious scheme in time.
+obfuscate;Bir konuyu kasten bulandırmak, anlaşılmaz hale getirmek;Complex legal jargon is sometimes used to obfuscate the simple truth.
+paradigm;Bir dönem için geçerli olan temel değerler dizisi, örnek model;Artificial intelligence has created a new paradigm in software engineering.
+quixotic;Gerçekçilikten uzak derecede idealist, hayalperest;His plan to build a library in every tiny village seemed quixotic at first.
+recalcitrant;Otoriteye ve kurallara inatla direnen, dikbaşlı, serkeş;The recalcitrant witness refused to answer any questions in court.
+sycophant;Çıkar sağlamak için başkalarına dalkavukluk yapan kimse, yağcı;A wise leader surrounds himself with honest advisors rather than a sycophant.
+taciturn;Konuşmayı pek sevmeyen, ketum, az konuşan, suskun;The taciturn cabin owner rarely spoke more than a few words to visitors.
+unctuous;Aşırı ve samimiyetsiz biçimde nazik, yağcı, yapmacık;The salesman's unctuous smile immediately made the customers suspicious.
+vacillate;İki fikir veya seçenek arasında gidip gelmek, bocalamak;Investors tend to vacillate when market conditions become uncertain.
+winsome;Çocuksu bir saflıkla sevimli, cana yakın, çekici;Her winsome personality quickly charmed everyone at the gathering.
+xenogenesis;Canlılarda ana babaya hiç benzemeyen yavru oluşumu, yabancı türeme;Science fiction authors often borrow the biological term xenogenesis for alien stories.
+yoke;Boyunduruk, esaret bağı veya iki şeyi birbirine bağlamak;The nation fought bravely to throw off the yoke of colonial rule.
+zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu;Those indie albums perfectly captured the cultural zeitgeist of the nineties.`
+      };
+
+      const EN_DEFS = {
+        'alleviate': 'To make pain, a problem, or a difficult situation less severe.',
+        'apple': 'A round fruit with red or green skin and crisp flesh.',
+        'bread': 'A food made from flour, water and usually yeast.',
+        'cat': 'A small domesticated animal that often catches mice.',
+        'dog': 'A domesticated animal known for barking and loyalty.',
+        'egg': 'A food laid by birds, commonly eaten for breakfast.',
+        'fish': 'An aquatic animal that breathes through gills.',
+        'girl': 'A female child or young person.',
+        'house': 'A building where people live.',
+        'ice': 'Water in its frozen, solid form.',
+        'juice': 'A drink made by squeezing fruit or vegetables.',
+        'key': 'A small metal object used to open a lock.',
+        'lemon': 'A yellow citrus fruit with a sour taste.',
+        'milk': 'A nutritious white liquid produced by mammals.',
+        'night': 'The dark part of the day between sunset and sunrise.',
+        'orange': 'A round citrus fruit with orange skin and juicy flesh.',
+        'pen': 'A tool used for writing with ink.',
+        'queen': 'A female monarch or the wife of a king.',
+        'rain': 'Water that falls from clouds in drops.',
+        'sun': 'The star that gives Earth light and heat.',
+        'tree': 'A large plant with a woody trunk and branches.',
+        'umbrella': 'A portable cover that protects you from rain or sun.',
+        'van': 'A vehicle used to carry goods or people.',
+        'water': 'A clear, essential liquid needed by living things.',
+        'x-ray': 'A type of radiation used to create images of the inside of the body.',
+        'yellow': 'The colour of lemons and sunlight.',
+        'zoo': 'A place where wild animals are kept for public viewing.',
+        'airport': 'A place where aircraft take off and land.',
+        'bridge': 'A structure built to cross a river, road or gap.',
+        'castle': 'A large fortified building from earlier times.',
+        'desert': 'A very dry region that receives little rainfall.',
+        'engine': 'A machine that converts energy into movement.',
+        'forest': 'A large area covered with trees and other plants.',
+        'garden': 'An area where flowers, vegetables or other plants are grown.',
+        'hotel': 'A place that provides paid accommodation for travellers.',
+        'island': 'An area of land surrounded by water.',
+        'jacket': 'A short outer garment worn on the upper body.',
+        'kitchen': 'A room where food is prepared and cooked.',
+        'library': 'A place where books can be read or borrowed.',
+        'mountain': 'A very high natural rise of land.',
+        'notebook': 'A book of blank or lined pages for writing notes.',
+        'ocean': 'A very large body of salt water between continents.',
+        'pocket': 'A small pouch sewn into clothing for carrying items.',
+        'question': 'Something asked to get information or an answer.',
+        'river': 'A large natural stream of water flowing towards a sea or lake.',
+        'station': 'A place where trains or buses stop for passengers.',
+        'ticket': 'A document that gives permission to enter or travel.',
+        'uniform': 'A standard set of clothes worn by members of an organisation.',
+        'village': 'A small settlement, usually smaller than a town.',
+        'window': 'An opening in a wall, usually fitted with glass.',
+        'xylophone': 'A musical instrument played by striking wooden or metal bars.',
+        'yogurt': 'A thick food made by fermenting milk.',
+        'zipper': 'A fastening with interlocking teeth used on clothes or bags.',
+        'ambition': 'A strong desire to achieve something or advance in life.',
+        'behavior': 'The way a person or animal acts.',
+        'climate': 'The usual weather conditions of a region over many years.',
+        'decade': 'A period of ten years.',
+        'effort': 'Physical or mental energy used to achieve something.',
+        'fortune': 'A large amount of money or a chance event affecting life.',
+        'gesture': 'A movement of the hand, arm or head that expresses an idea or feeling.',
+        'habit': 'A behaviour repeated regularly until it becomes usual.',
+        'issue': 'An important subject, problem or matter being discussed.',
+        'journey': 'An act of travelling from one place to another.',
+        'knowledge': 'Information and understanding gained through learning or experience.',
+        'leisure': 'Free time when you are not working.',
+        'method': 'A planned way of doing something.',
+        'network': 'A system of connected people, places or things.',
+        'opinion': 'A personal belief or judgement about something.',
+        'purpose': 'The reason for doing something; an aim.',
+        'quality': 'A characteristic that indicates how good something is.',
+        'routine': 'A regular sequence of activities or tasks.',
+        'shelter': 'A place that provides protection from danger or bad weather.',
+        'tradition': 'A custom or belief passed from one generation to another.',
+        'urgent': 'Needing immediate attention or action.',
+        'variety': 'A range of different things of the same general type.',
+        'wealth': 'A large amount of money or valuable possessions.',
+        'xenophobia': 'Fear or dislike of people from other countries or cultures.',
+        'youth': 'The period of life between childhood and adulthood.',
+        'zone': 'An area set aside for a particular purpose or with a particular feature.',
+        'abandon': 'To leave a person, place or activity completely.',
+        'bargain': 'Something bought for less than its usual price; a good deal.',
+        'capacity': 'The amount something can hold or the ability to do something.',
+        'debate': 'A formal discussion in which opposing views are presented.',
+        'emerge': 'To come out, appear or become known.',
+        'fragile': 'Easily broken, damaged or harmed.',
+        'genuine': 'Real, authentic or sincere; not fake.',
+        'hesitate': 'To pause before acting because of uncertainty.',
+        'inevitable': 'Certain to happen and impossible to avoid.',
+        'justify': 'To show or prove that an action or decision is reasonable.',
+        'keen': 'Very interested, eager or enthusiastic.',
+        'launch': 'To introduce a new product or begin a project.',
+        'maintain': 'To keep something in good condition or continue it.',
+        'neglect': 'To fail to give something the care or attention it needs.',
+        'obstacle': 'Something that makes progress or success difficult.',
+        'perceive': 'To notice, understand or become aware of something.',
+        'quota': 'A fixed share, amount or limit that is allocated or allowed.',
+        'reluctant': 'Unwilling or hesitant to do something.',
+        'scarce': 'Not available in sufficient amounts; in short supply.',
+        'thrive': 'To grow, develop or succeed well.',
+        'undergo': 'To experience or be subjected to a process or change.',
+        'vacant': 'Empty or not currently occupied.',
+        'widespread': 'Existing or happening over a large area or among many people.',
+        'xerox': 'To make a photocopy of a document.',
+        'yield': 'To produce a result or give way to someone or something.',
+        'zeal': 'Great energy, enthusiasm or eagerness for a cause.',
+        'benevolent': 'Kind and generous; wanting to do good for others.',
+        'coherent': 'Logical, consistent and easy to understand.',
+        'diligent': 'Careful and persistent in one’s work or duties.',
+        'eloquent': 'Fluent and persuasive in speaking or writing.',
+        'feasible': 'Possible and practical to do successfully.',
+        'gregarious': 'Sociable and enjoying the company of others.',
+        'hypocrisy': 'The practice of claiming beliefs or standards one does not follow.',
+        'imminent': 'Likely to happen very soon.',
+        'jeopardize': 'To put something at risk or in danger.',
+        'kinship': 'A family relationship or a close bond based on shared qualities.',
+        'lucid': 'Clear and easy to understand.',
+        'mitigate': 'To make something harmful or unpleasant less severe.',
+        'notorious': 'Famous for something bad or unpleasant.',
+        'obsolete': 'No longer used because something newer exists.',
+        'plausible': 'Seeming reasonable or likely to be true.',
+        'quell': 'To put an end to or calm something, such as unrest or fear.',
+        'resilient': 'Able to recover quickly after difficulty or change.',
+        'scrutiny': 'Close and careful examination.',
+        'transient': 'Lasting only for a short time; temporary.',
+        'ubiquitous': 'Present or found everywhere.',
+        'vulnerable': 'Exposed to the possibility of harm or attack.',
+        'wary': 'Cautious because of possible danger or problems.',
+        'xenophile': 'A person who is interested in or attracted to foreign cultures.',
+        'yearn': 'To want something deeply; to long for it.',
+        'zealous': 'Showing great energy and enthusiasm for a cause.',
+        'aberration': 'A departure from what is normal or expected.',
+        'belligerent': 'Hostile, aggressive or eager to argue or fight.',
+        'cacophony': 'A harsh, unpleasant mixture of sounds.',
+        'deleterious': 'Causing harm or damage.',
+        'ephemeral': 'Lasting for a very short time.',
+        'fastidious': 'Very attentive to detail and difficult to please.',
+        'garrulous': 'Excessively talkative, especially about trivial matters.',
+        'harbinger': 'A sign or indication that something is going to happen.',
+        'iconoclast': 'A person who challenges established beliefs or traditions.',
+        'juxtapose': 'To place two things side by side to compare or contrast them.',
+        'knell': 'A bell sound associated with death or an announcement of an end.',
+        'lethargic': 'Feeling sluggish, tired or lacking energy.',
+        'magnanimous': 'Generous and forgiving, especially towards a rival.',
+        'nefarious': 'Wicked or criminal in nature.',
+        'obfuscate': 'To make something deliberately unclear or confusing.',
+        'paradigm': 'A typical model or framework of ideas and practices.',
+        'quixotic': 'Extremely idealistic in an unrealistic or impractical way.',
+        'recalcitrant': 'Stubbornly resistant to authority or control.',
+        'sycophant': 'A person who flatters someone powerful to gain an advantage.',
+        'taciturn': 'Reserved or saying very little.',
+        'unctuous': 'Excessively or insincerely flattering or agreeable.',
+        'vacillate': 'To waver between different opinions or choices.',
+        'winsome': 'Attractive or appealing in a sweet, charming way.',
+        'xenogenesis': 'The production of offspring markedly different from their parents; also used for alien-origin life in fiction.',
+        'yoke': 'A wooden frame for joining animals, or a symbol of oppressive control.',
+        'zeitgeist': 'The defining spirit, mood or ideas of a particular period.',
+      };
+
+      /* =====================================================================
+         2. ÇEVİRİ METİNLERİ (TR / EN)
+         ===================================================================== */
+      const I18N = {
+        tr: {
+          pageTitle: "BM Words — English Vocabulary",
+          title: "BM Words · English Vocabulary",
+          subtitle: "A'dan Z'ye 26 İngilizce kelimeyi 10 dakikada tamamla.",
+          submit: "Gönder",
+          pass: "Pas",
+          okLabel: "Doğru",
+          noLabel: "Yanlış",
+          psLabel: "Pas",
+          retry: "Tekrar dene",
+          inputAria: "Cevabınızı yazın",
+          letterPrefix: "HARF",
+          scoreSuffix: "doğru",
+          countdown: (h, m) => `Yeni kelimeler ${h} saat ${m} dakika sonra geliyor.`,
+          missed: "Eksikleri tekrar et", review: "Öğrenme özeti", correctAnswer: "Cevabın", unanswered: "Cevaplanmadı", passed: "Pas geçildi", wrong: "Yanlış", best: "Bu seviyedeki en iyi skor", noMissed: "Tekrar edilecek eksik kelime yok.", confirmLevel: "Devam eden oyun sıfırlanacak. Seviye değiştirilsin mi?"
+        },
+        en: {
+          pageTitle: "BM Words — English Vocabulary",
+          title: "BM Words · English Vocabulary",
+          subtitle: "Complete 26 English words from A to Z in 10 minutes.",
+          submit: "Submit",
+          pass: "Pass",
+          okLabel: "Correct",
+          noLabel: "Wrong",
+          psLabel: "Pass",
+          retry: "Try again",
+          inputAria: "Type your answer",
+          letterPrefix: "LETTER",
+          scoreSuffix: "correct",
+          countdown: (h, m) => `New words in ${h} h ${m} min.`,
+          missed: "Review missed words", review: "Learning review", correctAnswer: "Your answer", unanswered: "Unanswered", passed: "Passed", wrong: "Wrong", best: "Best score for this level", noMissed: "No missed words to review.", confirmLevel: "Your current game will be reset. Change level?"
+        }
+      };
+
+      /* =====================================================================
+         3. VERİ AYRIŞTIRMA VE DOĞRULAMA (A-Z KONTROLÜ)
+         ===================================================================== */
+      const LEVEL_KEYS = ["A1", "A2", "B1", "B2", "C1", "C2"];
+      const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+      const PARSED_DB = {};
+
+      LEVEL_KEYS.forEach((lvl) => {
+        const byLetter = {};
+        for (const ch of ALPHABET) byLetter[ch] = [];
+
+        const lines = RAW_WORDS[lvl].trim().split(/\r?\n/);
+        lines.forEach((line) => {
+          const parts = line.split(";");
+          if (parts.length >= 3) {
+            const word = parts[0].trim();
+            const def = parts[1].trim();
+            const sent = parts.slice(2).join(";").trim();
+            const firstChar = word.charAt(0).toLowerCase();
+            if (byLetter[firstChar]) {
+              byLetter[firstChar].push({ word, def, defEn: EN_DEFS[word.toLowerCase()] || word, sent });
+            }
+          }
+        });
+
+        // A'dan Z'ye 26 harfin eksiksiz ve sıralı olduğunu doğrula
+        const presentLetters = Object.keys(byLetter).filter((k) => byLetter[k].length > 0).join("");
+        if (presentLetters !== ALPHABET) {
+          console.error(`Doğrulama hatası [${lvl}]: Beklenen "${ALPHABET}", bulunan "${presentLetters}"`);
+        }
+        PARSED_DB[lvl] = byLetter;
+      });
+
+      // Kullanıcının admin panelinden eklediği kelimeler; yerel tarayıcıda saklanır.
+      const ADMIN_WORDS_KEY = "bm_words_admin_words_v1";
+      function readAdminWords() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(ADMIN_WORDS_KEY) || "[]");
+          return Array.isArray(parsed) ? parsed.filter(w => w && LEVEL_KEYS.includes(w.level) && w.word && w.def) : [];
+        } catch (_) { return []; }
+      }
+      let adminWords = readAdminWords();
+      function rebuildDatabase() {
+        LEVEL_KEYS.forEach(level => {
+          Object.keys(PARSED_DB[level]).forEach(letter => { PARSED_DB[level][letter] = PARSED_DB[level][letter].filter(w => !w._admin); });
+        });
+        adminWords.forEach(entry => {
+          const word = String(entry.word || "").trim();
+          const letter = word.charAt(0).toLowerCase();
+          if (!word || !ALPHABET.includes(letter) || !LEVEL_KEYS.includes(entry.level)) return;
+          const bucket = PARSED_DB[entry.level][letter];
+          const existingIndex = bucket.findIndex(w => w.word.toLowerCase() === word.toLowerCase());
+          const item = { word, def: String(entry.def || "").trim(), defEn: String(entry.defEn || "").trim() || word, sent: String(entry.sent || "").trim(), _admin: true };
+          if (existingIndex >= 0) bucket[existingIndex] = item; else bucket.push(item);
+        });
+      }
+      rebuildDatabase();
+
+      /* =====================================================================
+         4. GÜNLÜK KELİME SEÇİMİ (Türkiye Saati UTC+3)
+         ===================================================================== */
+      function getTrDayNumber() {
+        return Math.floor((Date.now() + 3 * 3600 * 1000) / 86400000);
+      }
+
+      function getDailyWordsForLevel(levelKey) {
+        const levelIndex = LEVEL_KEYS.indexOf(levelKey);
+        const day = getTrDayNumber();
+        const byLetter = PARSED_DB[levelKey];
+        const selected = [];
+
+        for (let i = 0; i < ALPHABET.length; i++) {
+          const letter = ALPHABET[i];
+          const list = byLetter[letter];
+          const pickIndex = (day + levelIndex * 3) % list.length;
+          const item = list[pickIndex];
+          selected.push({
+            letter: letter.toUpperCase(),
+            word: item.word,
+            def: item.def,
+            // Keep the English definition when creating the playable question.
+            // Older builds omitted this field, so the EN panel rendered as blank.
+            defEn: item.defEn || item.word,
+            sent: item.sent,
+            status: "pending"
+          });
+        }
+        return selected;
+      }
+
+      /* Cümle içindeki hedef kelimeyi büyük/küçük harf duyarsız _____ ile gizler */
+      function maskSentence(sentence, word) {
+        const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const regex = new RegExp(escaped, "gi");
+        return sentence.replace(regex, "_____");
+      }
+
+      /* =====================================================================
+         5. OYUN DURUMU (STATE)
+         ===================================================================== */
+      const TOTAL_TIME = 600;
+      let currentLang = "tr";
+      let currentTheme = "classic";
+      let currentLevel = "A1";
+      let words = [];
+      let queue = [];
+      let timeLeft = TOTAL_TIME;
+      let timerId = null;
+      let isGameOver = false;
+      let reviewOnly = false;
+      let gameStartedAt = 0;
+      let lastGameResult = null;
+      function readStoredJSON(key, fallback) {
+        try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; }
+        catch (_) { return fallback; }
+      }
+      function writeStoredJSON(key, value) {
+        try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {}
+      }
+
+      const elTitle = document.getElementById("ui-title");
+      const elSubtitle = document.getElementById("ui-subtitle");
+      const elLevelBar = document.getElementById("level-bar");
+      const elTimerBar = document.getElementById("timer-bar");
+      const elTimerText = document.getElementById("timer-text");
+      const elLetterGrid = document.getElementById("letter-grid");
+      const elPlayArea = document.getElementById("play-area");
+      const elEndArea = document.getElementById("end-area");
+      const elQLetter = document.getElementById("q-letter-indicator");
+      const elQLevel = document.getElementById("q-level-indicator");
+      const elQDef = document.getElementById("q-def");
+      const elQSent = document.getElementById("q-sent");
+      const elForm = document.getElementById("answer-form");
+      const elInput = document.getElementById("answer-input");
+      const elBtnSubmit = document.getElementById("btn-submit");
+      const elBtnPass = document.getElementById("btn-pass");
+      const elBtnRetry = document.getElementById("btn-retry");
+      const elBtnReviewMissed = document.getElementById("btn-review-missed");
+      const elEndScore = document.getElementById("end-score");
+      const elReviewList = document.getElementById("word-review-list");
+      const elStatOkLabel = document.getElementById("stat-ok-label");
+      const elStatNoLabel = document.getElementById("stat-no-label");
+      const elStatPsLabel = document.getElementById("stat-ps-label");
+      const elStatOkVal = document.getElementById("stat-ok-val");
+      const elStatNoVal = document.getElementById("stat-no-val");
+      const elStatPsVal = document.getElementById("stat-ps-val");
+      const elDailyCountdown = document.getElementById("daily-countdown");
+
+      /* =====================================================================
+         6. TEMA VE DİL YÖNETİMİ
+         ===================================================================== */
+      function applyTheme(theme) {
+        currentTheme = theme;
+        if (theme === "classic") {
+          document.documentElement.removeAttribute("data-theme");
+        } else {
+          document.documentElement.setAttribute("data-theme", theme);
+        }
+        document.querySelectorAll(".theme-swatch").forEach((btn) => {
+          const isMatch = btn.getAttribute("data-theme-val") === theme;
+          btn.setAttribute("aria-pressed", isMatch ? "true" : "false");
+        });
+        try {
+          localStorage.setItem("bm_words_theme", theme);
+        } catch (e) {}
+      }
+
+      function applyLanguage(lang) {
+        currentLang = lang === "en" ? "en" : "tr";
+        document.documentElement.lang = currentLang;
+        const t = I18N[currentLang];
+
+        document.title = t.pageTitle;
+        elTitle.textContent = t.title;
+        elSubtitle.textContent = t.subtitle;
+        elBtnSubmit.textContent = t.submit;
+        elBtnPass.textContent = t.pass;
+        elStatOkLabel.textContent = t.okLabel;
+        elStatNoLabel.textContent = t.noLabel;
+        elStatPsLabel.textContent = t.psLabel;
+        elBtnRetry.textContent = t.retry;
+        elBtnReviewMissed.textContent = t.missed;
+        elInput.setAttribute("aria-label", t.inputAria);
+
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.getAttribute("data-lang") === currentLang);
+        });
+
+        try {
+          localStorage.setItem("bm_words_lang", currentLang);
+        } catch (e) {}
+
+        if (isGameOver) {
+          renderEndScreen();
+        } else {
+          renderCurrentQuestion();
+        }
+        updateDailyCountdown();
+      }
+
+      /* =====================================================================
+         7. OYUN DÖNGÜSÜ VE ARAYÜZ ÇİZİMİ
+         ===================================================================== */
+      function initGame(levelKey, options = {}) {
+        if (timerId) { clearInterval(timerId); timerId = null; }
+        currentLevel = LEVEL_KEYS.includes(levelKey) ? levelKey : "A1";
+        isGameOver = false;
+        reviewOnly = Boolean(options.reviewOnly);
+        const freshWords = getDailyWordsForLevel(currentLevel);
+        if (reviewOnly && lastGameResult) {
+          const missed = lastGameResult.words.filter(w => w.status !== "ok");
+          words = missed.length ? missed.map(w => ({ ...w, status: "pending", userAnswer: "" })) : freshWords;
+        } else { words = freshWords; }
+        queue = words.map((_, idx) => idx);
+        timeLeft = TOTAL_TIME;
+        gameStartedAt = Date.now();
+
+        document.querySelectorAll(".level-pill").forEach((btn) => {
+          btn.classList.toggle("active", btn.getAttribute("data-level") === currentLevel);
+        });
+
+        elPlayArea.style.display = "flex";
+        elEndArea.classList.remove("visible");
+
+        buildLetterGrid();
+        updateStats();
+        renderCurrentQuestion();
+        renderTimer();
+
+        if (timerId) clearInterval(timerId);
+        timerId = setInterval(() => {
+          timeLeft--;
+          if (timeLeft <= 0) {
+            timeLeft = 0;
+            renderTimer();
+            finishGame();
+          } else {
+            renderTimer();
+          }
+        }, 1000);
+
+        elInput.value = "";
+        elInput.focus();
+      }
+
+      function buildLetterGrid() {
+        elLetterGrid.innerHTML = "";
+        words.forEach((item, idx) => {
+          const pill = document.createElement("div");
+          pill.className = "letter-pill";
+          pill.setAttribute("role", "listitem");
+          pill.id = `letter-pill-${idx}`;
+          pill.textContent = item.letter;
+          elLetterGrid.appendChild(pill);
+        });
+        updateLetterGridStyles();
+      }
+
+      function updateLetterGridStyles() {
+        const activeIdx = !isGameOver && queue.length > 0 ? queue[0] : -1;
+        words.forEach((item, idx) => {
+          const pill = document.getElementById(`letter-pill-${idx}`);
+          if (!pill) return;
+          pill.className = "letter-pill";
+          if (item.status === "ok") pill.classList.add("ok");
+          else if (item.status === "no") pill.classList.add("no");
+          else if (item.status === "ps") pill.classList.add("ps");
+
+          if (idx === activeIdx) {
+            pill.classList.add("active");
+          }
+        });
+      }
+
+      function renderCurrentQuestion() {
+        if (isGameOver || queue.length === 0) return;
+        const activeIdx = queue[0];
+        const currentItem = words[activeIdx];
+        const t = I18N[currentLang];
+
+        elQLetter.textContent = `${t.letterPrefix}: ${currentItem.letter}`;
+        elQLevel.textContent = currentLevel;
+        elQDef.textContent = currentLang === "en" ? currentItem.defEn : currentItem.def;
+        elQSent.textContent = maskSentence(currentItem.sent, currentItem.word);
+        elInput.placeholder = `${currentItem.letter}...`;
+
+        elBtnPass.disabled = false;
+
+        updateLetterGridStyles();
+      }
+
+      function updateStats() {
+        let okCount = 0;
+        let noCount = 0;
+        let psCount = 0;
+        words.forEach((w) => {
+          if (w.status === "ok") okCount++;
+          else if (w.status === "no") noCount++;
+          else if (w.status === "ps") psCount++;
+        });
+        elStatOkVal.textContent = okCount;
+        elStatNoVal.textContent = noCount;
+        elStatPsVal.textContent = psCount;
+      }
+
+      function renderTimer() {
+        const mins = Math.floor(timeLeft / 60);
+        const secs = timeLeft % 60;
+        elTimerText.textContent = `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+        const pct = (timeLeft / TOTAL_TIME) * 100;
+        elTimerBar.style.width = `${pct}%`;
+      }
+
+      function triggerShake() {
+        elInput.classList.remove("shake");
+        void elInput.offsetWidth;
+        elInput.classList.add("shake");
+      }
+
+      function handleSubmit(e) {
+        if (e) e.preventDefault();
+        if (isGameOver || queue.length === 0) return;
+
+        const userVal = elInput.value.trim().toLocaleLowerCase("en-US");
+        if (!userVal) {
+          elInput.focus();
+          return;
+        }
+        const activeIdx = queue.shift();
+        const currentItem = words[activeIdx];
+        currentItem.userAnswer = elInput.value.trim();
+
+        if (userVal === currentItem.word.toLocaleLowerCase("en-US")) {
+          currentItem.status = "ok";
+        } else {
+          currentItem.status = "no";
+          triggerShake();
+        }
+
+        elInput.value = "";
+        updateStats();
+
+        if (queue.length === 0) {
+          finishGame();
+        } else {
+          renderCurrentQuestion();
+          elInput.focus();
+        }
+      }
+
+      function handlePass() {
+        if (isGameOver || queue.length === 0) return;
+        const activeIdx = queue.shift();
+        words[activeIdx].status = "ps";
+        if (queue.length > 0) queue.push(activeIdx);
+
+        elInput.value = "";
+        updateStats();
+        if (queue.length === 0) finishGame();
+        else { renderCurrentQuestion(); elInput.focus(); }
+      }
+
+      function finishGame() {
+        isGameOver = true;
+        if (timerId) {
+          clearInterval(timerId);
+          timerId = null;
+        }
+
+        // Preserve wrong, passed, and unanswered as separate learning outcomes.
+        queue = [];
+        const okCount = words.filter(w => w.status === "ok").length;
+        const bestScores = readStoredJSON("bm_words_best_scores", {});
+        bestScores[currentLevel] = Math.max(Number(bestScores[currentLevel] || 0), okCount);
+        writeStoredJSON("bm_words_best_scores", bestScores);
+        lastGameResult = { level: currentLevel, words: words.map(w => ({ ...w })), score: okCount, durationMs: Date.now() - gameStartedAt, date: new Date().toISOString() };
+        const history = readStoredJSON("bm_words_history", []);
+        history.unshift({ level: currentLevel, score: okCount, total: words.length, date: lastGameResult.date, durationMs: lastGameResult.durationMs });
+        writeStoredJSON("bm_words_history", history.slice(0, 20));
+        // Üye giriş yaptıysa aynı sonuç güvenli RLS kuralları üzerinden buluta da kaydedilir.
+        saveCloudQuizResult(lastGameResult).catch(err => console.warn("İlerleme senkronizasyonu başarısız:", err));
+
+        updateLetterGridStyles();
+        updateStats();
+
+        elPlayArea.style.display = "none";
+        elEndArea.classList.add("visible");
+        renderEndScreen();
+      }
+
+      function renderEndScreen() {
+        const t = I18N[currentLang];
+        const okCount = words.filter((w) => w.status === "ok").length;
+        const wrongCount = words.filter(w => w.status === "no").length;
+        const passedCount = words.filter(w => w.status === "ps").length;
+        const unansweredCount = words.filter(w => w.status === "pending").length;
+        elEndScore.textContent = `${okCount} / ${words.length} ${t.scoreSuffix}`;
+        const bestScores = readStoredJSON("bm_words_best_scores", {});
+        let bestNote = document.getElementById("best-score-note");
+        if (!bestNote) { bestNote = document.createElement("p"); bestNote.id = "best-score-note"; bestNote.className = "best-score-note"; elEndScore.parentNode.insertBefore(bestNote, elEndScore.nextSibling); }
+        bestNote.textContent = `${t.best}: ${bestScores[currentLevel] || 0}/${words.length} · ${t.wrong}: ${wrongCount} · ${t.passed}: ${passedCount} · ${t.unanswered}: ${unansweredCount}`;
+        elBtnReviewMissed.disabled = !words.some(w => w.status !== "ok");
+
+        elReviewList.innerHTML = "";
+        words.forEach((item) => {
+          const li = document.createElement("li");
+          li.className = "word-review-item";
+
+          const badge = document.createElement("span");
+          const statusClass = ["ok", "no", "ps"].includes(item.status) ? item.status : "unanswered";
+          badge.className = `word-badge ${statusClass}`;
+          badge.textContent = item.letter;
+          badge.title = item.status === "ok" ? t.okLabel : item.status === "no" ? t.wrong : item.status === "ps" ? t.passed : t.unanswered;
+
+          const copy = document.createElement("div");
+          copy.className = "word-review-copy";
+          const term = document.createElement("span");
+          term.className = "word-term";
+          term.textContent = item.word;
+          const meaning = document.createElement("span");
+          meaning.className = "word-meaning";
+          meaning.textContent = currentLang === "en" ? item.defEn : item.def;
+          const example = document.createElement("span");
+          example.className = "word-example";
+          example.textContent = item.sent;
+          copy.appendChild(term); copy.appendChild(meaning); copy.appendChild(example);
+          if (item.userAnswer && item.status !== "ok") {
+            const answer = document.createElement("span"); answer.className = "word-user-answer";
+            answer.textContent = `${t.correctAnswer}: ${item.userAnswer}`; copy.appendChild(answer);
+          }
+          li.appendChild(badge);
+          li.appendChild(copy);
+          elReviewList.appendChild(li);
+        });
+      }
+
+      /* =====================================================================
+         8. GÜNLÜK GERİ SAYIM (Dakikada bir güncellenir, Türkiye saati UTC+3)
+         ===================================================================== */
+      function updateDailyCountdown() {
+        const nowTrMs = Date.now() + 3 * 3600 * 1000;
+        const msInDay = 86400000;
+        const remMs = msInDay - (nowTrMs % msInDay);
+        const totalMinutes = Math.max(1, Math.floor(remMs / 60000));
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+
+        elDailyCountdown.textContent = I18N[currentLang].countdown(hours, minutes);
+      }
+
+      /* =====================================================================
+         9. OLAY DİNLEYİCİLERİ VE BAŞLATMA
+         ===================================================================== */
+      elForm.addEventListener("submit", handleSubmit);
+      elBtnPass.addEventListener("click", handlePass);
+      elBtnRetry.addEventListener("click", () => initGame(currentLevel));
+      elBtnReviewMissed.addEventListener("click", () => {
+        if (!lastGameResult || !lastGameResult.words.some(w => w.status !== "ok")) {
+          window.alert(I18N[currentLang].noMissed); return;
+        }
+        initGame(currentLevel, { reviewOnly: true });
+      });
+
+      elLevelBar.addEventListener("click", (e) => {
+        const btn = e.target.closest(".level-pill");
+        if (!btn) return;
+        const lvl = btn.getAttribute("data-level");
+        if (lvl && lvl !== currentLevel) {
+          const hasProgress = !isGameOver && words.some(w => w.status === "ok" || w.status === "no" || w.status === "ps");
+          if (hasProgress && !window.confirm(I18N[currentLang].confirmLevel)) return;
+          initGame(lvl);
+        }
+      });
+
+      document.querySelectorAll(".theme-swatch").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          applyTheme(btn.getAttribute("data-theme-val"));
+        });
+      });
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          applyLanguage(btn.getAttribute("data-lang"));
+        });
+      });
+
+      // ---------------- Supabase hesap, ilerleme ve ortak kelime senkronizasyonu ----------------
+      const authOverlay = document.getElementById("auth-overlay");
+      const authMessage = document.getElementById("auth-message");
+      function authNotice(message, error = false) { authMessage.textContent = message; authMessage.classList.toggle("error", error); }
+      function setAuthMode(mode) {
+        authMode = mode;
+        document.getElementById("auth-tab-login").classList.toggle("active", mode === "login");
+        document.getElementById("auth-tab-signup").classList.toggle("active", mode === "signup");
+        document.getElementById("auth-submit").textContent = mode === "login" ? "Giriş yap" : "Hesap oluştur";
+        document.getElementById("auth-password").autocomplete = mode === "login" ? "current-password" : "new-password";
+        authNotice("");
+      }
+      function updateAuthUI() {
+        const openBtn = document.getElementById("auth-open");
+        const logoutBtn = document.getElementById("auth-logout");
+        const adminBtn = document.getElementById("admin-open");
+        const name = document.getElementById("account-name");
+        openBtn.textContent = authUser ? "Hesabım" : "Giriş yap / Üye ol";
+        logoutBtn.hidden = !authUser;
+        name.textContent = authUser ? (authUser.email || "Üye") : "";
+        adminBtn.hidden = authRole !== "admin";
+        progressPanel.classList.toggle("visible", Boolean(authUser));
+      }
+      async function loadProfileRole() {
+        authRole = "member";
+        if (!supabaseClient || !authUser) { updateAuthUI(); return; }
+        const { data, error } = await supabaseClient.from("profiles").select("role").eq("id", authUser.id).maybeSingle();
+        if (!error && data && data.role === "admin") authRole = "admin";
+        updateAuthUI();
+      }
+      async function loadCloudWords() {
+        if (!supabaseClient || cloudWordsLoaded) return;
+        const { data, error } = await supabaseClient.from("word_entries").select("id,level,word,meaning_tr,definition_en,sentence");
+        if (error) { console.warn("Ortak kelime listesi yüklenemedi:", error.message); return; }
+        const cloud = (data || []).map(w => ({ level:w.level, word:w.word, def:w.meaning_tr, defEn:w.definition_en || w.word, sent:w.sentence || "", _cloudId:w.id }));
+        const merged = new Map(adminWords.map(w => [`${w.level}:${w.word.toLowerCase()}`, w]));
+        cloud.forEach(w => merged.set(`${w.level}:${w.word.toLowerCase()}`, w));
+        adminWords = Array.from(merged.values()); rebuildDatabase(); cloudWordsLoaded = true; refreshAdminCount();
+      }
+      async function refreshCloudProgress() {
+        if (!supabaseClient || !authUser) return;
+        const [sessionsRes, progressRes] = await Promise.all([
+          supabaseClient.from("quiz_sessions").select("id,level,score,total,accuracy,completed_at").eq("user_id", authUser.id).order("completed_at", {ascending:false}).limit(500),
+          supabaseClient.from("word_progress").select("level,word,correct_count,wrong_count,last_status").eq("user_id", authUser.id)
+        ]);
+        if (sessionsRes.error || progressRes.error) { console.warn("İlerleme alınamadı:", sessionsRes.error?.message || progressRes.error?.message); return; }
+        const sessions = sessionsRes.data || [], progress = progressRes.data || [];
+        const accuracyTotal = sessions.reduce((a,s)=>a+Number(s.score||0),0);
+        const questionTotal = sessions.reduce((a,s)=>a+Number(s.total||0),0);
+        const days = [...new Set(sessions.map(s => new Date(s.completed_at).toLocaleDateString("en-CA", {timeZone:"Europe/Istanbul"})))].sort().reverse();
+        let streak = 0;
+        const today = new Date().toLocaleDateString("en-CA", {timeZone:"Europe/Istanbul"});
+        const ydayDate = new Date(Date.now()-86400000).toLocaleDateString("en-CA", {timeZone:"Europe/Istanbul"});
+        let cursor = days.includes(today) ? today : ydayDate;
+        if (days.includes(cursor)) { while (days.includes(cursor)) { streak++; const d = new Date(cursor+"T12:00:00Z"); d.setUTCDate(d.getUTCDate()-1); cursor = d.toISOString().slice(0,10); } }
+        document.getElementById("progress-sessions").textContent = sessions.length;
+        document.getElementById("progress-accuracy").textContent = questionTotal ? `${Math.round(accuracyTotal/questionTotal*100)}%` : "—";
+        document.getElementById("progress-streak").textContent = streak;
+        document.getElementById("progress-learned").textContent = progress.filter(w=>Number(w.correct_count)>0).length;
+        const levels = LEVEL_KEYS.map(lvl => { const list=sessions.filter(s=>s.level===lvl); const ok=list.reduce((n,s)=>n+Number(s.score||0),0); const total=list.reduce((n,s)=>n+Number(s.total||0),0); return `${lvl}: ${list.length ? Math.round(ok/Math.max(total,1)*100)+"%" : "—"}`; }).join(" · ");
+        document.getElementById("progress-levels").textContent = "Seviyelere göre doğruluk: " + levels;
+      }
+      async function saveCloudQuizResult(result) {
+        if (!supabaseClient || !authUser || !result || result.words.length === 0) return;
+        const score = result.words.filter(w=>w.status === "ok").length;
+        const total = result.words.length;
+        const { error: sessionError } = await supabaseClient.from("quiz_sessions").insert({ user_id:authUser.id, level:result.level, score, total, accuracy:Math.round(score/total*100), duration_seconds:Math.round(result.durationMs/1000), completed_at:result.date });
+        if (sessionError) { console.warn("Quiz sonucu buluta kaydedilemedi:", sessionError.message); return; }
+        for (const w of result.words) {
+          const { data: old } = await supabaseClient.from("word_progress").select("correct_count,wrong_count,passed_count").eq("user_id",authUser.id).eq("level",result.level).eq("word",w.word).maybeSingle();
+          await supabaseClient.from("word_progress").upsert({ user_id:authUser.id, level:result.level, word:w.word, correct_count:Number(old?.correct_count||0)+(w.status==="ok"?1:0), wrong_count:Number(old?.wrong_count||0)+(w.status==="no"?1:0), passed_count:Number(old?.passed_count||0)+(w.status==="ps"?1:0), last_status:w.status, updated_at:new Date().toISOString() }, {onConflict:"user_id,level,word"});
+        }
+        await refreshCloudProgress();
+      }
+      async function saveCloudWords(entries) {
+        if (!supabaseClient || authRole !== "admin") return;
+        const rows = entries.filter(w=>w && w.level && w.word && w.def).map(w=>({level:w.level,word:w.word,meaning_tr:w.def,definition_en:w.defEn||w.word,sentence:w.sent||"",updated_at:new Date().toISOString()}));
+        if (!rows.length) return;
+        const { error } = await supabaseClient.from("word_entries").upsert(rows, {onConflict:"level,word"});
+        if (error) { console.warn("Ortak kelime listesi kaydedilemedi:",error.message); setAdminStatus("Yerel kaydedildi ancak ortak veritabanına yazılamadı: "+error.message,true); }
+        else { cloudWordsLoaded = false; await loadCloudWords(); setAdminStatus("Kelime listesi ortak veritabanına kaydedildi."); }
+      }
+      async function initSupabase() {
+        if (!SUPABASE_CONFIGURED || !window.supabase?.createClient) {
+          document.getElementById("auth-open").title = "Kurulum için HTML içindeki Supabase URL ve publishable key alanlarını doldur.";
+          return;
+        }
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+        const { data } = await supabaseClient.auth.getSession();
+        authUser = data.session?.user || null;
+        await loadProfileRole(); await loadCloudWords(); await refreshCloudProgress();
+        // Supabase auth callback içinde yeni Supabase isteklerini doğrudan başlatmamak için kuyruğa al.
+        supabaseClient.auth.onAuthStateChange((_event, session) => {
+          authUser = session?.user || null; authRole = "member"; cloudWordsLoaded = false;
+          updateAuthUI();
+          setTimeout(async () => { await loadProfileRole(); await loadCloudWords(); await refreshCloudProgress(); }, 0);
+        });
+      }
+      document.getElementById("auth-open").addEventListener("click", () => {
+        if (authUser) { refreshCloudProgress(); authOverlay.classList.add("visible"); setAuthMode("login"); authNotice("Zaten giriş yaptın. Çıkış yapmak için üstteki Çıkış düğmesini kullanabilirsin."); }
+        else { authOverlay.classList.add("visible"); setAuthMode("login"); }
+      });
+      document.getElementById("auth-close").addEventListener("click",()=>authOverlay.classList.remove("visible"));
+      authOverlay.addEventListener("click",e=>{if(e.target===authOverlay)authOverlay.classList.remove("visible");});
+      document.getElementById("auth-tab-login").addEventListener("click",()=>setAuthMode("login"));
+      document.getElementById("auth-tab-signup").addEventListener("click",()=>setAuthMode("signup"));
+      document.getElementById("auth-form").addEventListener("submit",async e=>{
+        e.preventDefault();
+        if (!supabaseClient) { authNotice("Supabase bağlantısı ayarlanmamış. Kurulum dosyasındaki adımları tamamla.",true); return; }
+        const email=document.getElementById("auth-email").value.trim(); const password=document.getElementById("auth-password").value;
+        const submit=document.getElementById("auth-submit"); submit.disabled=true; authNotice("İşlem yapılıyor…");
+        try {
+          if(authMode==="signup") {
+            const {data,error}=await supabaseClient.auth.signUp({email,password}); if(error)throw error;
+            if(data.session){authNotice("Hesabın oluşturuldu ve giriş yapıldı.");authOverlay.classList.remove("visible");}
+            else authNotice("Kayıt isteği alındı. E-postana gelen doğrulama bağlantısını aç, sonra giriş yap.");
+          } else {
+            const {error}=await supabaseClient.auth.signInWithPassword({email,password}); if(error)throw error;
+            authNotice("Giriş başarılı.");authOverlay.classList.remove("visible");
+          }
+        } catch(err) { authNotice(err.message||"İşlem başarısız oldu.",true); }
+        finally { submit.disabled=false; }
+      });
+      document.getElementById("auth-logout").addEventListener("click",async()=>{if(supabaseClient)await supabaseClient.auth.signOut();authUser=null;authRole="member";updateAuthUI();});
+      updateAuthUI();
+
+      // Admin panel: bulk paste, single entry, local persistence, JSON backup.
+      const adminOverlay = document.getElementById("admin-overlay");
+      const adminStatus = document.getElementById("admin-status");
+      const adminCount = document.getElementById("admin-count");
+      const adminBulk = document.getElementById("admin-bulk");
+      function setAdminStatus(message, isError = false) {
+        adminStatus.textContent = message;
+        adminStatus.classList.toggle("error", isError);
+      }
+      function refreshAdminCount() {
+        const total = LEVEL_KEYS.reduce((sum, lvl) => sum + Object.values(PARSED_DB[lvl]).reduce((n, list) => n + list.length, 0), 0);
+        adminCount.textContent = `${adminWords.length} özel kayıt · ${total} toplam kelime kaydı (aynı kelimenin üzerine yazılanlar tek kayıt sayılır)`;
+      }
+      function persistAdminWords() {
+        try { localStorage.setItem(ADMIN_WORDS_KEY, JSON.stringify(adminWords)); return true; }
+        catch (_) { setAdminStatus("Tarayıcı depolaması dolu veya kullanılamıyor. JSON yedeği indirip sakla.", true); return false; }
+      }
+      function saveAdminEntries(entries) {
+        let added = 0, replaced = 0, invalid = 0;
+        entries.forEach(entry => {
+          const level = String(entry.level || "").trim().toUpperCase();
+          const word = String(entry.word || "").trim();
+          const def = String(entry.def || "").trim();
+          const defEn = String(entry.defEn || "").trim();
+          const sent = String(entry.sent || "").trim();
+          if (!LEVEL_KEYS.includes(level) || !word || !def || !/^[a-z]/i.test(word) || !ALPHABET.includes(word[0].toLowerCase())) { invalid++; return; }
+          const idx = adminWords.findIndex(w => w.level === level && w.word.toLowerCase() === word.toLowerCase());
+          const record = { level, word, def, defEn: defEn || word, sent };
+          if (idx >= 0) { adminWords[idx] = record; replaced++; } else { adminWords.push(record); added++; }
+        });
+        rebuildDatabase();
+        const saved = persistAdminWords();
+        refreshAdminCount();
+        if (saved) setAdminStatus(`${added} eklendi, ${replaced} güncellendi${invalid ? `, ${invalid} geçersiz satır atlandı` : ""}. Değişikliklerin oyuna uygulanması için mevcut tur yeniden başlatılıyor.`);
+        if (added || replaced) {
+          initGame(currentLevel);
+          if (authUser && authRole === "admin") saveCloudWords(entries.map(entry => ({level:String(entry.level||"").trim().toUpperCase(),word:String(entry.word||"").trim(),def:String(entry.def||"").trim(),defEn:String(entry.defEn||"").trim(),sent:String(entry.sent||"").trim()}))).catch(err=>console.warn(err));
+        }
+        return { added, replaced, invalid };
+      }
+      document.getElementById("admin-open").addEventListener("click", async () => {
+        if (!authUser || authRole !== "admin") { alert("Kelime yönetimi yalnızca giriş yapmış admin hesaplarına açıktır."); return; }
+        await loadCloudWords(); refreshAdminCount(); adminOverlay.classList.add("visible"); setAdminStatus("");
+      });
+      document.getElementById("admin-close").addEventListener("click", () => adminOverlay.classList.remove("visible"));
+      adminOverlay.addEventListener("click", e => { if (e.target === adminOverlay) adminOverlay.classList.remove("visible"); });
+      document.addEventListener("keydown", e => { if (e.key === "Escape") adminOverlay.classList.remove("visible"); });
+      document.querySelectorAll(".admin-tab").forEach(btn => btn.addEventListener("click", () => {
+        document.querySelectorAll(".admin-tab").forEach(b => b.classList.toggle("active", b === btn));
+        document.querySelectorAll(".admin-pane").forEach(pane => pane.classList.toggle("active", pane.id === `pane-${btn.dataset.pane}`));
+        setAdminStatus("");
+      }));
+      document.getElementById("admin-example").addEventListener("click", () => {
+        adminBulk.value = "B1;achieve;başarmak;To succeed in doing something;She worked hard to achieve her goal.\nB2;alleviate;hafifletmek;To make pain or a problem less severe;This medicine can alleviate pain.";
+      });
+      document.getElementById("admin-import-bulk").addEventListener("click", () => {
+        const entries = [];
+        adminBulk.value.split(/\r?\n/).forEach(line => {
+          const trimmed = line.trim(); if (!trimmed || trimmed.startsWith("#")) return;
+          const parts = trimmed.split(";");
+          if (parts.length < 3) { entries.push({}); return; }
+          // Also accept short format LEVEL;WORD;TR;EXAMPLE (English definition becomes word fallback).
+          entries.push({ level: parts[0], word: parts[1], def: parts[2], defEn: parts.length >= 5 ? parts[3] : (parts.length === 4 ? "" : parts[3]), sent: parts.length >= 5 ? parts.slice(4).join(";") : (parts.length === 4 ? parts[3] : "") });
+        });
+        if (!entries.length) { setAdminStatus("Önce en az bir satır yapıştır.", true); return; }
+        saveAdminEntries(entries);
+      });
+      document.getElementById("admin-add-single").addEventListener("click", () => {
+        const entry = { level: document.getElementById("admin-level").value, word: document.getElementById("admin-word").value, def: document.getElementById("admin-def").value, defEn: document.getElementById("admin-def-en").value, sent: document.getElementById("admin-sentence").value };
+        if (!entry.word.trim() || !entry.def.trim()) { setAdminStatus("Kelime ve Türkçe anlam alanları gerekli.", true); return; }
+        const result = saveAdminEntries([entry]);
+        if (result.added || result.replaced) { document.getElementById("admin-word").value = ""; document.getElementById("admin-def").value = ""; document.getElementById("admin-def-en").value = ""; document.getElementById("admin-sentence").value = ""; }
+      });
+      document.getElementById("admin-export").addEventListener("click", () => {
+        const blob = new Blob([JSON.stringify({ app: "BM Words", version: 1, words: adminWords }, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = "bm-words-kelime-yedegi.json"; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+        setAdminStatus("JSON yedeği indirildi.");
+      });
+      document.getElementById("admin-file").addEventListener("change", async e => {
+        const file = e.target.files && e.target.files[0]; if (!file) return;
+        try {
+          const parsed = JSON.parse(await file.text());
+          const imported = Array.isArray(parsed) ? parsed : parsed.words;
+          if (!Array.isArray(imported)) throw new Error("Dosyada words listesi bulunamadı.");
+          const valid = imported.filter(w => w && LEVEL_KEYS.includes(String(w.level).toUpperCase()) && w.word && w.def).map(w => ({ level: String(w.level).toUpperCase(), word: String(w.word), def: String(w.def), defEn: String(w.defEn || ""), sent: String(w.sent || "") }));
+          if (!valid.length) throw new Error("Geçerli kelime kaydı bulunamadı.");
+          adminWords = valid; rebuildDatabase();
+          if (persistAdminWords()) { refreshAdminCount(); initGame(currentLevel); if (authUser && authRole === "admin") saveCloudWords(valid).catch(err=>console.warn(err)); setAdminStatus(`${valid.length} kayıt yedekten içe aktarıldı.`); }
+        } catch (err) { setAdminStatus(`Yedek yüklenemedi: ${err.message}`, true); }
+        e.target.value = "";
+      });
+      refreshAdminCount();
+
+      try {
+        const savedTheme = localStorage.getItem("bm_words_theme");
+        if (savedTheme) applyTheme(savedTheme);
+      } catch (e) {}
+
+      try {
+        const savedLang = localStorage.getItem("bm_words_lang");
+        if (savedLang === "en" || savedLang === "tr") currentLang = savedLang;
+      } catch (e) {}
+
+      applyLanguage(currentLang);
+      initGame("A1");
+      initSupabase().catch(err => console.warn("Supabase başlatılamadı:", err));
+      setInterval(updateDailyCountdown, 60000);
+    })();
+  </script>
+</body>
+</html>
