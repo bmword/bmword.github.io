@@ -328,39 +328,66 @@
       text-align: right;
     }
 
-    /* 26 Harf Halkası (Grid) */
-    .letter-grid {
-      display: grid;
-      grid-template-columns: repeat(13, 1fr);
-      gap: 6px;
-      max-width: 640px;
-      width: 100%;
-      margin: 0 auto;
-      justify-items: center;
-    }
 
-    @media (max-width: 560px) {
-      .letter-grid {
-        grid-template-columns: repeat(9, 1fr);
-      }
-    }
+/* 26 Harf Halkası - Rulet */
+.letter-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 0;
+  scrollbar-width: none;
+}
 
-    .letter-pill {
-      width: 100%;
-      max-width: 46px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 2px solid var(--line);
-      background: var(--card);
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: clamp(14px, 3.4vw, 20px);
-      font-weight: 700;
-      user-select: none;
-      transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
-    }
+.letter-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.letter-grid::before,
+.letter-grid::after {
+  content: "";
+  flex: 0 0 calc((100% - 52px) / 2);
+}
+
+
+@media (max-width: 560px) {
+  .letter-pill {
+    width: 52px;
+    min-width: 52px;
+    max-width: 52px;
+    flex: 0 0 52px;
+    font-size: clamp(14px, 3.4vw, 20px);
+  }
+}
+
+
+
+
+
+.letter-pill {
+  width: 104px;
+  min-width: 104px;
+  max-width: 104px;
+  flex: 0 0 104px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  user-select: none;
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
 
     .letter-pill.active {
       background: var(--ink);
@@ -709,6 +736,7 @@
       </div>
 
       <div class="top-actions">
+	  <button type="button" class="account-btn" id="sound-toggle" aria-label="Sesleri kapat">🔊 Ses açık</button>
         <div class="lang-toggle" role="group" aria-label="Language Selector">
           <button type="button" class="lang-btn active" data-lang="tr">TR</button>
           <button type="button" class="lang-btn" data-lang="en">EN</button>
@@ -1357,7 +1385,7 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
       /* =====================================================================
          5. OYUN DURUMU (STATE)
          ===================================================================== */
-      const TOTAL_TIME = 600;
+      const TOTAL_TIME = 300;
       let currentLang = "tr";
       let currentTheme = "classic";
       let currentLevel = "A1";
@@ -1515,21 +1543,91 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
         updateLetterGridStyles();
       }
 
-      function updateLetterGridStyles() {
-        const activeIdx = !isGameOver && queue.length > 0 ? queue[0] : -1;
-        words.forEach((item, idx) => {
-          const pill = document.getElementById(`letter-pill-${idx}`);
-          if (!pill) return;
-          pill.className = "letter-pill";
-          if (item.status === "ok") pill.classList.add("ok");
-          else if (item.status === "no") pill.classList.add("no");
-          else if (item.status === "ps") pill.classList.add("ps");
 
-          if (idx === activeIdx) {
-            pill.classList.add("active");
-          }
-        });
-      }
+let bmLetterScrollTarget = null;
+
+
+
+let bmLetterScrollFrame = null;
+
+function bmAnimateLetterScroll(grid, target) {
+  if (bmLetterScrollFrame !== null) {
+    cancelAnimationFrame(bmLetterScrollFrame);
+    bmLetterScrollFrame = null;
+  }
+
+  const start = grid.scrollLeft;
+  const distance = Math.max(0, target) - start;
+  const duration = 220;
+  let startTime = null;
+
+  if (Math.abs(distance) < 1) {
+    grid.scrollLeft = Math.max(0, target);
+    return;
+  }
+
+  function animate(timestamp) {
+    if (startTime === null) startTime = timestamp;
+
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    const eased = progress * progress * (3 - 2 * progress);
+
+    grid.scrollLeft = start + distance * eased;
+
+    if (progress < 1) {
+      bmLetterScrollFrame = requestAnimationFrame(animate);
+    } else {
+      grid.scrollLeft = Math.max(0, target);
+      bmLetterScrollFrame = null;
+    }
+  }
+
+  bmLetterScrollFrame = requestAnimationFrame(animate);
+}
+
+
+function updateLetterGridStyles() {
+  const activeIdx = !isGameOver && queue.length > 0 ? queue[0] : -1;
+
+  words.forEach((item, idx) => {
+    const pill = document.getElementById(`letter-pill-${idx}`);
+    if (!pill) return;
+
+    pill.className = "letter-pill";
+
+    if (item.status === "ok") pill.classList.add("ok");
+    else if (item.status === "no") pill.classList.add("no");
+    else if (item.status === "ps") pill.classList.add("ps");
+
+    if (idx === activeIdx) {
+      pill.classList.add("active");
+    }
+  });
+
+  const grid = elLetterGrid;
+  if (!grid) return;
+
+
+  const activePill = activeIdx >= 0
+    ? document.getElementById(`letter-pill-${activeIdx}`)
+    : null;
+
+  if (activePill) {
+grid.style.justifyContent = "flex-start";
+
+const gridRect = grid.getBoundingClientRect();
+const pillRect = activePill.getBoundingClientRect();
+
+const targetScroll =
+  grid.scrollLeft +
+  pillRect.left -
+  gridRect.left -
+  (grid.clientWidth - activePill.offsetWidth) / 2;
+
+bmAnimateLetterScroll(grid, targetScroll);
+  }
+}
+
 
       function renderCurrentQuestion() {
         if (isGameOver || queue.length === 0) return;
@@ -1570,7 +1668,83 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
         elTimerBar.style.width = `${pct}%`;
       }
 
-      function triggerShake() {
+      // BM Words - Ses Efektleri
+let bmAudioContext;
+
+let bmSoundEnabled = true;
+bmSoundEnabled = localStorage.getItem("bmSoundEnabled") !== "false";
+
+
+function bmPlaySound(type) {
+    try {
+	if (!bmSoundEnabled) return;
+        if (!bmAudioContext) {
+            bmAudioContext = new (
+                window.AudioContext || window.webkitAudioContext
+            )();
+        }
+
+        if (bmAudioContext.state === "suspended") {
+            bmAudioContext.resume();
+        }
+
+        const sounds = {
+            correct: { start: 660, end: 880, duration: 0.13 },
+            wrong: { start: 220, end: 165, duration: 0.18 },
+            click: { start: 480, end: 520, duration: 0.04 }
+        };
+
+        const sound = sounds[type];
+        if (!sound) return;
+
+        const now = bmAudioContext.currentTime;
+        const oscillator = bmAudioContext.createOscillator();
+        const gain = bmAudioContext.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(sound.start, now);
+        oscillator.frequency.linearRampToValueAtTime(
+            sound.end,
+            now + sound.duration
+        );
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(0.12, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            now + sound.duration
+        );
+
+        oscillator.connect(gain);
+        gain.connect(bmAudioContext.destination);
+
+        oscillator.start(now);
+        oscillator.stop(now + sound.duration);
+    } catch (error) {
+        console.warn("BM Words ses efekti hatası:", error);
+    }
+}
+function bmUpdateSoundButton() {
+    const button = document.getElementById("sound-toggle");
+    if (!button) return;
+
+    button.textContent = bmSoundEnabled ? "🔊 Ses açık" : "🔇 Sessiz";
+    button.setAttribute(
+        "aria-label",
+        bmSoundEnabled ? "Sesleri kapat" : "Sesleri aç"
+    );
+    button.setAttribute("aria-pressed", String(!bmSoundEnabled));
+}
+
+document.getElementById("sound-toggle")?.addEventListener("click", function () {
+    bmSoundEnabled = !bmSoundEnabled;
+    localStorage.setItem("bmSoundEnabled", String(bmSoundEnabled));
+    bmUpdateSoundButton();
+});
+
+bmUpdateSoundButton();
+
+	  function triggerShake() {
         elInput.classList.remove("shake");
         void elInput.offsetWidth;
         elInput.classList.add("shake");
@@ -1580,19 +1754,29 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
         if (e) e.preventDefault();
         if (isGameOver || queue.length === 0) return;
 
-        const userVal = elInput.value.trim().toLocaleLowerCase("en-US");
-        if (!userVal) {
-          elInput.focus();
-          return;
-        }
+
+const userVal = elInput.value.trim().toLocaleLowerCase("en-US");
+
+if (!userVal) {
+  elInput.focus();
+  return;
+}
+
+if (userVal === "end") {
+  finishGame();
+  return;
+}
+
         const activeIdx = queue.shift();
         const currentItem = words[activeIdx];
         currentItem.userAnswer = elInput.value.trim();
 
         if (userVal === currentItem.word.toLocaleLowerCase("en-US")) {
           currentItem.status = "ok";
+		  bmPlaySound("correct");
         } else {
           currentItem.status = "no";
+		  bmPlaySound("wrong");
           triggerShake();
         }
 
