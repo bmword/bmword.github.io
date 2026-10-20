@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="classic">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BM Words ile A1–C2 seviyelerinde İngilizce kelime bilginizi A’dan Z’ye pratik yaparak geliştirin.">
+  <meta name="description" content="BM Words ile A1–C2 ve Akademik/YDS seviyelerinde İngilizce kelime bilginizi A’dan Z’ye pratik yaparak geliştirin.">
   <meta name="theme-color" content="#f2f5fa">
   <title>BM Words — English Vocabulary</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,23 +16,39 @@
       --mut: #6b7a99;
       --card: #ffffff;
       --line: #d9e0ee;
+      --soft: #e6ecf5;
       --ok: #1fa971;
       --no: #e5484d;
       --ps: #f2a33a;
     }
 
     @media (prefers-color-scheme: dark) {
-      :root:not([data-theme]), :root[data-theme="classic"] {
-        --bg: #10192e;
-        --ink: #eaf0ff;
-        --mut: #93a2c4;
-        --card: #18233e;
-        --line: #2a3a5f;
-        --ok: #1fa971;
-        --no: #e5484d;
-        --ps: #f2a33a;
-      }
+/* Varsayılan Ana Renk: Midnight (Gece Mavisi) */
+    :root, :root[data-theme="midnight"] {
+      --bg: #0f172a;
+      --ink: #f8fafc;
+      --mut: #94a3b8;
+      --card: #1e293b;
+      --line: #334155;
+      --soft: #1e293b;
+      --ok: #10b981;
+      --no: #f43f5e;
+      --ps: #fbbf24;
     }
+
+    /* Estetik Koyu Mor Classic Tema */
+    :root[data-theme="classic"] {
+      --bg: #0f0c1b;
+      --ink: #f3e8ff;
+      --mut: #a78bfa;
+      --card: #1e1b4b;
+      --line: #312e81;
+      --soft: #2e1065;
+      --ok: #10b981;
+      --no: #f43f5e;
+      --ps: #fbbf24;
+    }
+    } /* @media (prefers-color-scheme: dark) kapanışı */
 
     :root[data-theme="lavender"] {
       --bg: #efeaff;
@@ -40,6 +56,7 @@
       --mut: #746a9e;
       --card: #faf8ff;
       --line: #d8cff6;
+      --soft: #e5ddfa;
       --ok: #1fa971;
       --no: #e5484d;
       --ps: #f2a33a;
@@ -51,6 +68,7 @@
       --mut: #56857a;
       --card: #f6fcf9;
       --line: #c4e6d8;
+      --soft: #d5efe4;
       --ok: #179b64;
       --no: #e5484d;
       --ps: #f2a33a;
@@ -62,6 +80,7 @@
       --mut: #9e6d5b;
       --card: #fffaf6;
       --line: #f5d4c1;
+      --soft: #fae2d4;
       --ok: #1fa971;
       --no: #d93d42;
       --ps: #e89527;
@@ -73,6 +92,7 @@
       --mut: #5b7f9e;
       --card: #f5faff;
       --line: #c5def4;
+      --soft: #d5e8f9;
       --ok: #1fa971;
       --no: #e5484d;
       --ps: #f2a33a;
@@ -84,6 +104,7 @@
       --mut: #9e627d;
       --card: #fff7fa;
       --line: #f3c8d8;
+      --soft: #f9d8e4;
       --ok: #1fa971;
       --no: #d93848;
       --ps: #f2a33a;
@@ -115,7 +136,7 @@
       outline-offset: 2px;
     }
 
-    /* Reklam Kutuları (Gelir için) */
+    /* Reklam Kutuları */
     .ad-box {
       position: fixed;
       border: 2px dashed var(--line);
@@ -274,6 +295,7 @@
       justify-content: center;
       gap: 6px;
       flex-wrap: wrap;
+      margin-top: 12px;
     }
 
     .level-pill {
@@ -298,11 +320,12 @@
       border-color: var(--ink);
     }
 
-    /* Süre ve İlerleme Çubuğu */
+    /* Süre, Combo ve İlerleme Çubuğu */
     .timer-row {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      margin-top: 14px;
     }
 
     .progress-track {
@@ -320,74 +343,89 @@
       transition: width 0.3s linear;
     }
 
+    .combo-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: var(--ps);
+      color: #fff;
+      display: none;
+      animation: popIn 0.25s ease;
+    }
+
+    .combo-badge.visible {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     .timer-text {
       font-size: 15px;
       font-weight: 700;
       font-variant-numeric: tabular-nums;
-      min-width: 46px;
+      min-width: 48px;
       text-align: right;
     }
 
+    /* 26 Harf Halkası - Rulet */
+    .letter-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      width: 100%;
+      max-width: 340px;
+      margin: 14px auto;
+      justify-content: flex-start;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 12px 0;
+      scrollbar-width: none;
+    }
 
-/* 26 Harf Halkası - Rulet */
-.letter-grid {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 10px;
-  width: 100%;
-  max-width: 340px;
-  margin: 0 auto;
-  justify-content: flex-start;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 8px 0;
-  scrollbar-width: none;
-}
+    .letter-grid::-webkit-scrollbar {
+      display: none;
+    }
 
-.letter-grid::-webkit-scrollbar {
-  display: none;
-}
+    .letter-grid::before,
+    .letter-grid::after {
+      content: "";
+      flex: 0 0 calc((100% - 52px) / 2);
+    }
 
-.letter-grid::before,
-.letter-grid::after {
-  content: "";
-  flex: 0 0 calc((100% - 52px) / 2);
-}
+    .letter-pill {
+      width: 104px;
+      min-width: 104px;
+      max-width: 104px;
+      flex: 0 0 104px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      user-select: none;
+      transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+    }
 
-
-@media (max-width: 560px) {
-  .letter-pill {
-    width: 52px;
-    min-width: 52px;
-    max-width: 52px;
-    flex: 0 0 52px;
-    font-size: clamp(14px, 3.4vw, 20px);
-  }
-}
-
-
-
-
-
-.letter-pill {
-  width: 104px;
-  min-width: 104px;
-  max-width: 104px;
-  flex: 0 0 104px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 2px solid var(--line);
-  background: var(--card);
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  font-weight: 700;
-  user-select: none;
-  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
-}
-
+    @media (max-width: 560px) {
+      .letter-pill {
+        width: 52px;
+        min-width: 52px;
+        max-width: 52px;
+        flex: 0 0 52px;
+        font-size: clamp(14px, 3.4vw, 20px);
+      }
+    }
 
     .letter-pill.active {
       background: var(--ink);
@@ -427,10 +465,10 @@
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 16px;
-      padding: 22px 20px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .q-header {
@@ -442,6 +480,24 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--mut);
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .q-badges {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pos-badge {
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--soft);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: none;
     }
 
     .q-def {
@@ -449,6 +505,22 @@
       font-weight: 700;
       color: var(--ink);
       line-height: 1.4;
+    }
+
+    .q-hint-display {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--ok);
+      background: var(--soft);
+      padding: 6px 12px;
+      border-radius: 8px;
+      align-self: flex-start;
+      display: none;
+    }
+
+    .q-hint-display.visible {
+      display: inline-block;
     }
 
     .q-sent {
@@ -467,7 +539,7 @@
     }
 
     .answer-input {
-      flex: 1 1 220px;
+      flex: 1 1 200px;
       font-size: 18px;
       padding: 12px 16px;
       border-radius: 12px;
@@ -483,13 +555,13 @@
     }
 
     .btn {
-      padding: 12px 20px;
+      padding: 12px 16px;
       border-radius: 12px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       border: 2px solid transparent;
-      transition: opacity 0.15s ease;
+      transition: opacity 0.15s ease, transform 0.1s ease;
     }
 
     .btn:disabled {
@@ -502,10 +574,17 @@
       color: var(--card);
     }
 
-    .btn-pass {
+    .btn-pass, .btn-hint {
       background: var(--card);
       color: var(--ink);
       border-color: var(--line);
+    }
+
+    .shortcut-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--mut);
+      margin-top: -4px;
     }
 
     @keyframes shakeAnim {
@@ -524,16 +603,7 @@
       .end-actions { width: 100%; }
       .end-actions .btn { flex: 1 1 auto; }
       .word-review-item { gap: 8px; }
-      .word-review-copy { flex: 1 1 calc(100% - 34px); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .shake {
-        animation: none;
-      }
-      .letter-pill, .theme-swatch, .progress-fill {
-        transition: none;
-      }
+      .word-review-copy { flex: 1 1 calc(100% - 80px); }
     }
 
     /* Sayaçlar */
@@ -543,6 +613,7 @@
       gap: 20px;
       font-size: 14px;
       font-weight: 700;
+      margin-top: 14px;
     }
 
     .stat-item {
@@ -589,75 +660,143 @@
     }
 
     .end-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-    .word-review-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .word-review-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+    .word-term-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .icon-action-btn {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 13px;
+      cursor: pointer;
+      line-height: 1.2;
+    }
+    .icon-action-btn.starred {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #b45309;
+    }
     .word-example { color: var(--mut); font-size: 13px; overflow-wrap: anywhere; }
-    .word-review-item { align-items: flex-start; flex-wrap: wrap; }
-    .word-badge.ps { background: var(--ps); }
-    .word-badge.unanswered { background: var(--mut); }
-    .word-user-answer { color: var(--no); font-size: 12px; }
-    .best-score-note { color: var(--mut); font-size: 13px; margin-top: -8px; }
-    .answer-input:focus-visible, button:focus-visible { outline: 3px solid var(--mut); outline-offset: 3px; }
-
-    .word-review-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      max-height: 380px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .word-review-item {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      font-size: 14px;
-      padding: 7px 10px;
-      border-radius: 8px;
-      background: var(--bg);
-    }
-
+    .word-review-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; padding: 9px 12px; border-radius: 10px; background: var(--bg); }
     .word-badge {
       font-weight: 700;
       font-size: 12px;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
       color: #fff;
+      margin-top: 2px;
     }
-
     .word-badge.ok { background: var(--ok); }
     .word-badge.no { background: var(--no); }
+    .word-badge.ps { background: var(--ps); }
+    .word-badge.unanswered { background: var(--mut); }
+    .word-user-answer { color: var(--no); font-size: 12px; }
+    .best-score-note { color: var(--mut); font-size: 13px; margin-top: -8px; width: 100%; }
+    .daily-attempt-note { color: var(--ok); font-size: 12px; font-weight: 600; width: 100%; margin-top: -4px; }
+
+    .word-review-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
 
     .word-term {
       font-weight: 700;
       color: var(--ink);
     }
 
-    .word-sep {
-      color: var(--mut);
-    }
-
     .word-meaning {
       color: var(--mut);
     }
 
-    /* Alt Bilgi (Günlük Kelime Sayacı) */
+    /* Footer ve Sosyal Medya Stilleri */
     .footer-note {
       text-align: center;
       font-size: 13px;
       color: var(--mut);
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .social-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
       margin-top: 4px;
     }
 
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      transform: scale(1.12);
+      border-color: var(--ink);
+      background: var(--soft);
+    }
+
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
     .top-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .account-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .user-menu { position: relative; }
+    .user-menu summary { list-style: none; }
+    .user-menu summary::-webkit-details-marker { display: none; }
+    .user-menu-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      z-index: 1100;
+      min-width: 195px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--card);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .16);
+    }
+    .user-menu-item {
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .user-menu-item:hover { background: var(--bg); }
+
     .admin-open-btn { border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:12px; padding:9px 12px; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; }
-    .admin-open-btn:hover { border-color:var(--mut); }
     .admin-overlay { position:fixed; inset:0; z-index:1000; background:rgba(10,18,35,.62); display:none; align-items:center; justify-content:center; padding:16px; }
     .admin-overlay.visible { display:flex; }
     .admin-panel { width:min(820px,100%); max-height:90vh; overflow:auto; background:var(--card); color:var(--ink); border:1px solid var(--line); border-radius:20px; padding:22px; box-shadow:0 24px 80px rgba(0,0,0,.25); }
@@ -680,12 +819,8 @@
     .admin-status { min-height:20px; margin-top:12px; font-size:13px; color:var(--ok); }
     .admin-status.error { color:var(--no); }
     .admin-count { margin:10px 0; color:var(--mut); font-size:13px; }
-    @media(max-width:560px) { .top-actions { width:100%; justify-content:space-between; } .admin-panel { padding:16px; } .admin-row { grid-template-columns:1fr; } .admin-head h2 { font-size:19px; } }
 
-
-    .account-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
     .account-btn { border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:12px; padding:9px 12px; font:inherit; font-size:13px; font-weight:600; cursor:pointer; }
-    .account-btn.primary { background:var(--ink); color:var(--card); }
     .account-name { color:var(--mut); font-size:12px; max-width:180px; overflow:hidden; text-overflow:ellipsis; }
     .auth-overlay { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(10,18,35,.55); backdrop-filter:blur(5px); }
     .auth-overlay.visible { display:flex; }
@@ -702,19 +837,75 @@
     .auth-switch button.active { background:var(--soft); border-color:var(--mut); font-weight:700; }
     .auth-message { min-height:20px; margin-top:12px; font-size:13px; color:var(--mut); overflow-wrap:anywhere; }
     .auth-message.error { color:#c43d4b; }
-    .progress-panel { display:none; width:min(100% - 32px,760px); margin:0 auto 18px; padding:15px 18px; border:1px solid var(--line); border-radius:16px; background:var(--card); color:var(--ink); }
-    .progress-panel.visible { display:block; }
-    .progress-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:10px; }
-    .progress-stat { padding:10px; border-radius:11px; background:var(--soft); }
+    
+    .progress-panel { display:block; width:100%; margin:12px auto 18px; padding:18px; border:1px solid var(--line); border-radius:16px; background:var(--card); color:var(--ink); }
+    .progress-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:12px; }
+    .progress-stat { padding:12px; border-radius:11px; background:var(--soft); }
     .progress-stat strong { display:block; font-size:20px; }
-    .progress-stat span { color:var(--mut); font-size:11px; }
+    .progress-stat span { color:var(--mut); font-size:12px; }
     @media(max-width:600px) { .progress-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .account-name { display:none; } }
 
+    .screen-back-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      margin-bottom: 12px;
+      background-color: var(--ink);
+      color: var(--card);
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Leaderboard Stilleri */
+    .lb-controls { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+    .lb-filter-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+    .lb-filter-pill {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .lb-filter-pill.active { background: var(--ink); color: var(--card); border-color: var(--ink); }
+    .lb-rule-note { font-size: 12px; color: var(--mut); margin-bottom: 10px; }
+    .lb-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .lb-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid transparent;
+    }
+    .lb-item.is-me { border-color: var(--ink); background: var(--soft); }
+    .lb-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .lb-rank {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--card); border: 1px solid var(--line);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; flex-shrink: 0;
+    }
+    .lb-item:nth-child(1) .lb-rank { background: #f59e0b; color: #fff; border-color: #f59e0b; }
+    .lb-item:nth-child(2) .lb-rank { background: #94a3b8; color: #fff; border-color: #94a3b8; }
+    .lb-item:nth-child(3) .lb-rank { background: #d97706; color: #fff; border-color: #d97706; }
+    .lb-user-info { display: flex; flex-direction: column; min-width: 0; }
+    .lb-username { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lb-meta { font-size: 12px; color: var(--mut); }
+    .lb-right { text-align: right; flex-shrink: 0; }
+    .lb-score { font-size: 16px; font-weight: 700; color: var(--ok); }
+    .lb-sub { font-size: 12px; color: var(--mut); }
   </style>
 </head>
 <body>
 
-  <!-- Reklam kodunu (örn. Google AdSense <ins> etiketi) bu kutuların içine yapıştırın -->
+  <!-- Reklam Kutuları -->
   <aside class="ad-box ad-tl" aria-label="Advertisement">REKLAM 160×600</aside>
   <aside class="ad-box ad-tr" aria-label="Advertisement">REKLAM 160×600</aside>
   <aside class="ad-box ad-bl" aria-label="Advertisement">REKLAM 300×100</aside>
@@ -726,8 +917,9 @@
   <main class="app-wrap">
     <!-- Üst Çubuk: Tema ve Dil -->
     <div class="top-bar">
-      <div class="theme-picker" role="group" aria-label="Theme Selector">
-        <button type="button" class="theme-swatch" data-theme-val="classic" style="background: linear-gradient(135deg, #f2f5fa 50%, #1b2a4a 50%);" title="Classic" aria-pressed="true"></button>
+<div class="theme-picker" role="group" aria-label="Theme Selector">
+        <button type="button" class="theme-swatch" data-theme-val="midnight" style="background: #0f172a;" title="Midnight" aria-pressed="true"></button>
+        <button type="button" class="theme-swatch" data-theme-val="classic" style="background: #1e1b4b;" title="Classic" aria-pressed="false"></button>
         <button type="button" class="theme-swatch" data-theme-val="lavender" style="background: #efeaff;" title="Lavender" aria-pressed="false"></button>
         <button type="button" class="theme-swatch" data-theme-val="mint" style="background: #e4f6ee;" title="Mint" aria-pressed="false"></button>
         <button type="button" class="theme-swatch" data-theme-val="peach" style="background: #ffeee3;" title="Peach" aria-pressed="false"></button>
@@ -736,123 +928,210 @@
       </div>
 
       <div class="top-actions">
-	  <button type="button" class="account-btn" id="sound-toggle" aria-label="Sesleri kapat">🔊 Ses açık</button>
+        <button type="button" class="account-btn" id="sound-toggle" aria-label="Sesleri kapat">🔊 Ses açık</button>
         <div class="lang-toggle" role="group" aria-label="Language Selector">
           <button type="button" class="lang-btn active" data-lang="tr">TR</button>
           <button type="button" class="lang-btn" data-lang="en">EN</button>
         </div>
+
         <div class="account-actions">
           <span class="account-name" id="account-name"></span>
-          <button type="button" class="account-btn" id="auth-open">Giriş yap / Üye ol</button>
-          <button type="button" class="account-btn" id="auth-logout" hidden>Çıkış</button>
+
+          <details class="user-menu" id="user-menu">
+            <summary class="account-btn" id="user-menu-toggle">Menü ☰</summary>
+            <div class="user-menu-dropdown">
+              <button type="button" class="user-menu-item" id="auth-open">Giriş yap / Üye ol</button>
+              <button type="button" class="user-menu-item" id="menu-progress">İlerlemem</button>
+              <button type="button" class="user-menu-item" id="menu-notebook">⭐ Kelime Defterim</button>
+              <button type="button" class="user-menu-item" id="menu-leaderboard">Sıralama</button>
+              <button type="button" class="user-menu-item" id="auth-logout" hidden>Çıkış yap</button>
+            </div>
+          </details>
         </div>
+
         <button type="button" class="admin-open-btn" id="admin-open" hidden>⚙ Kelime yönetimi</button>
       </div>
     </div>
 
-    <!-- Başlık -->
-    <header class="header">
-      <span class="brand-badge">BM WORDS</span>
-      <h1 id="ui-title">English Vocabulary</h1>
-      <p id="ui-subtitle">A'dan Z'ye 26 İngilizce kelimeyi 10 dakikada tamamla.</p>
-    </header>
+    <!-- İlerlemem Ekranı -->
+    <section id="progress-screen" hidden>
+      <button type="button" id="progress-back" class="screen-back-btn">← Ana sayfaya dön</button>
+      <h2 id="progress-screen-title">İlerlemem</h2>
 
-    <section class="progress-panel" id="progress-panel" aria-live="polite">
-      <strong>İlerlemen</strong><span id="progress-level-note" style="float:right;color:var(--mut);font-size:12px">Hesabına kaydediliyor</span>
-      <div class="progress-grid">
-        <div class="progress-stat"><strong id="progress-sessions">0</strong><span>Tamamlanan quiz</span></div>
-        <div class="progress-stat"><strong id="progress-accuracy">—</strong><span>Doğruluk oranı</span></div>
-        <div class="progress-stat"><strong id="progress-streak">0</strong><span>Günlük seri</span></div>
-        <div class="progress-stat"><strong id="progress-learned">0</strong><span>Doğru bilinen kelime</span></div>
-      </div>
-      <p id="progress-levels" style="margin:10px 0 0;font-size:12px;color:var(--mut)">Seviye istatistikleri yükleniyor…</p>
+      <section class="progress-panel" id="progress-panel" aria-live="polite">
+        <strong id="progress-panel-heading">İlerlemen</strong>
+        <span id="progress-level-note" style="float:right;color:var(--mut);font-size:12px">Hesabına kaydediliyor</span>
+        <div class="progress-grid">
+          <div class="progress-stat"><strong id="progress-sessions">0</strong><span id="lbl-prog-sessions">Tamamlanan quiz</span></div>
+          <div class="progress-stat"><strong id="progress-accuracy">—</strong><span id="lbl-prog-accuracy">Doğruluk oranı</span></div>
+          <div class="progress-stat"><strong id="progress-streak">0</strong><span id="lbl-prog-streak">Günlük seri</span></div>
+          <div class="progress-stat"><strong id="progress-learned">0</strong><span id="lbl-prog-learned">Doğru bilinen kelime</span></div>
+        </div>
+        <p id="progress-levels" style="margin:12px 0 0;font-size:13px;color:var(--mut)">Seviye istatistikleri yükleniyor…</p>
+      </section>
     </section>
 
-    <!-- Seviye Seçimi -->
-    <nav class="level-bar" aria-label="CEFR Levels" id="level-bar">
-      <button type="button" class="level-pill active" data-level="A1">A1</button>
-      <button type="button" class="level-pill" data-level="A2">A2</button>
-      <button type="button" class="level-pill" data-level="B1">B1</button>
-      <button type="button" class="level-pill" data-level="B2">B2</button>
-      <button type="button" class="level-pill" data-level="C1">C1</button>
-      <button type="button" class="level-pill" data-level="C2">C2</button>
-    </nav>
-
-    <!-- Zamanlayıcı -->
-    <div class="timer-row">
-      <div class="progress-track" aria-hidden="true">
-        <div class="progress-fill" id="timer-bar"></div>
+    <!-- Kelime Defterim (Starred Words) Ekranı -->
+    <section id="notebook-screen" hidden>
+      <button type="button" id="notebook-back" class="screen-back-btn">← Ana sayfaya dön</button>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px;">
+        <h2 id="notebook-screen-title">⭐ Kelime Defterim</h2>
+        <button type="button" class="btn btn-submit" id="btn-practice-notebook" style="padding:9px 16px;font-size:14px;">Defterdekilerle Pratik Yap</button>
       </div>
-      <div class="timer-text" id="timer-text" aria-live="off">10:00</div>
+      <section class="progress-panel" aria-live="polite">
+        <p id="notebook-empty" style="font-size:13px;color:var(--mut);">Oyun sonunda kelimelerin yanındaki ⭐ butonuna tıklayarak kelime defterine ekleyebilirsin.</p>
+        <ul class="word-review-list" id="notebook-list" style="margin-top:10px;"></ul>
+      </section>
+    </section>
+
+    <!-- Leaderboard (Sıralama) Ekranı -->
+    <section id="leaderboard-screen" hidden>
+      <button type="button" id="leaderboard-back" class="screen-back-btn">← Ana sayfaya dön</button>
+      <h2 id="leaderboard-screen-title">Sıralama</h2>
+
+      <section class="progress-panel" aria-live="polite">
+        <div class="lb-controls">
+          <div class="lb-filter-bar" id="lb-period-bar" role="group" aria-label="Time Period">
+            <button type="button" class="lb-filter-pill active" data-lb-period="daily" id="lb-period-daily">Günlük</button>
+            <button type="button" class="lb-filter-pill" data-lb-period="weekly" id="lb-period-weekly">Haftalık</button>
+            <button type="button" class="lb-filter-pill" data-lb-period="monthly" id="lb-period-monthly">Aylık</button>
+            <button type="button" class="lb-filter-pill" data-lb-period="alltime" id="lb-period-alltime">Tüm Zamanlar</button>
+          </div>
+
+          <div class="lb-filter-bar" id="lb-filter-bar" role="group" aria-label="Difficulty Filter">
+            <button type="button" class="lb-filter-pill active" data-lb-level="all" id="lb-filter-all">Tümü</button>
+            <button type="button" class="lb-filter-pill" data-lb-level="easy" id="lb-filter-easy">Kolay</button>
+            <button type="button" class="lb-filter-pill" data-lb-level="medium" id="lb-filter-medium">Orta</button>
+            <button type="button" class="lb-filter-pill" data-lb-level="hard" id="lb-filter-hard">Zor</button>
+            <button type="button" class="lb-filter-pill" data-lb-level="yds" id="lb-filter-yds">Akademik / YDS</button>
+          </div>
+        </div>
+
+        <p class="lb-rule-note" id="lb-rule-note">Her gün aynı seviyedeki yalnızca ilk çözümün sıralamaya dahil edilir.</p>
+        <p id="leaderboard-status" style="font-size:13px;color:var(--mut);margin-bottom:10px;">Yükleniyor…</p>
+        <ol class="lb-list" id="leaderboard-list"></ol>
+      </section>
+    </section>
+
+    <!-- Ana Oyun Ekranı -->
+    <div id="home-screen">
+      <header class="header">
+        <span class="brand-badge">BM WORDS</span>
+        <h1 id="ui-title">BM Words · English Vocabulary</h1>
+        <p id="ui-subtitle">A'dan Z'ye 26 İngilizce kelimeyi 5 dakikada tamamla.</p>
+      </header>
+
+      <!-- Seviye Seçimi -->
+      <nav class="level-bar" aria-label="Zorluk Seviyeleri" id="level-bar">
+        <button type="button" class="level-pill active" data-level="easy">Kolay</button>
+        <button type="button" class="level-pill" data-level="medium">Orta</button>
+        <button type="button" class="level-pill" data-level="hard">Zor</button>
+        <button type="button" class="level-pill" data-level="yds">Akademik / YDS</button>
+      </nav>
+
+      <!-- Zamanlayıcı ve Combo -->
+      <div class="timer-row">
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="timer-bar"></div>
+        </div>
+        <span class="combo-badge" id="combo-badge">🔥 0x</span>
+        <div class="timer-text" id="timer-text" aria-live="off">5:00</div>
+      </div>
+
+      <!-- 26 Harf Halkası -->
+      <div class="letter-grid" id="letter-grid" role="list"></div>
+
+      <!-- Aktif Oyun Alanı -->
+      <section id="play-area" style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="question-card">
+          <div class="q-header">
+            <span id="q-letter-indicator">HARF: A</span>
+            <div class="q-badges">
+              <span class="pos-badge" id="q-pos-indicator">noun</span>
+              <span id="q-level-indicator">Kolay</span>
+            </div>
+          </div>
+          <div class="q-def" id="q-def"></div>
+          <div class="q-hint-display" id="q-hint-display"></div>
+          <div class="q-sent" id="q-sent"></div>
+        </div>
+
+        <form class="controls" id="answer-form" autocomplete="off">
+          <input
+            type="text"
+            id="answer-input"
+            class="answer-input"
+            placeholder="A..."
+            aria-label="Cevabınızı yazın"
+            autocapitalize="none"
+            autocorrect="off"
+            spellcheck="false"
+          >
+          <button type="submit" class="btn btn-submit" id="btn-submit">Gönder</button>
+          <button type="button" class="btn btn-hint" id="btn-hint">💡 İpucu (10)</button>
+          <button type="button" class="btn btn-pass" id="btn-pass">Pas</button>
+        </form>
+        <p class="shortcut-note" id="shortcut-note">Kısayol: <b>Enter</b> = Gönder · <b>Tab</b> = Pas</p>
+      </section>
+
+      <!-- Oyun Sonu Ekranı -->
+      <section class="end-card" id="end-area" aria-live="polite">
+        <div class="end-header">
+          <div class="end-score" id="end-score">0 / 26 doğru</div>
+          <div class="end-actions">
+            <button type="button" class="btn btn-pass" id="btn-share-result">📋 Sonucu Paylaş</button>
+            <button type="button" class="btn btn-pass" id="btn-review-missed">Eksikleri tekrar et</button>
+            <button type="button" class="btn btn-submit" id="btn-retry">Tekrar dene</button>
+          </div>
+        </div>
+        <ul class="word-review-list" id="word-review-list"></ul>
+      </section>
+
+      <!-- Sayaçlar -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-dot" style="background: var(--ok);"></span>
+          <span id="stat-ok-label">Doğru</span>: <span id="stat-ok-val">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-dot" style="background: var(--no);"></span>
+          <span id="stat-no-label">Yanlış</span>: <span id="stat-no-val">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-dot" style="background: var(--ps);"></span>
+          <span id="stat-ps-label">Pas</span>: <span id="stat-ps-val">0</span>
+        </div>
+      </div>
     </div>
 
-    <!-- 26 Harf Halkası -->
-    <div class="letter-grid" id="letter-grid" role="list"></div>
-
-    <!-- Aktif Oyun Alanı -->
-    <section id="play-area" style="display: flex; flex-direction: column; gap: 14px;">
-      <div class="question-card">
-        <div class="q-header">
-          <span id="q-letter-indicator">HARF: A</span>
-          <span id="q-level-indicator">A1</span>
-        </div>
-        <div class="q-def" id="q-def"></div>
-        <div class="q-sent" id="q-sent"></div>
+    <!-- Günlük Geri Sayım ve Sosyal Medya Linkleri -->
+    <footer class="footer-note">
+      <div class="social-links">
+        <!-- Instagram Linki -->
+        <a href="https://www.instagram.com/bmwordstr/" target="_blank" class="social-link" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <!-- TikTok Linki -->
+        <a href="TİKTOK LİNKİ" target="_blank" class="social-link" title="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.5.18-1.92 1.12-3.7 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.25 1.07-.24 1.62.24 1.35 1.41 2.45 2.79 2.54 1.05.09 2.12-.31 2.83-1.05.67-.68 1.01-1.6 1.04-2.55.03-4.14 0-8.29.02-12.43z"/></svg>
+        </a>
+        <!-- Kreosus Linki (Özel İkon / Harf K) -->
+        <a href="https://kreosus.com/bmwords/about" target="_blank" class="social-link" title="Kreosus">
+          <svg viewBox="0 0 24 24"><text x="4" y="18" font-size="16" font-weight="bold" fill="currentColor" font-family="sans-serif">K</text></svg>
+        </a>
       </div>
-
-      <form class="controls" id="answer-form" autocomplete="off">
-        <input
-          type="text"
-          id="answer-input"
-          class="answer-input"
-          placeholder="A..."
-          aria-label="Cevabınızı yazın"
-          autocapitalize="none"
-          autocorrect="off"
-          spellcheck="false"
-        >
-        <button type="submit" class="btn btn-submit" id="btn-submit">Gönder</button>
-        <button type="button" class="btn btn-pass" id="btn-pass">Pas</button>
-      </form>
-    </section>
-
-    <!-- Oyun Sonu Ekranı -->
-    <section class="end-card" id="end-area" aria-live="polite">
-      <div class="end-header">
-        <div class="end-score" id="end-score">0 / 26 doğru</div>
-        <div class="end-actions">
-          <button type="button" class="btn btn-pass" id="btn-review-missed">Eksikleri tekrar et</button>
-          <button type="button" class="btn btn-submit" id="btn-retry">Tekrar dene</button>
-        </div>
-      </div>
-      <ul class="word-review-list" id="word-review-list"></ul>
-    </section>
-
-    <!-- Sayaçlar -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <span class="stat-dot" style="background: var(--ok);"></span>
-        <span id="stat-ok-label">Doğru</span>: <span id="stat-ok-val">0</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-dot" style="background: var(--no);"></span>
-        <span id="stat-no-label">Yanlış</span>: <span id="stat-no-val">0</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-dot" style="background: var(--ps);"></span>
-        <span id="stat-ps-label">Pas</span>: <span id="stat-ps-val">0</span>
-      </div>
-    </div>
-
-    <!-- Günlük Değişim Geri Sayımı -->
-    <footer class="footer-note" id="daily-countdown"></footer>
+      <div id="daily-countdown"></div>
+    </footer>
   </main>
 
-
+  <!-- Admin Paneli -->
   <div class="admin-overlay" id="admin-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-title">
     <section class="admin-panel">
       <div class="admin-head">
-        <div><h2 id="admin-title">Kelime yönetimi</h2><p>Kelime ekle, toplu liste yapıştır veya listenin yedeğini indir. Supabase bağlıysa ortak listeye kaydedilir.</p></div>
+        <div>
+          <h2 id="admin-title">Kelime yönetimi</h2>
+          <p>Kelime ekle, toplu liste yapıştır veya listenin yedeğini indir. Google Sheets bağlıysa ortak tabloya kaydedilir.</p>
+        </div>
         <button type="button" class="admin-close" id="admin-close" aria-label="Kapat">✕</button>
       </div>
       <div class="admin-count" id="admin-count"></div>
@@ -862,67 +1141,133 @@
         <button type="button" class="admin-tab" data-pane="backup">Yedekle / içe aktar</button>
       </div>
       <div class="admin-pane active" id="pane-bulk">
-        <p class="admin-help">Her satıra bir kelime, alanları noktalı virgülle ayırarak yapıştır. Sıra: <b>Seviye;Kelime;Türkçe anlam;İngilizce açıklama;Örnek cümle</b>. Seviye A1, A2, B1, B2, C1 veya C2 olmalı. Örnek: <code>B1;achieve;başarmak;To succeed in doing something;She worked hard to achieve her goal.</code></p>
-        <label class="admin-field">Kelime listesi<textarea id="admin-bulk" placeholder="B1;achieve;başarmak;To succeed in doing something;She worked hard to achieve her goal.&#10;B2;alleviate;hafifletmek;To make something less severe;This medicine can alleviate pain."></textarea></label>
-        <div class="admin-buttons"><button type="button" class="admin-action" id="admin-import-bulk">Listeyi ekle</button><button type="button" class="admin-action secondary" id="admin-example">Örnek listeyi doldur</button></div>
+        <p class="admin-help">Her satıra bir kelime, alanları noktalı virgülle ayırarak yapıştır. Sıra: <b>Seviye;Kelime;Türkçe anlam;İngilizce açıklama;Örnek cümle</b>. Seviye A1, A2, B1, B2, C1, C2, YDS veya EASY, MEDIUM, HARD olabilir.</p>
+        <label class="admin-field">Kelime listesi
+          <textarea id="admin-bulk" placeholder="YDS;ambiguous;muğlak, belirsiz;Open to more than one interpretation;The wording of the agreement is deliberately ambiguous."></textarea>
+        </label>
+        <div class="admin-buttons">
+          <button type="button" class="admin-action" id="admin-import-bulk">Listeyi ekle</button>
+          <button type="button" class="admin-action secondary" id="admin-example">Örnek listeyi doldur</button>
+        </div>
       </div>
       <div class="admin-pane" id="pane-single">
         <div class="admin-row">
-          <label class="admin-field">Seviye<select id="admin-level"><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option></select></label>
-          <label class="admin-field">İngilizce kelime<input id="admin-word" placeholder="e.g. achieve" autocomplete="off"></label>
+          <label class="admin-field">Seviye
+            <select id="admin-level">
+              <option value="easy">Kolay (A1-A2)</option>
+              <option value="medium">Orta (B1-B2)</option>
+              <option value="hard">Zor (C1-C2)</option>
+              <option value="yds">Akademik / YDS</option>
+            </select>
+          </label>
+          <label class="admin-field">İngilizce kelime
+            <input id="admin-word" placeholder="e.g. achieve" autocomplete="off">
+          </label>
         </div>
         <label class="admin-field">Türkçe anlam<input id="admin-def" placeholder="başarmak"></label>
         <label class="admin-field">English definition<input id="admin-def-en" placeholder="To succeed in doing something"></label>
         <label class="admin-field">Örnek cümle<input id="admin-sentence" placeholder="She worked hard to achieve her goal."></label>
-        <div class="admin-buttons"><button type="button" class="admin-action" id="admin-add-single">Kelimeyi ekle</button></div>
+        <div class="admin-buttons">
+          <button type="button" class="admin-action" id="admin-add-single">Kelimeyi ekle</button>
+        </div>
       </div>
       <div class="admin-pane" id="pane-backup">
-        <p class="admin-help">Eklediğin kelimeler bu tarayıcıda kalır. Farklı cihazda kullanmak veya yedek almak için JSON dosyasını indir. Yedek içe aktarma, mevcut ek kelimeleri yedekteki listeyle değiştirir.</p>
-        <div class="admin-buttons"><button type="button" class="admin-action" id="admin-export">JSON yedeği indir</button><label class="admin-action secondary" for="admin-file" style="display:inline-flex;align-items:center;cursor:pointer">JSON yedeği yükle</label><input type="file" id="admin-file" accept="application/json,.json" hidden></div>
+        <p class="admin-help">Eklediğin kelimeler bu tarayıcıda ve Google Sheets tablosunda kalır. Yedek almak için JSON dosyasını indir.</p>
+        <div class="admin-buttons">
+          <button type="button" class="admin-action" id="admin-export">JSON yedeği indir</button>
+          <label class="admin-action secondary" for="admin-file" style="display:inline-flex;align-items:center;cursor:pointer">JSON yedeği yükle</label>
+          <input type="file" id="admin-file" accept="application/json,.json" hidden>
+        </div>
       </div>
       <div class="admin-status" id="admin-status" role="status" aria-live="polite"></div>
     </section>
   </div>
 
+  <!-- Hesabım Ekranı -->
+  <div class="auth-overlay" id="account-overlay" role="dialog" aria-modal="true" aria-labelledby="account-title">
+    <section class="auth-card">
+      <button type="button" class="auth-close" id="account-close" aria-label="Kapat">✕</button>
+      <h2 id="account-title">Hesabım</h2>
+
+      <form id="username-form">
+        <label for="account-username" id="lbl-account-username">Kullanıcı adı</label>
+        <input id="account-username" name="username" type="text" minlength="3" maxlength="20" autocomplete="username" required placeholder="Kullanıcı adını gir">
+        <button type="submit" class="auth-submit" id="username-save">Kullanıcı adını kaydet</button>
+      </form>
+
+      <hr style="margin: 18px 0; border: 0; border-top: 1px solid var(--line);">
+
+      <form id="password-form">
+        <label for="account-new-password" id="lbl-account-new-pass">Yeni şifre</label>
+        <input id="account-new-password" name="new-password" type="password" minlength="6" autocomplete="new-password" required placeholder="En az 6 karakter">
+        
+        <label for="account-confirm-password" id="lbl-account-confirm-pass">Yeni şifre (tekrar)</label>
+        <input id="account-confirm-password" name="confirm-password" type="password" minlength="6" autocomplete="new-password" required placeholder="Şifreyi tekrar gir">
+
+        <button type="submit" class="auth-submit" id="password-save">Şifreyi değiştir</button>
+      </form>
+
+      <p class="auth-message" id="account-message" role="status" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <!-- Giriş / Kayıt Ekranı -->
   <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title">
     <section class="auth-card">
       <button type="button" class="auth-close" id="auth-close" aria-label="Kapat">✕</button>
       <h2 id="auth-title">BM Words hesabın</h2>
-      <p>İlerlemeni kaydetmek için giriş yap veya ücretsiz hesap oluştur.</p>
+      <p id="auth-desc">İlerlemeni kaydetmek için giriş yap veya ücretsiz hesap oluştur.</p>
       <div class="auth-switch" role="tablist" aria-label="Hesap işlemi">
         <button type="button" id="auth-tab-login" class="active" role="tab" aria-selected="true">Giriş yap</button>
         <button type="button" id="auth-tab-signup" role="tab" aria-selected="false">Üye ol</button>
       </div>
       <form id="auth-form" autocomplete="on">
-        <label for="auth-email">E-posta</label>
+        <label for="auth-email" id="lbl-auth-email">E-posta</label>
         <input id="auth-email" name="email" type="email" autocomplete="email" required placeholder="ornek@eposta.com">
-        <label for="auth-password">Şifre</label>
+        
+        <label for="auth-password" id="lbl-auth-password">Şifre</label>
         <input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="En az 6 karakter">
+        
+        <div id="auth-confirm-wrap" hidden>
+          <label for="auth-password-confirm" id="lbl-auth-password-confirm">Şifre (tekrar)</label>
+          <input id="auth-password-confirm" name="password-confirm" type="password" autocomplete="new-password" minlength="6" placeholder="Şifreyi tekrar gir">
+        </div>
+
         <button type="submit" class="auth-submit" id="auth-submit">Giriş yap</button>
       </form>
       <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
     </section>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
     (function () {
       "use strict";
 
-      // Supabase proje ayarlarını aşağıdaki alanlara ekle. Publishable/anon key tarayıcıda kullanılabilir;
-      // service_role/secret key'i ASLA buraya koyma.
-      const SUPABASE_URL = "https://njgssvtsaempuqqsyqzs.supabase.co";
-      const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_b3HRUmzYy3kzBRxfO_TODQ_IKUzuj1t";
-      const SUPABASE_CONFIGURED = SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("BURAYA") && !SUPABASE_PUBLISHABLE_KEY.includes("BURAYA");
-      let supabaseClient = null;
+      /* =====================================================================
+         0. GOOGLE SHEETS WEB APP AYARI VE GLOBAL DEĞİŞKENLER
+         ===================================================================== */
+      const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxcmbNA9CzAjYJAFGDLyIYvX0lXyuWQwT41QOl-L0ev68zDTAqXjN8opoaJ3DsHJTf6/exec";
+      const SHEETS_CONFIGURED = GOOGLE_SHEETS_WEBAPP_URL.startsWith("https://script.google.com/");
+
       let authUser = null;
       let authRole = "member";
       let authMode = "login";
       let cloudWordsLoaded = false;
-      const progressPanel = document.getElementById("progress-panel");
+      let currentLbFilter = "all";
+      let currentLbPeriod = "daily";
+      let cachedSessions = null;
+      let lastRoundWasFirstDaily = true;
+
+      let bmAudioContext = null;
+      let bmSoundEnabled = true;
+      try {
+        bmSoundEnabled = localStorage.getItem("bmSoundEnabled") !== "false";
+      } catch (_) {}
+
+      let bmLetterScrollFrame = null;
 
       /* =====================================================================
-         1. KELİME VERİ SETİ (6 Seviye × 26 Harf = 156 Kelime)
-         Format: kelime;Türkçe açıklama;örnek cümle
+         1. KELİME VERİ SETİ (A1–C2 + Akademik/YDS)
          ===================================================================== */
       const RAW_WORDS = {
         A1: `apple;Elma, kırmızı veya yeşil kabuklu tatlı meyve;She eats a red apple every morning.
@@ -950,7 +1295,7 @@ van;Eşya veya yolcu taşımak için kullanılan kapalı panelvan, minibüs;The 
 water;Yaşam için vazgeçilmez olan renksiz ve kokusuz sıvı, su;Remember to drink plenty of water after running.
 x-ray;Vücudun içindeki kemikleri görüntüleyen tıbbi ışın, röntgen;The doctor looked at the x-ray of my broken arm.
 yellow;Limon ve güneşin rengi olan ana renk, sarı;She painted her bedroom walls bright yellow.
-zoo;Çeşitli vahşi hayvanların sergilendiği büyük bahçe, hayvanat bahçesi;We visited the city zoo to see the giraffes.`,
+zoo;Çeşitli vahşi hayvanların sergilendiği büyük hayvanat bahçesi;We visited the city zoo to see the giraffes.`,
 
         A2: `airport;Uçakların iniş ve kalkış yaptığı büyük tesis, havalimanı;We arrived at the airport two hours before the flight.
 bridge;İki yakayı birbirine bağlayan geçit yapısı, köprü;The old stone bridge crosses the wide river.
@@ -1071,7 +1416,7 @@ harbinger;Gelecek bir olayın habercisi, müjdecisi, öncüsü;Warm southern win
 iconoclast;Yerleşik inançlara ve geleneklere karşı çıkan kimse;The director was an iconoclast who broke every rule of cinema.
 juxtapose;Farklı iki şeyi karşılaştırmak amacıyla yan yana koymak;The exhibition aims to juxtapose classic paintings with modern digital art.
 knell;Ölüm veya yıkım haberi veren uğursuz çan sesi, sonun işareti;The rise of streaming services sounded the knell for video rental shops.
-lethargic;Uyuşuk, halsiz, enerjisiz ve harektsiz;The oppressive afternoon heat made everyone in the office feel lethargic.
+lethargic;Uyuşuk, halsiz, enerjisiz ve hareketsiz;The oppressive afternoon heat made everyone in the office feel lethargic.
 magnanimous;Özellikle rakiplerine karşı yüce gönüllü, bağışlayıcı;The champion was magnanimous in victory and praised his opponent.
 nefarious;Son derece kötü niyetli, alçakça, hain;Cybersecurity experts blocked the hackers' nefarious scheme in time.
 obfuscate;Bir konuyu kasten bulandırmak, anlaşılmaz hale getirmek;Complex legal jargon is sometimes used to obfuscate the simple truth.
@@ -1254,34 +1599,168 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
         tr: {
           pageTitle: "BM Words — English Vocabulary",
           title: "BM Words · English Vocabulary",
-          subtitle: "A'dan Z'ye 26 İngilizce kelimeyi 10 dakikada tamamla.",
+          subtitle: "A'dan Z'ye 26 İngilizce kelimeyi 5 dakikada tamamla.",
           submit: "Gönder",
           pass: "Pas",
+          hintBtn: (n) => `💡 İpucu (${n})`,
+          shortcutNote: "Kısayol: Enter = Gönder · Tab = Pas",
+          easy: "Kolay",
+          medium: "Orta",
+          hard: "Zor",
+          yds: "Akademik / YDS",
+          all: "Tümü",
           okLabel: "Doğru",
           noLabel: "Yanlış",
           psLabel: "Pas",
           retry: "Tekrar dene",
+          shareBtn: "📋 Sonucu Paylaş",
+          shareCopied: "✅ Sonuç panoya kopyalandı! (WhatsApp/Discord'a yapıştırabilirsin)",
           inputAria: "Cevabınızı yazın",
           letterPrefix: "HARF",
           scoreSuffix: "doğru",
           countdown: (h, m) => `Yeni kelimeler ${h} saat ${m} dakika sonra geliyor.`,
-          missed: "Eksikleri tekrar et", review: "Öğrenme özeti", correctAnswer: "Cevabın", unanswered: "Cevaplanmadı", passed: "Pas geçildi", wrong: "Yanlış", best: "Bu seviyedeki en iyi skor", noMissed: "Tekrar edilecek eksik kelime yok.", confirmLevel: "Devam eden oyun sıfırlanacak. Seviye değiştirilsin mi?"
+          menuAccount: "Hesabım",
+          menuProgress: "İlerlemem",
+          menuNotebook: "⭐ Kelime Defterim",
+          menuLeaderboard: "Sıralama",
+          menuLogin: "Giriş yap / Üye ol",
+          menuLogout: "Çıkış yap",
+          menuTitle: "Menü",
+          missed: "Eksikleri tekrar et",
+          review: "Öğrenme özeti",
+          correctAnswer: "Cevabın",
+          unanswered: "Cevaplanmadı",
+          passed: "Pas geçildi",
+          wrong: "Yanlış",
+          best: "Bu seviyedeki en iyi skor",
+          noMissed: "Tekrar edilecek eksik kelime yok.",
+          confirmLevel: "Devam eden oyun sıfırlanacak. Seviye değiştirilsin mi?",
+          backHome: "← Ana sayfaya dön",
+          progHeading: "İlerlemen",
+          progSavedNote: "Hesabına ve cihaza kaydediliyor",
+          progSessions: "Tamamlanan quiz",
+          progAccuracy: "Doğruluk oranı",
+          progStreak: "Günlük seri",
+          progLearned: "Doğru bilinen kelime",
+          progLoading: "Seviye istatistikleri yükleniyor…",
+          progByLevelPrefix: "Seviyelere göre doğruluk: ",
+          nbTitle: "⭐ Kelime Defterim",
+          nbPracticeBtn: "Defterdekilerle Pratik Yap",
+          nbEmpty: "Henüz yıldızlı kelimen yok. Oyun sonunda kelimelerin yanındaki ☆ butonuna tıklayarak buraya ekleyebilirsin.",
+          lbTitle: "Sıralama",
+          lbLoading: "Sıralama yükleniyor…",
+          lbEmpty: "Bu dönemde henüz kayıtlı skor yok. İlk skoru sen kaydet!",
+          lbGames: "günlük oyun",
+          lbBest: "En iyi",
+          lbTotalPts: "Toplam",
+          lbAvgAcc: "Ort. doğruluk",
+          lbYou: "(Sen)",
+          lbPeriodDaily: "Günlük",
+          lbPeriodWeekly: "Haftalık",
+          lbPeriodMonthly: "Aylık",
+          lbPeriodAllTime: "Tüm Zamanlar",
+          lbRuleNote: "Her gün aynı seviyedeki yalnızca ilk çözümün sıralamaya dahil edilir.",
+          firstAttemptRecorded: "✓ Günlük ilk çözümün sıralamaya (Leaderboard) kaydedildi.",
+          repeatAttemptNote: "ℹ Bu seviyeyi bugün daha önce çözdüğün için yalnızca ilk skorun sıralamada yer alır.",
+          authTitle: "BM Words hesabın",
+          authDesc: "İlerlemeni kaydetmek için giriş yap veya ücretsiz hesap oluştur.",
+          authLoginTab: "Giriş yap",
+          authSignupTab: "Üye ol",
+          authCreateBtn: "Hesap oluştur",
+          authEmailLabel: "E-posta",
+          authEmailPlaceholder: "ornek@eposta.com",
+          authPassLabel: "Şifre",
+          authPassPlaceholder: "En az 6 karakter",
+          authPassConfirmLabel: "Şifre (tekrar)",
+          authPassConfirmPlaceholder: "Şifreyi tekrar gir",
+          passMismatch: "Girdiğin şifreler birbiriyle eşleşmiyor. Lütfen kontrol et.",
+          usernameLimitError: "Kullanıcı adını yalnızca 1 kez değiştirme hakkın bulunmaktadır.",
+          posVerb: "Fiil (v)",
+          posAdj: "Sıfat (adj)",
+          posNoun: "İsim (n)"
         },
         en: {
           pageTitle: "BM Words — English Vocabulary",
           title: "BM Words · English Vocabulary",
-          subtitle: "Complete 26 English words from A to Z in 10 minutes.",
+          subtitle: "Complete 26 English words from A to Z in 5 minutes.",
           submit: "Submit",
           pass: "Pass",
+          hintBtn: (n) => `💡 Hint (${n})`,
+          shortcutNote: "Shortcut: Enter = Submit · Tab = Pass",
+          easy: "Easy",
+          medium: "Medium",
+          hard: "Hard",
+          yds: "Academic / YDS",
+          all: "All",
           okLabel: "Correct",
           noLabel: "Wrong",
           psLabel: "Pass",
           retry: "Try again",
+          shareBtn: "📋 Share Result",
+          shareCopied: "✅ Result copied to clipboard!",
           inputAria: "Type your answer",
           letterPrefix: "LETTER",
           scoreSuffix: "correct",
           countdown: (h, m) => `New words in ${h} h ${m} min.`,
-          missed: "Review missed words", review: "Learning review", correctAnswer: "Your answer", unanswered: "Unanswered", passed: "Passed", wrong: "Wrong", best: "Best score for this level", noMissed: "No missed words to review.", confirmLevel: "Your current game will be reset. Change level?"
+          menuAccount: "My Account",
+          menuProgress: "My Progress",
+          menuNotebook: "⭐ Word Notebook",
+          menuLeaderboard: "Leaderboard",
+          menuLogin: "Log in / Sign up",
+          menuLogout: "Log out",
+          menuTitle: "Menu",
+          missed: "Review missed words",
+          review: "Learning review",
+          correctAnswer: "Your answer",
+          unanswered: "Unanswered",
+          passed: "Passed",
+          wrong: "Wrong",
+          best: "Best score for this level",
+          noMissed: "No missed words to review.",
+          confirmLevel: "Your current game will be reset. Change level?",
+          backHome: "← Back to home",
+          progHeading: "Your Progress",
+          progSavedNote: "Saved to account & device",
+          progSessions: "Completed quizzes",
+          progAccuracy: "Accuracy rate",
+          progStreak: "Daily streak",
+          progLearned: "Words mastered",
+          progLoading: "Loading level statistics…",
+          progByLevelPrefix: "Accuracy by level: ",
+          nbTitle: "⭐ My Word Notebook",
+          nbPracticeBtn: "Practice Starred Words",
+          nbEmpty: "No starred words yet. Click the ☆ button next to any word on the results screen to save it here.",
+          lbTitle: "Leaderboard",
+          lbLoading: "Loading leaderboard…",
+          lbEmpty: "No scores recorded for this period yet. Be the first!",
+          lbGames: "daily games",
+          lbBest: "Best",
+          lbTotalPts: "Total",
+          lbAvgAcc: "Avg. accuracy",
+          lbYou: "(You)",
+          lbPeriodDaily: "Daily",
+          lbPeriodWeekly: "Weekly",
+          lbPeriodMonthly: "Monthly",
+          lbPeriodAllTime: "All Time",
+          lbRuleNote: "Only your first attempt per difficulty each day counts toward the leaderboard.",
+          firstAttemptRecorded: "✓ Your first daily attempt has been recorded on the leaderboard.",
+          repeatAttemptNote: "ℹ You already completed this level today; only your first daily attempt counts toward the leaderboard.",
+          authTitle: "Your BM Words Account",
+          authDesc: "Log in or create a free account to save your progress.",
+          authLoginTab: "Log in",
+          authSignupTab: "Sign up",
+          authCreateBtn: "Create account",
+          authEmailLabel: "Email",
+          authEmailPlaceholder: "you@example.com",
+          authPassLabel: "Password",
+          authPassPlaceholder: "At least 6 characters",
+          authPassConfirmLabel: "Confirm password",
+          authPassConfirmPlaceholder: "Re-enter your password",
+          passMismatch: "Passwords do not match. Please check and try again.",
+          usernameLimitError: "You can only change your username once.",
+          posVerb: "Verb (v)",
+          posAdj: "Adjective (adj)",
+          posNoun: "Noun (n)"
         }
       };
 
@@ -1289,8 +1768,34 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
          3. VERİ AYRIŞTIRMA VE DOĞRULAMA (A-Z KONTROLÜ)
          ===================================================================== */
       const LEVEL_KEYS = ["A1", "A2", "B1", "B2", "C1", "C2"];
+      const DIFFICULTY_LEVELS = {
+        easy: ["A1", "A2"],
+        medium: ["B1", "B2"],
+        hard: ["C1", "C2"],
+        yds: ["B2", "C1", "C2"]
+      };
+
+      const DIFFICULTY_LABELS = {
+        easy: { tr: "Kolay", en: "Easy" },
+        medium: { tr: "Orta", en: "Medium" },
+        hard: { tr: "Zor", en: "Hard" },
+        yds: { tr: "Akademik / YDS", en: "Academic / YDS" }
+      };
+
       const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
       const PARSED_DB = {};
+
+      function detectPartOfSpeech(item) {
+        const defEn = String(item.defEn || "").trim();
+        const defTr = String(item.def || "").trim();
+        if (/^to\s+[a-z]/i.test(defEn) || /(mak|mek)$/i.test(defTr.split(",")[0].trim())) {
+          return "posVerb";
+        }
+        if (/^(able|capable|likely|causing|having|showing|existing|feeling|hostile|cautious|lasting|very|real|easily|needing|empty|unwilling|not available|logical|fluent|possible|sociable|famous|clear|stubbornly|reserved|excessively|attractive)/i.test(defEn)) {
+          return "posAdj";
+        }
+        return "posNoun";
+      }
 
       LEVEL_KEYS.forEach((lvl) => {
         const byLetter = {};
@@ -1310,93 +1815,161 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
           }
         });
 
-        // A'dan Z'ye 26 harfin eksiksiz ve sıralı olduğunu doğrula
-        const presentLetters = Object.keys(byLetter).filter((k) => byLetter[k].length > 0).join("");
-        if (presentLetters !== ALPHABET) {
-          console.error(`Doğrulama hatası [${lvl}]: Beklenen "${ALPHABET}", bulunan "${presentLetters}"`);
-        }
         PARSED_DB[lvl] = byLetter;
       });
 
-      // Kullanıcının admin panelinden eklediği kelimeler; yerel tarayıcıda saklanır.
       const ADMIN_WORDS_KEY = "bm_words_admin_words_v1";
       function readAdminWords() {
         try {
           const parsed = JSON.parse(localStorage.getItem(ADMIN_WORDS_KEY) || "[]");
-          return Array.isArray(parsed) ? parsed.filter(w => w && LEVEL_KEYS.includes(w.level) && w.word && w.def) : [];
+          return Array.isArray(parsed) ? parsed.filter(w => w && w.level && w.word && w.def) : [];
         } catch (_) { return []; }
       }
       let adminWords = readAdminWords();
+
       function rebuildDatabase() {
         LEVEL_KEYS.forEach(level => {
-          Object.keys(PARSED_DB[level]).forEach(letter => { PARSED_DB[level][letter] = PARSED_DB[level][letter].filter(w => !w._admin); });
+          Object.keys(PARSED_DB[level]).forEach(letter => {
+            PARSED_DB[level][letter] = PARSED_DB[level][letter].filter(w => !w._admin);
+          });
         });
+
         adminWords.forEach(entry => {
           const word = String(entry.word || "").trim();
           const letter = word.charAt(0).toLowerCase();
-          if (!word || !ALPHABET.includes(letter) || !LEVEL_KEYS.includes(entry.level)) return;
-          const bucket = PARSED_DB[entry.level][letter];
-          const existingIndex = bucket.findIndex(w => w.word.toLowerCase() === word.toLowerCase());
-          const item = { word, def: String(entry.def || "").trim(), defEn: String(entry.defEn || "").trim() || word, sent: String(entry.sent || "").trim(), _admin: true };
-          if (existingIndex >= 0) bucket[existingIndex] = item; else bucket.push(item);
+          const rawLevel = String(entry.level || "").trim().toUpperCase();
+
+          if (!word || !ALPHABET.includes(letter)) return;
+
+          let targetLevels;
+          if (LEVEL_KEYS.includes(rawLevel)) {
+            targetLevels = [rawLevel];
+          } else if (rawLevel === "EASY") {
+            targetLevels = ["A1"];
+          } else if (rawLevel === "MEDIUM") {
+            targetLevels = ["B1"];
+          } else if (rawLevel === "HARD" || rawLevel === "YDS") {
+            targetLevels = ["C1"];
+          } else {
+            return;
+          }
+
+          const item = {
+            word,
+            def: String(entry.def || "").trim(),
+            defEn: String(entry.defEn || "").trim() || word,
+            sent: String(entry.sent || "").trim(),
+            _admin: true
+          };
+
+          targetLevels.forEach(level => {
+            const bucket = PARSED_DB[level][letter];
+            const existingIndex = bucket.findIndex(w => w.word.toLowerCase() === word.toLowerCase());
+            if (existingIndex >= 0) {
+              bucket[existingIndex] = item;
+            } else {
+              bucket.push(item);
+            }
+          });
+        });
+
+        LEVEL_KEYS.forEach(level => {
+          Object.keys(PARSED_DB[level]).forEach(letter => {
+            PARSED_DB[level][letter].sort((a, b) =>
+              a.word.toLowerCase().localeCompare(b.word.toLowerCase(), "en")
+            );
+          });
         });
       }
+
       rebuildDatabase();
 
       /* =====================================================================
-         4. GÜNLÜK KELİME SEÇİMİ (Türkiye Saati UTC+3)
+         4. GÜNLÜK KELİME SEÇİMİ (Wordle Döngüsü)
          ===================================================================== */
       function getTrDayNumber() {
         return Math.floor((Date.now() + 3 * 3600 * 1000) / 86400000);
       }
 
+      function getTrDateStr(dateInput = Date.now()) {
+        return new Date(dateInput).toLocaleDateString("en-CA", { timeZone: "Europe/Istanbul" });
+      }
+
+      function getDeterministicIndex(dayNumber, levelKey, letterIndex, listLength) {
+        if (listLength <= 1) return 0;
+        const seedStr = `${dayNumber}-${levelKey}-${letterIndex}`;
+        let hash = 2166136261;
+        for (let i = 0; i < seedStr.length; i++) {
+          hash ^= seedStr.charCodeAt(i);
+          hash = Math.imul(hash, 16777619);
+        }
+        return (hash >>> 0) % listLength;
+      }
+
       function getDailyWordsForLevel(levelKey) {
-        const levelIndex = LEVEL_KEYS.indexOf(levelKey);
+        const levels = DIFFICULTY_LEVELS[levelKey] || ["A1", "A2"];
         const day = getTrDayNumber();
-        const byLetter = PARSED_DB[levelKey];
         const selected = [];
 
         for (let i = 0; i < ALPHABET.length; i++) {
           const letter = ALPHABET[i];
-          const list = byLetter[letter];
-          const pickIndex = (day + levelIndex * 3) % list.length;
+          const combined = levels.flatMap(level => PARSED_DB[level][letter]);
+
+          const uniqueMap = new Map();
+          combined.forEach(item => {
+            const k = item.word.toLowerCase();
+            if (!uniqueMap.has(k)) uniqueMap.set(k, item);
+          });
+          const list = Array.from(uniqueMap.values()).sort((a, b) =>
+            a.word.toLowerCase().localeCompare(b.word.toLowerCase(), "en")
+          );
+
+          if (!list.length) continue;
+
+          const pickIndex = getDeterministicIndex(day, levelKey, i, list.length);
           const item = list[pickIndex];
+
           selected.push({
             letter: letter.toUpperCase(),
             word: item.word,
             def: item.def,
-            // Keep the English definition when creating the playable question.
-            // Older builds omitted this field, so the EN panel rendered as blank.
             defEn: item.defEn || item.word,
             sent: item.sent,
-            status: "pending"
+            status: "pending",
+            hintStep: 0
           });
         }
+
         return selected;
       }
 
-      /* Cümle içindeki hedef kelimeyi büyük/küçük harf duyarsız _____ ile gizler */
       function maskSentence(sentence, word) {
+        if (!sentence || !word) return "";
         const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const regex = new RegExp(escaped, "gi");
+        const regex = new RegExp("\\b" + escaped + "[a-z]*\\b", "gi");
         return sentence.replace(regex, "_____");
       }
 
       /* =====================================================================
-         5. OYUN DURUMU (STATE)
+         5. OYUN DURUMU (STATE) VE DOM ELEMANLARI
          ===================================================================== */
       const TOTAL_TIME = 300;
+      const MAX_HINTS = 10;
       let currentLang = "tr";
-      let currentTheme = "classic";
-      let currentLevel = "A1";
+      let currentTheme = "midnight";
+      let currentLevel = "easy";
       let words = [];
       let queue = [];
       let timeLeft = TOTAL_TIME;
+      let hintsLeft = MAX_HINTS;
+      let currentCombo = 0;
       let timerId = null;
       let isGameOver = false;
       let reviewOnly = false;
+      let notebookPracticeMode = false;
       let gameStartedAt = 0;
       let lastGameResult = null;
+
       function readStoredJSON(key, fallback) {
         try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; }
         catch (_) { return fallback; }
@@ -1405,22 +1978,62 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
         try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {}
       }
 
+      const STARRED_KEY = "bm_words_starred_v1";
+      let starredWords = readStoredJSON(STARRED_KEY, []);
+
+      function isWordStarred(wordStr) {
+        return starredWords.some(w => w.word.toLowerCase() === String(wordStr).toLowerCase());
+      }
+
+      function toggleStarWord(item) {
+        const lower = item.word.toLowerCase();
+        const idx = starredWords.findIndex(w => w.word.toLowerCase() === lower);
+        if (idx >= 0) {
+          starredWords.splice(idx, 1);
+        } else {
+          starredWords.unshift({
+            letter: item.letter || item.word.charAt(0).toUpperCase(),
+            word: item.word,
+            def: item.def,
+            defEn: item.defEn || item.word,
+            sent: item.sent
+          });
+        }
+        writeStoredJSON(STARRED_KEY, starredWords);
+      }
+
+      function speakWord(text) {
+        try {
+          if (!("speechSynthesis" in window)) return;
+          window.speechSynthesis.cancel();
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = "en-US";
+          utter.rate = 0.92;
+          window.speechSynthesis.speak(utter);
+        } catch (e) {}
+      }
+
       const elTitle = document.getElementById("ui-title");
       const elSubtitle = document.getElementById("ui-subtitle");
       const elLevelBar = document.getElementById("level-bar");
       const elTimerBar = document.getElementById("timer-bar");
       const elTimerText = document.getElementById("timer-text");
+      const elComboBadge = document.getElementById("combo-badge");
       const elLetterGrid = document.getElementById("letter-grid");
       const elPlayArea = document.getElementById("play-area");
       const elEndArea = document.getElementById("end-area");
       const elQLetter = document.getElementById("q-letter-indicator");
+      const elQPos = document.getElementById("q-pos-indicator");
       const elQLevel = document.getElementById("q-level-indicator");
       const elQDef = document.getElementById("q-def");
+      const elQHint = document.getElementById("q-hint-display");
       const elQSent = document.getElementById("q-sent");
       const elForm = document.getElementById("answer-form");
       const elInput = document.getElementById("answer-input");
       const elBtnSubmit = document.getElementById("btn-submit");
+      const elBtnHint = document.getElementById("btn-hint");
       const elBtnPass = document.getElementById("btn-pass");
+      const elBtnShare = document.getElementById("btn-share-result");
       const elBtnRetry = document.getElementById("btn-retry");
       const elBtnReviewMissed = document.getElementById("btn-review-missed");
       const elEndScore = document.getElementById("end-score");
@@ -1434,11 +2047,72 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
       const elDailyCountdown = document.getElementById("daily-countdown");
 
       /* =====================================================================
-         6. TEMA VE DİL YÖNETİMİ
+         6. SES, TEMA VE DİL YÖNETİMİ
          ===================================================================== */
-      function applyTheme(theme) {
+      function bmPlaySound(type) {
+        try {
+          if (!bmSoundEnabled) return;
+          if (!bmAudioContext) {
+            bmAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+          }
+          if (bmAudioContext.state === "suspended") {
+            bmAudioContext.resume();
+          }
+
+          const sounds = {
+            correct: { start: 660, end: 880, duration: 0.13 },
+            wrong: { start: 220, end: 165, duration: 0.18 },
+            click: { start: 480, end: 520, duration: 0.04 },
+            combo: { start: 520, end: 1040, duration: 0.22 }
+          };
+
+          const sound = sounds[type];
+          if (!sound) return;
+
+          const now = bmAudioContext.currentTime;
+          const oscillator = bmAudioContext.createOscillator();
+          const gain = bmAudioContext.createGain();
+
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(sound.start, now);
+          oscillator.frequency.linearRampToValueAtTime(sound.end, now + sound.duration);
+
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.12, now + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + sound.duration);
+
+          oscillator.connect(gain);
+          gain.connect(bmAudioContext.destination);
+
+          oscillator.start(now);
+          oscillator.stop(now + sound.duration);
+        } catch (error) {}
+      }
+
+      function bmUpdateSoundButton() {
+        const button = document.getElementById("sound-toggle");
+        if (!button) return;
+
+        const isEnglish = currentLang === "en";
+        if (isEnglish) {
+          button.textContent = bmSoundEnabled ? "🔊 Sound On" : "🔇 Sound Off";
+          button.setAttribute("aria-label", bmSoundEnabled ? "Turn sound off" : "Turn sound on");
+        } else {
+          button.textContent = bmSoundEnabled ? "🔊 Ses açık" : "🔇 Sessiz";
+          button.setAttribute("aria-label", bmSoundEnabled ? "Sesleri kapat" : "Sesleri aç");
+        }
+        button.setAttribute("aria-pressed", String(!bmSoundEnabled));
+      }
+
+      document.getElementById("sound-toggle")?.addEventListener("click", function () {
+        bmSoundEnabled = !bmSoundEnabled;
+        try { localStorage.setItem("bmSoundEnabled", String(bmSoundEnabled)); } catch (_) {}
+        bmUpdateSoundButton();
+      });
+
+function applyTheme(theme) {
         currentTheme = theme;
-        if (theme === "classic") {
+        if (theme === "midnight") {
           document.documentElement.removeAttribute("data-theme");
         } else {
           document.documentElement.setAttribute("data-theme", theme);
@@ -1447,9 +2121,23 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
           const isMatch = btn.getAttribute("data-theme-val") === theme;
           btn.setAttribute("aria-pressed", isMatch ? "true" : "false");
         });
-        try {
-          localStorage.setItem("bm_words_theme", theme);
-        } catch (e) {}
+        try { localStorage.setItem("bm_words_theme", theme); } catch (e) {}
+      }
+
+      function formatProgressLevelsText(sessions) {
+        const t = I18N[currentLang];
+        const source = sessions || readStoredJSON("bm_words_history", []);
+        const levels = Object.keys(DIFFICULTY_LEVELS).map(lvl => {
+          const list = source.filter(s => {
+            const sLevel = String(s.level || "").toLowerCase();
+            return sLevel === lvl || (lvl === "easy" && sLevel === "a1") || (lvl === "medium" && sLevel === "b1") || (lvl === "hard" && sLevel === "c1");
+          });
+          const ok = list.reduce((n, s) => n + Number(s.score || 0), 0);
+          const total = list.reduce((n, s) => n + Number(s.total || 26), 0);
+          const label = DIFFICULTY_LABELS[lvl]?.[currentLang] || lvl;
+          return `${label}: ${list.length ? Math.round(ok / Math.max(total, 1) * 100) + "%" : "—"}`;
+        }).join(" · ");
+        return t.progByLevelPrefix + levels;
       }
 
       function applyLanguage(lang) {
@@ -1457,47 +2145,168 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
         document.documentElement.lang = currentLang;
         const t = I18N[currentLang];
 
+        const accountText = currentLang === "en" ? {
+          title: "My Account",
+          username: "Username",
+          usernamePlaceholder: "Enter your username",
+          saveUsername: "Save username",
+          newPassword: "New password",
+          passwordPlaceholder: "At least 6 characters",
+          confirmPassword: "Confirm new password",
+          confirmPasswordPlaceholder: "Re-enter new password",
+          changePassword: "Change password",
+          close: "Close"
+        } : {
+          title: "Hesabım",
+          username: "Kullanıcı adı",
+          usernamePlaceholder: "Kullanıcı adını gir",
+          saveUsername: "Kullanıcı adını kaydet",
+          newPassword: "Yeni şifre",
+          passwordPlaceholder: "En az 6 karakter",
+          confirmPassword: "Yeni şifre (tekrar)",
+          confirmPasswordPlaceholder: "Şifreyi tekrar gir",
+          changePassword: "Şifreyi değiştir",
+          close: "Kapat"
+        };
+
+        const setElText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+
+        setElText("account-title", accountText.title);
+        setElText("lbl-account-username", accountText.username);
+        const inpUser = document.getElementById("account-username");
+        if (inpUser) inpUser.placeholder = accountText.usernamePlaceholder;
+        setElText("username-save", accountText.saveUsername);
+        setElText("lbl-account-new-pass", accountText.newPassword);
+        const inpPass = document.getElementById("account-new-password");
+        if (inpPass) inpPass.placeholder = accountText.passwordPlaceholder;
+        setElText("lbl-account-confirm-pass", accountText.confirmPassword);
+        const inpPassConf = document.getElementById("account-confirm-password");
+        if (inpPassConf) inpPassConf.placeholder = accountText.confirmPasswordPlaceholder;
+        setElText("password-save", accountText.changePassword);
+        const btnAccClose = document.getElementById("account-close");
+        if (btnAccClose) btnAccClose.setAttribute("aria-label", accountText.close);
+
+        setElText("auth-title", t.authTitle);
+        setElText("auth-desc", t.authDesc);
+        setElText("auth-tab-login", t.authLoginTab);
+        setElText("auth-tab-signup", t.authSignupTab);
+        setElText("lbl-auth-email", t.authEmailLabel);
+        const inpAuthEmail = document.getElementById("auth-email");
+        if (inpAuthEmail) inpAuthEmail.placeholder = t.authEmailPlaceholder;
+        setElText("lbl-auth-password", t.authPassLabel);
+        const inpAuthPass = document.getElementById("auth-password");
+        if (inpAuthPass) inpAuthPass.placeholder = t.authPassPlaceholder;
+        setElText("lbl-auth-password-confirm", t.authPassConfirmLabel);
+        const inpAuthPassConf = document.getElementById("auth-password-confirm");
+        if (inpAuthPassConf) inpAuthPassConf.placeholder = t.authPassConfirmPlaceholder;
+        setElText("auth-submit", authMode === "login" ? t.authLoginTab : t.authCreateBtn);
+
+        setElText("user-menu-toggle", t.menuTitle + " ☰");
+        setElText("auth-open", authUser ? t.menuAccount : t.menuLogin);
+        setElText("menu-progress", t.menuProgress);
+        setElText("menu-notebook", t.menuNotebook);
+        setElText("menu-leaderboard", t.menuLeaderboard);
+        setElText("auth-logout", t.menuLogout);
+
+        setElText("progress-back", t.backHome);
+        setElText("progress-screen-title", t.menuProgress);
+        setElText("progress-panel-heading", t.progHeading);
+        setElText("progress-level-note", t.progSavedNote);
+        setElText("lbl-prog-sessions", t.progSessions);
+        setElText("lbl-prog-accuracy", t.progAccuracy);
+        setElText("lbl-prog-streak", t.progStreak);
+        setElText("lbl-prog-learned", t.progLearned);
+        setElText("progress-levels", formatProgressLevelsText(cachedSessions));
+
+        setElText("notebook-back", t.backHome);
+        setElText("notebook-screen-title", t.nbTitle);
+        setElText("btn-practice-notebook", t.nbPracticeBtn);
+        setElText("notebook-empty", t.nbEmpty);
+
+        setElText("leaderboard-back", t.backHome);
+        setElText("leaderboard-screen-title", t.lbTitle);
+        setElText("lb-period-daily", t.lbPeriodDaily);
+        setElText("lb-period-weekly", t.lbPeriodWeekly);
+        setElText("lb-period-monthly", t.lbPeriodMonthly);
+        setElText("lb-period-alltime", t.lbPeriodAllTime);
+        setElText("lb-filter-all", t.all);
+        setElText("lb-filter-easy", t.easy);
+        setElText("lb-filter-medium", t.medium);
+        setElText("lb-filter-hard", t.hard);
+        setElText("lb-filter-yds", t.yds);
+        setElText("lb-rule-note", t.lbRuleNote);
+
+        document.querySelectorAll(".level-pill").forEach((btn) => {
+          const level = btn.getAttribute("data-level");
+          if (t[level]) btn.textContent = t[level];
+        });
+
+        if (elLevelBar) {
+          elLevelBar.setAttribute("aria-label", currentLang === "en" ? "Difficulty Levels" : "Zorluk Seviyeleri");
+        }
+
+        bmUpdateSoundButton();
+
         document.title = t.pageTitle;
-        elTitle.textContent = t.title;
-        elSubtitle.textContent = t.subtitle;
-        elBtnSubmit.textContent = t.submit;
-        elBtnPass.textContent = t.pass;
-        elStatOkLabel.textContent = t.okLabel;
-        elStatNoLabel.textContent = t.noLabel;
-        elStatPsLabel.textContent = t.psLabel;
-        elBtnRetry.textContent = t.retry;
-        elBtnReviewMissed.textContent = t.missed;
-        elInput.setAttribute("aria-label", t.inputAria);
+        if (elTitle) elTitle.textContent = t.title;
+        if (elSubtitle) elSubtitle.textContent = t.subtitle;
+        if (elBtnSubmit) elBtnSubmit.textContent = t.submit;
+        if (elBtnHint) elBtnHint.textContent = t.hintBtn(hintsLeft);
+        if (elBtnPass) elBtnPass.textContent = t.pass;
+        if (elBtnShare) elBtnShare.textContent = t.shareBtn;
+        setElText("shortcut-note", t.shortcutNote);
+        if (elStatOkLabel) elStatOkLabel.textContent = t.okLabel;
+        if (elStatNoLabel) elStatNoLabel.textContent = t.noLabel;
+        if (elStatPsLabel) elStatPsLabel.textContent = t.psLabel;
+        if (elBtnRetry) elBtnRetry.textContent = t.retry;
+        if (elBtnReviewMissed) elBtnReviewMissed.textContent = t.missed;
+        if (elInput) elInput.setAttribute("aria-label", t.inputAria);
 
         document.querySelectorAll(".lang-btn").forEach((btn) => {
           btn.classList.toggle("active", btn.getAttribute("data-lang") === currentLang);
         });
 
-        try {
-          localStorage.setItem("bm_words_lang", currentLang);
-        } catch (e) {}
+        try { localStorage.setItem("bm_words_lang", currentLang); } catch (e) {}
 
         if (isGameOver) {
           renderEndScreen();
-        } else {
+        } else if (words.length > 0) {
           renderCurrentQuestion();
         }
+
+        if (!document.getElementById("leaderboard-screen")?.hidden) {
+          loadLeaderboard(currentLbFilter, currentLbPeriod);
+        }
+        if (!document.getElementById("notebook-screen")?.hidden) {
+          renderNotebookScreen();
+        }
+
         updateDailyCountdown();
       }
 
       /* =====================================================================
-         7. OYUN DÖNGÜSÜ VE ARAYÜZ ÇİZİMİ
+         7. OYUN DÖNGÜSÜ, İPUCU, COMBO VE ARAYÜZ ÇİZİMİ
          ===================================================================== */
       function initGame(levelKey, options = {}) {
         if (timerId) { clearInterval(timerId); timerId = null; }
-        currentLevel = LEVEL_KEYS.includes(levelKey) ? levelKey : "A1";
+        currentLevel = Object.keys(DIFFICULTY_LEVELS).includes(levelKey) ? levelKey : "easy";
         isGameOver = false;
         reviewOnly = Boolean(options.reviewOnly);
+        notebookPracticeMode = Boolean(options.notebookMode);
+        hintsLeft = MAX_HINTS;
+        currentCombo = 0;
+        updateComboUI();
+
         const freshWords = getDailyWordsForLevel(currentLevel);
-        if (reviewOnly && lastGameResult) {
+        if (notebookPracticeMode && starredWords.length > 0) {
+          words = starredWords.map(w => ({ ...w, status: "pending", userAnswer: "", hintStep: 0 }));
+        } else if (reviewOnly && lastGameResult) {
           const missed = lastGameResult.words.filter(w => w.status !== "ok");
-          words = missed.length ? missed.map(w => ({ ...w, status: "pending", userAnswer: "" })) : freshWords;
-        } else { words = freshWords; }
+          words = missed.length ? missed.map(w => ({ ...w, status: "pending", userAnswer: "", hintStep: 0 })) : freshWords;
+        } else {
+          words = freshWords;
+        }
+
         queue = words.map((_, idx) => idx);
         timeLeft = TOTAL_TIME;
         gameStartedAt = Date.now();
@@ -1514,7 +2323,6 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
         renderCurrentQuestion();
         renderTimer();
 
-        if (timerId) clearInterval(timerId);
         timerId = setInterval(() => {
           timeLeft--;
           if (timeLeft <= 0) {
@@ -1530,6 +2338,16 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
         elInput.focus();
       }
 
+      function updateComboUI() {
+        if (!elComboBadge) return;
+        if (currentCombo >= 2) {
+          elComboBadge.textContent = `🔥 ${currentCombo}x`;
+          elComboBadge.classList.add("visible");
+        } else {
+          elComboBadge.classList.remove("visible");
+        }
+      }
+
       function buildLetterGrid() {
         elLetterGrid.innerHTML = "";
         words.forEach((item, idx) => {
@@ -1543,113 +2361,129 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
         updateLetterGridStyles();
       }
 
+      function bmAnimateLetterScroll(grid, target) {
+        if (bmLetterScrollFrame !== null) {
+          cancelAnimationFrame(bmLetterScrollFrame);
+          bmLetterScrollFrame = null;
+        }
 
-let bmLetterScrollTarget = null;
+        const start = grid.scrollLeft;
+        const distance = Math.max(0, target) - start;
+        const duration = 220;
+        let startTime = null;
 
+        if (Math.abs(distance) < 1) {
+          grid.scrollLeft = Math.max(0, target);
+          return;
+        }
 
+        function animate(timestamp) {
+          if (startTime === null) startTime = timestamp;
+          const progress = Math.min((timestamp - startTime) / duration, 1);
+          const eased = progress * progress * (3 - 2 * progress);
+          grid.scrollLeft = start + distance * eased;
 
-let bmLetterScrollFrame = null;
+          if (progress < 1) {
+            bmLetterScrollFrame = requestAnimationFrame(animate);
+          } else {
+            grid.scrollLeft = Math.max(0, target);
+            bmLetterScrollFrame = null;
+          }
+        }
 
-function bmAnimateLetterScroll(grid, target) {
-  if (bmLetterScrollFrame !== null) {
-    cancelAnimationFrame(bmLetterScrollFrame);
-    bmLetterScrollFrame = null;
-  }
+        bmLetterScrollFrame = requestAnimationFrame(animate);
+      }
 
-  const start = grid.scrollLeft;
-  const distance = Math.max(0, target) - start;
-  const duration = 220;
-  let startTime = null;
+      function updateLetterGridStyles() {
+        const activeIdx = !isGameOver && queue.length > 0 ? queue[0] : -1;
 
-  if (Math.abs(distance) < 1) {
-    grid.scrollLeft = Math.max(0, target);
-    return;
-  }
+        words.forEach((item, idx) => {
+          const pill = document.getElementById(`letter-pill-${idx}`);
+          if (!pill) return;
 
-  function animate(timestamp) {
-    if (startTime === null) startTime = timestamp;
+          pill.className = "letter-pill";
+          if (item.status === "ok") pill.classList.add("ok");
+          else if (item.status === "no") pill.classList.add("no");
+          else if (item.status === "ps") pill.classList.add("ps");
 
-    const progress = Math.min((timestamp - startTime) / duration, 1);
-    const eased = progress * progress * (3 - 2 * progress);
+          if (idx === activeIdx) {
+            pill.classList.add("active");
+          }
+        });
 
-    grid.scrollLeft = start + distance * eased;
+        const grid = elLetterGrid;
+        if (!grid) return;
 
-    if (progress < 1) {
-      bmLetterScrollFrame = requestAnimationFrame(animate);
-    } else {
-      grid.scrollLeft = Math.max(0, target);
-      bmLetterScrollFrame = null;
-    }
-  }
+        const activePill = activeIdx >= 0 ? document.getElementById(`letter-pill-${activeIdx}`) : null;
+        if (activePill) {
+          grid.style.justifyContent = "flex-start";
+          const gridRect = grid.getBoundingClientRect();
+          const pillRect = activePill.getBoundingClientRect();
+          const targetScroll = grid.scrollLeft + pillRect.left - gridRect.left - (grid.clientWidth - activePill.offsetWidth) / 2;
+          bmAnimateLetterScroll(grid, targetScroll);
+        }
+      }
 
-  bmLetterScrollFrame = requestAnimationFrame(animate);
-}
-
-
-function updateLetterGridStyles() {
-  const activeIdx = !isGameOver && queue.length > 0 ? queue[0] : -1;
-
-  words.forEach((item, idx) => {
-    const pill = document.getElementById(`letter-pill-${idx}`);
-    if (!pill) return;
-
-    pill.className = "letter-pill";
-
-    if (item.status === "ok") pill.classList.add("ok");
-    else if (item.status === "no") pill.classList.add("no");
-    else if (item.status === "ps") pill.classList.add("ps");
-
-    if (idx === activeIdx) {
-      pill.classList.add("active");
-    }
-  });
-
-  const grid = elLetterGrid;
-  if (!grid) return;
-
-
-  const activePill = activeIdx >= 0
-    ? document.getElementById(`letter-pill-${activeIdx}`)
-    : null;
-
-  if (activePill) {
-grid.style.justifyContent = "flex-start";
-
-const gridRect = grid.getBoundingClientRect();
-const pillRect = activePill.getBoundingClientRect();
-
-const targetScroll =
-  grid.scrollLeft +
-  pillRect.left -
-  gridRect.left -
-  (grid.clientWidth - activePill.offsetWidth) / 2;
-
-bmAnimateLetterScroll(grid, targetScroll);
-  }
-}
-
+      function buildHintMask(word, step) {
+        if (!step || step <= 0) return "";
+        const chars = word.split("");
+        return chars.map((ch, idx) => {
+          if (idx === 0) return ch.toUpperCase();
+          if (step >= 1 && idx === 1) return ch;
+          if (step >= 2 && idx === chars.length - 1) return ch;
+          if (step >= 3 && idx === 2) return ch;
+          return "_";
+        }).join(" ");
+      }
 
       function renderCurrentQuestion() {
         if (isGameOver || queue.length === 0) return;
         const activeIdx = queue[0];
         const currentItem = words[activeIdx];
+        if (!currentItem) return;
         const t = I18N[currentLang];
 
         elQLetter.textContent = `${t.letterPrefix}: ${currentItem.letter}`;
-        elQLevel.textContent = currentLevel;
+        elQLevel.textContent = DIFFICULTY_LABELS[currentLevel]?.[currentLang] || currentLevel;
+        if (elQPos) {
+          const posKey = detectPartOfSpeech(currentItem);
+          elQPos.textContent = t[posKey] || "Noun";
+        }
         elQDef.textContent = currentLang === "en" ? currentItem.defEn : currentItem.def;
         elQSent.textContent = maskSentence(currentItem.sent, currentItem.word);
         elInput.placeholder = `${currentItem.letter}...`;
 
-        elBtnPass.disabled = false;
+        if (currentItem.hintStep > 0) {
+          elQHint.textContent = buildHintMask(currentItem.word, currentItem.hintStep);
+          elQHint.classList.add("visible");
+        } else {
+          elQHint.textContent = "";
+          elQHint.classList.remove("visible");
+        }
 
+        if (elBtnHint) {
+          elBtnHint.textContent = t.hintBtn(hintsLeft);
+          elBtnHint.disabled = hintsLeft <= 0 || currentItem.hintStep >= 2;
+        }
+        elBtnPass.disabled = false;
         updateLetterGridStyles();
       }
 
+      function handleHint() {
+        if (isGameOver || queue.length === 0 || hintsLeft <= 0) return;
+        const activeIdx = queue[0];
+        const currentItem = words[activeIdx];
+        if (!currentItem || currentItem.hintStep >= 2) return;
+
+        hintsLeft--;
+        currentItem.hintStep = (currentItem.hintStep || 0) + 1;
+        bmPlaySound("click");
+        renderCurrentQuestion();
+        elInput.focus();
+      }
+
       function updateStats() {
-        let okCount = 0;
-        let noCount = 0;
-        let psCount = 0;
+        let okCount = 0, noCount = 0, psCount = 0;
         words.forEach((w) => {
           if (w.status === "ok") okCount++;
           else if (w.status === "no") noCount++;
@@ -1664,87 +2498,11 @@ bmAnimateLetterScroll(grid, targetScroll);
         const mins = Math.floor(timeLeft / 60);
         const secs = timeLeft % 60;
         elTimerText.textContent = `${mins}:${secs < 10 ? "0" : ""}${secs}`;
-        const pct = (timeLeft / TOTAL_TIME) * 100;
+        const pct = Math.min(100, (timeLeft / TOTAL_TIME) * 100);
         elTimerBar.style.width = `${pct}%`;
       }
 
-      // BM Words - Ses Efektleri
-let bmAudioContext;
-
-let bmSoundEnabled = true;
-bmSoundEnabled = localStorage.getItem("bmSoundEnabled") !== "false";
-
-
-function bmPlaySound(type) {
-    try {
-	if (!bmSoundEnabled) return;
-        if (!bmAudioContext) {
-            bmAudioContext = new (
-                window.AudioContext || window.webkitAudioContext
-            )();
-        }
-
-        if (bmAudioContext.state === "suspended") {
-            bmAudioContext.resume();
-        }
-
-        const sounds = {
-            correct: { start: 660, end: 880, duration: 0.13 },
-            wrong: { start: 220, end: 165, duration: 0.18 },
-            click: { start: 480, end: 520, duration: 0.04 }
-        };
-
-        const sound = sounds[type];
-        if (!sound) return;
-
-        const now = bmAudioContext.currentTime;
-        const oscillator = bmAudioContext.createOscillator();
-        const gain = bmAudioContext.createGain();
-
-        oscillator.type = "sine";
-        oscillator.frequency.setValueAtTime(sound.start, now);
-        oscillator.frequency.linearRampToValueAtTime(
-            sound.end,
-            now + sound.duration
-        );
-
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.linearRampToValueAtTime(0.12, now + 0.01);
-        gain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            now + sound.duration
-        );
-
-        oscillator.connect(gain);
-        gain.connect(bmAudioContext.destination);
-
-        oscillator.start(now);
-        oscillator.stop(now + sound.duration);
-    } catch (error) {
-        console.warn("BM Words ses efekti hatası:", error);
-    }
-}
-function bmUpdateSoundButton() {
-    const button = document.getElementById("sound-toggle");
-    if (!button) return;
-
-    button.textContent = bmSoundEnabled ? "🔊 Ses açık" : "🔇 Sessiz";
-    button.setAttribute(
-        "aria-label",
-        bmSoundEnabled ? "Sesleri kapat" : "Sesleri aç"
-    );
-    button.setAttribute("aria-pressed", String(!bmSoundEnabled));
-}
-
-document.getElementById("sound-toggle")?.addEventListener("click", function () {
-    bmSoundEnabled = !bmSoundEnabled;
-    localStorage.setItem("bmSoundEnabled", String(bmSoundEnabled));
-    bmUpdateSoundButton();
-});
-
-bmUpdateSoundButton();
-
-	  function triggerShake() {
+      function triggerShake() {
         elInput.classList.remove("shake");
         void elInput.offsetWidth;
         elInput.classList.add("shake");
@@ -1754,18 +2512,16 @@ bmUpdateSoundButton();
         if (e) e.preventDefault();
         if (isGameOver || queue.length === 0) return;
 
+        const userVal = elInput.value.trim().toLocaleLowerCase("en-US");
+        if (!userVal) {
+          elInput.focus();
+          return;
+        }
 
-const userVal = elInput.value.trim().toLocaleLowerCase("en-US");
-
-if (!userVal) {
-  elInput.focus();
-  return;
-}
-
-if (userVal === "end") {
-  finishGame();
-  return;
-}
+        if (userVal === "end") {
+          finishGame();
+          return;
+        }
 
         const activeIdx = queue.shift();
         const currentItem = words[activeIdx];
@@ -1773,13 +2529,22 @@ if (userVal === "end") {
 
         if (userVal === currentItem.word.toLocaleLowerCase("en-US")) {
           currentItem.status = "ok";
-		  bmPlaySound("correct");
+          currentCombo++;
+          if (currentCombo > 0 && currentCombo % 5 === 0) {
+            timeLeft = Math.min(TOTAL_TIME, timeLeft + 10);
+            renderTimer();
+            bmPlaySound("combo");
+          } else {
+            bmPlaySound("correct");
+          }
         } else {
           currentItem.status = "no";
-		  bmPlaySound("wrong");
+          currentCombo = 0;
+          bmPlaySound("wrong");
           triggerShake();
         }
 
+        updateComboUI();
         elInput.value = "";
         updateStats();
 
@@ -1795,12 +2560,38 @@ if (userVal === "end") {
         if (isGameOver || queue.length === 0) return;
         const activeIdx = queue.shift();
         words[activeIdx].status = "ps";
+        currentCombo = 0;
+        updateComboUI();
+        bmPlaySound("click");
         if (queue.length > 0) queue.push(activeIdx);
 
         elInput.value = "";
         updateStats();
         if (queue.length === 0) finishGame();
         else { renderCurrentQuestion(); elInput.focus(); }
+      }
+
+      function shareResultCard() {
+        const t = I18N[currentLang];
+        const okCount = words.filter(w => w.status === "ok").length;
+        const elapsedSec = Math.round((lastGameResult?.durationMs || 0) / 1000);
+        const mins = String(Math.floor(elapsedSec / 60)).padStart(2, "0");
+        const secs = String(elapsedSec % 60).padStart(2, "0");
+        const lvlLabel = DIFFICULTY_LABELS[currentLevel]?.[currentLang] || currentLevel;
+        const emojis = words.map(w => w.status === "ok" ? "🟩" : w.status === "no" ? "🟥" : "🟨");
+        const row1 = emojis.slice(0, 13).join("");
+        const row2 = emojis.slice(13, 26).join("");
+        const shareText = `BM Words (${lvlLabel}) — ${getTrDateStr()}\n🎯 ${okCount}/${words.length} | ⏱ ${mins}:${secs}\n${row1}\n${row2}`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(shareText).then(() => {
+            window.alert(t.shareCopied);
+          }).catch(() => {
+            window.prompt("Copy result:", shareText);
+          });
+        } else {
+          window.prompt("Copy result:", shareText);
+        }
       }
 
       function finishGame() {
@@ -1810,18 +2601,48 @@ if (userVal === "end") {
           timerId = null;
         }
 
-        // Preserve wrong, passed, and unanswered as separate learning outcomes.
         queue = [];
         const okCount = words.filter(w => w.status === "ok").length;
         const bestScores = readStoredJSON("bm_words_best_scores", {});
         bestScores[currentLevel] = Math.max(Number(bestScores[currentLevel] || 0), okCount);
         writeStoredJSON("bm_words_best_scores", bestScores);
-        lastGameResult = { level: currentLevel, words: words.map(w => ({ ...w })), score: okCount, durationMs: Date.now() - gameStartedAt, date: new Date().toISOString() };
+
+        const nowIso = new Date().toISOString();
+        const todayStr = getTrDateStr(nowIso);
         const history = readStoredJSON("bm_words_history", []);
-        history.unshift({ level: currentLevel, score: okCount, total: words.length, date: lastGameResult.date, durationMs: lastGameResult.durationMs });
-        writeStoredJSON("bm_words_history", history.slice(0, 20));
-        // Üye giriş yaptıysa aynı sonuç güvenli RLS kuralları üzerinden buluta da kaydedilir.
-        saveCloudQuizResult(lastGameResult).catch(err => console.warn("İlerleme senkronizasyonu başarısız:", err));
+
+        const alreadyPlayedTodayLocal = history.some(
+          h => h.level === currentLevel && Number(h.total) === 26 && getTrDateStr(h.date) === todayStr
+        );
+        lastRoundWasFirstDaily = !reviewOnly && !notebookPracticeMode && !alreadyPlayedTodayLocal;
+
+        lastGameResult = {
+          level: currentLevel,
+          words: words.map(w => ({ ...w })),
+          score: okCount,
+          durationMs: Date.now() - gameStartedAt,
+          date: nowIso,
+          reviewOnly: reviewOnly || notebookPracticeMode
+        };
+
+        if (!reviewOnly && !notebookPracticeMode) {
+          history.unshift({
+            level: currentLevel,
+            score: okCount,
+            total: words.length,
+            date: lastGameResult.date,
+            durationMs: lastGameResult.durationMs
+          });
+          writeStoredJSON("bm_words_history", history.slice(0, 200));
+
+          const learnedMap = readStoredJSON("bm_words_learned_map", {});
+          words.forEach(w => {
+            if (w.status === "ok") learnedMap[w.word.toLowerCase()] = true;
+          });
+          writeStoredJSON("bm_words_learned_map", learnedMap);
+        }
+
+        saveSheetsQuizResult(lastGameResult).catch(err => console.warn("Sheets senkronizasyonu başarısız:", err));
 
         updateLetterGridStyles();
         updateStats();
@@ -1837,11 +2658,32 @@ if (userVal === "end") {
         const wrongCount = words.filter(w => w.status === "no").length;
         const passedCount = words.filter(w => w.status === "ps").length;
         const unansweredCount = words.filter(w => w.status === "pending").length;
+
         elEndScore.textContent = `${okCount} / ${words.length} ${t.scoreSuffix}`;
         const bestScores = readStoredJSON("bm_words_best_scores", {});
         let bestNote = document.getElementById("best-score-note");
-        if (!bestNote) { bestNote = document.createElement("p"); bestNote.id = "best-score-note"; bestNote.className = "best-score-note"; elEndScore.parentNode.insertBefore(bestNote, elEndScore.nextSibling); }
+        if (!bestNote) {
+          bestNote = document.createElement("p");
+          bestNote.id = "best-score-note";
+          bestNote.className = "best-score-note";
+          elEndScore.parentNode.insertBefore(bestNote, elEndScore.nextSibling);
+        }
         bestNote.textContent = `${t.best}: ${bestScores[currentLevel] || 0}/${words.length} · ${t.wrong}: ${wrongCount} · ${t.passed}: ${passedCount} · ${t.unanswered}: ${unansweredCount}`;
+
+        let attemptNote = document.getElementById("daily-attempt-note");
+        if (!attemptNote) {
+          attemptNote = document.createElement("p");
+          attemptNote.id = "daily-attempt-note";
+          attemptNote.className = "daily-attempt-note";
+          bestNote.parentNode.insertBefore(attemptNote, bestNote.nextSibling);
+        }
+        if (!reviewOnly && !notebookPracticeMode) {
+          attemptNote.textContent = lastRoundWasFirstDaily ? t.firstAttemptRecorded : t.repeatAttemptNote;
+          attemptNote.style.color = lastRoundWasFirstDaily ? "var(--ok)" : "var(--mut)";
+        } else {
+          attemptNote.textContent = "";
+        }
+
         elBtnReviewMissed.disabled = !words.some(w => w.status !== "ok");
 
         elReviewList.innerHTML = "";
@@ -1853,24 +2695,59 @@ if (userVal === "end") {
           const statusClass = ["ok", "no", "ps"].includes(item.status) ? item.status : "unanswered";
           badge.className = `word-badge ${statusClass}`;
           badge.textContent = item.letter;
-          badge.title = item.status === "ok" ? t.okLabel : item.status === "no" ? t.wrong : item.status === "ps" ? t.passed : t.unanswered;
 
           const copy = document.createElement("div");
           copy.className = "word-review-copy";
+
+          const termRow = document.createElement("div");
+          termRow.className = "word-term-row";
+
           const term = document.createElement("span");
           term.className = "word-term";
           term.textContent = item.word;
+
+          const speakBtn = document.createElement("button");
+          speakBtn.type = "button";
+          speakBtn.className = "icon-action-btn";
+          speakBtn.textContent = "🔈";
+          speakBtn.title = "Listen pronunciation";
+          speakBtn.addEventListener("click", () => speakWord(item.word));
+
+          const starBtn = document.createElement("button");
+          starBtn.type = "button";
+          const starred = isWordStarred(item.word);
+          starBtn.className = "icon-action-btn" + (starred ? " starred" : "");
+          starBtn.textContent = starred ? "⭐" : "☆";
+          starBtn.addEventListener("click", () => {
+            toggleStarWord(item);
+            const nowStarred = isWordStarred(item.word);
+            starBtn.className = "icon-action-btn" + (nowStarred ? " starred" : "");
+            starBtn.textContent = nowStarred ? "⭐" : "☆";
+          });
+
+          termRow.appendChild(term);
+          termRow.appendChild(speakBtn);
+          termRow.appendChild(starBtn);
+
           const meaning = document.createElement("span");
           meaning.className = "word-meaning";
           meaning.textContent = currentLang === "en" ? item.defEn : item.def;
+
           const example = document.createElement("span");
           example.className = "word-example";
           example.textContent = item.sent;
-          copy.appendChild(term); copy.appendChild(meaning); copy.appendChild(example);
+
+          copy.appendChild(termRow);
+          copy.appendChild(meaning);
+          copy.appendChild(example);
+
           if (item.userAnswer && item.status !== "ok") {
-            const answer = document.createElement("span"); answer.className = "word-user-answer";
-            answer.textContent = `${t.correctAnswer}: ${item.userAnswer}`; copy.appendChild(answer);
+            const answer = document.createElement("span");
+            answer.className = "word-user-answer";
+            answer.textContent = `${t.correctAnswer}: ${item.userAnswer}`;
+            copy.appendChild(answer);
           }
+
           li.appendChild(badge);
           li.appendChild(copy);
           elReviewList.appendChild(li);
@@ -1878,9 +2755,80 @@ if (userVal === "end") {
       }
 
       /* =====================================================================
-         8. GÜNLÜK GERİ SAYIM (Dakikada bir güncellenir, Türkiye saati UTC+3)
+         8. KELİME DEFTERİM EKRANI VE GÜNLÜK GERİ SAYIM
          ===================================================================== */
+      function renderNotebookScreen() {
+        const listEl = document.getElementById("notebook-list");
+        const emptyEl = document.getElementById("notebook-empty");
+        const practiceBtn = document.getElementById("btn-practice-notebook");
+        if (!listEl) return;
+
+        listEl.innerHTML = "";
+        if (starredWords.length === 0) {
+          if (emptyEl) emptyEl.hidden = false;
+          if (practiceBtn) practiceBtn.disabled = true;
+          return;
+        }
+        if (emptyEl) emptyEl.hidden = true;
+        if (practiceBtn) practiceBtn.disabled = false;
+
+        starredWords.forEach((item) => {
+          const li = document.createElement("li");
+          li.className = "word-review-item";
+
+          const badge = document.createElement("span");
+          badge.className = "word-badge ok";
+          badge.textContent = item.letter || item.word.charAt(0).toUpperCase();
+
+          const copy = document.createElement("div");
+          copy.className = "word-review-copy";
+
+          const termRow = document.createElement("div");
+          termRow.className = "word-term-row";
+
+          const term = document.createElement("span");
+          term.className = "word-term";
+          term.textContent = item.word;
+
+          const speakBtn = document.createElement("button");
+          speakBtn.type = "button";
+          speakBtn.className = "icon-action-btn";
+          speakBtn.textContent = "🔈";
+          speakBtn.addEventListener("click", () => speakWord(item.word));
+
+          const removeBtn = document.createElement("button");
+          removeBtn.type = "button";
+          removeBtn.className = "icon-action-btn starred";
+          removeBtn.textContent = "⭐";
+          removeBtn.addEventListener("click", () => {
+            toggleStarWord(item);
+            renderNotebookScreen();
+          });
+
+          termRow.appendChild(term);
+          termRow.appendChild(speakBtn);
+          termRow.appendChild(removeBtn);
+
+          const meaning = document.createElement("span");
+          meaning.className = "word-meaning";
+          meaning.textContent = currentLang === "en" ? item.defEn : item.def;
+
+          const example = document.createElement("span");
+          example.className = "word-example";
+          example.textContent = item.sent;
+
+          copy.appendChild(termRow);
+          copy.appendChild(meaning);
+          copy.appendChild(example);
+
+          li.appendChild(badge);
+          li.appendChild(copy);
+          listEl.appendChild(li);
+        });
+      }
+
       function updateDailyCountdown() {
+        if (!elDailyCountdown) return;
         const nowTrMs = Date.now() + 3 * 3600 * 1000;
         const msInDay = 86400000;
         const remMs = msInDay - (nowTrMs % msInDay);
@@ -1892,23 +2840,80 @@ if (userVal === "end") {
       }
 
       /* =====================================================================
-         9. OLAY DİNLEYİCİLERİ VE BAŞLATMA
+         9. GOOGLE SHEETS API İŞLEMLERİ, EKRAN GEÇİŞLERİ VE LEADERBOARD
          ===================================================================== */
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      }
+
+      function forceLogout() {
+        authUser = null;
+        authRole = "member";
+        window.bmUsername = "";
+        try { localStorage.removeItem("bm_words_auth_user"); } catch (_) {}
+        showScreen("home");
+        updateAuthUI();
+      }
+
+      async function hashPassword(str) {
+        try {
+          const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+          return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+        } catch (_) {
+          return btoa(unescape(encodeURIComponent(str)));
+        }
+      }
+
+      async function sheetsPost(payload) {
+        if (!SHEETS_CONFIGURED) throw new Error("Google Sheets Web App URL ayarlanmamış.");
+        const res = await fetch(GOOGLE_SHEETS_WEBAPP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ ...payload, token: (authUser && authUser.token) || "" })
+        });
+        const data = await res.json();
+        if (data && data.code === "AUTH" && authUser) forceLogout();
+        return data;
+      }
+
+      async function sheetsGetInit() {
+        if (!SHEETS_CONFIGURED) return null;
+        const res = await fetch(`${GOOGLE_SHEETS_WEBAPP_URL}?action=init`);
+        return await res.json();
+      }
+
+      function showScreen(screenName) {
+        document.getElementById("home-screen").hidden = screenName !== "home";
+        document.getElementById("progress-screen").hidden = screenName !== "progress";
+        document.getElementById("notebook-screen").hidden = screenName !== "notebook";
+        document.getElementById("leaderboard-screen").hidden = screenName !== "leaderboard";
+      }
+
       elForm.addEventListener("submit", handleSubmit);
+      elBtnHint?.addEventListener("click", handleHint);
       elBtnPass.addEventListener("click", handlePass);
+      elBtnShare?.addEventListener("click", shareResultCard);
       elBtnRetry.addEventListener("click", () => initGame(currentLevel));
       elBtnReviewMissed.addEventListener("click", () => {
         if (!lastGameResult || !lastGameResult.words.some(w => w.status !== "ok")) {
-          window.alert(I18N[currentLang].noMissed); return;
+          window.alert(I18N[currentLang].noMissed);
+          return;
         }
         initGame(currentLevel, { reviewOnly: true });
+      });
+
+      elInput.addEventListener("keydown", (e) => {
+        if (e.key === "Tab" && !isGameOver) {
+          e.preventDefault();
+          handlePass();
+        }
       });
 
       elLevelBar.addEventListener("click", (e) => {
         const btn = e.target.closest(".level-pill");
         if (!btn) return;
         const lvl = btn.getAttribute("data-level");
-        if (lvl && lvl !== currentLevel) {
+        if (lvl && (lvl !== currentLevel || notebookPracticeMode)) {
           const hasProgress = !isGameOver && words.some(w => w.status === "ok" || w.status === "no" || w.status === "ps");
           if (hasProgress && !window.confirm(I18N[currentLang].confirmLevel)) return;
           initGame(lvl);
@@ -1927,224 +2932,681 @@ if (userVal === "end") {
         });
       });
 
-      // ---------------- Supabase hesap, ilerleme ve ortak kelime senkronizasyonu ----------------
       const authOverlay = document.getElementById("auth-overlay");
       const authMessage = document.getElementById("auth-message");
-      function authNotice(message, error = false) { authMessage.textContent = message; authMessage.classList.toggle("error", error); }
+      function authNotice(message, error = false) {
+        if (!authMessage) return;
+        authMessage.textContent = message;
+        authMessage.classList.toggle("error", error);
+      }
+
       function setAuthMode(mode) {
         authMode = mode;
-        document.getElementById("auth-tab-login").classList.toggle("active", mode === "login");
-        document.getElementById("auth-tab-signup").classList.toggle("active", mode === "signup");
-        document.getElementById("auth-submit").textContent = mode === "login" ? "Giriş yap" : "Hesap oluştur";
-        document.getElementById("auth-password").autocomplete = mode === "login" ? "current-password" : "new-password";
+        const t = I18N[currentLang];
+        document.getElementById("auth-tab-login")?.classList.toggle("active", mode === "login");
+        document.getElementById("auth-tab-signup")?.classList.toggle("active", mode === "signup");
+        const submitBtn = document.getElementById("auth-submit");
+        if (submitBtn) submitBtn.textContent = mode === "login" ? t.authLoginTab : t.authCreateBtn;
+        const passInp = document.getElementById("auth-password");
+        if (passInp) passInp.autocomplete = mode === "login" ? "current-password" : "new-password";
+
+        const confirmWrap = document.getElementById("auth-confirm-wrap");
+        const confirmInp = document.getElementById("auth-password-confirm");
+        if (confirmWrap) confirmWrap.hidden = mode !== "signup";
+        if (confirmInp) {
+          confirmInp.required = mode === "signup";
+          if (mode !== "signup") confirmInp.value = "";
+        }
         authNotice("");
       }
+
       function updateAuthUI() {
+        const t = I18N[currentLang];
         const openBtn = document.getElementById("auth-open");
         const logoutBtn = document.getElementById("auth-logout");
         const adminBtn = document.getElementById("admin-open");
         const name = document.getElementById("account-name");
-        openBtn.textContent = authUser ? "Hesabım" : "Giriş yap / Üye ol";
-        logoutBtn.hidden = !authUser;
-        name.textContent = authUser ? (authUser.email || "Üye") : "";
-        adminBtn.hidden = authRole !== "admin";
-        progressPanel.classList.toggle("visible", Boolean(authUser));
+        if (openBtn) openBtn.textContent = authUser ? t.menuAccount : t.menuLogin;
+        if (logoutBtn) logoutBtn.hidden = !authUser;
+        if (name) name.textContent = authUser ? (window.bmUsername || authUser.email || "") : "";
+        if (adminBtn) adminBtn.hidden = authRole !== "admin";
       }
-      async function loadProfileRole() {
-        authRole = "member";
-        if (!supabaseClient || !authUser) { updateAuthUI(); return; }
-        const { data, error } = await supabaseClient.from("profiles").select("role").eq("id", authUser.id).maybeSingle();
-        if (!error && data && data.role === "admin") authRole = "admin";
-        updateAuthUI();
-      }
-      async function loadCloudWords() {
-        if (!supabaseClient || cloudWordsLoaded) return;
-        const { data, error } = await supabaseClient.from("word_entries").select("id,level,word,meaning_tr,definition_en,sentence");
-        if (error) { console.warn("Ortak kelime listesi yüklenemedi:", error.message); return; }
-        const cloud = (data || []).map(w => ({ level:w.level, word:w.word, def:w.meaning_tr, defEn:w.definition_en || w.word, sent:w.sentence || "", _cloudId:w.id }));
-        const merged = new Map(adminWords.map(w => [`${w.level}:${w.word.toLowerCase()}`, w]));
-        cloud.forEach(w => merged.set(`${w.level}:${w.word.toLowerCase()}`, w));
-        adminWords = Array.from(merged.values()); rebuildDatabase(); cloudWordsLoaded = true; refreshAdminCount();
-      }
-      async function refreshCloudProgress() {
-        if (!supabaseClient || !authUser) return;
-        const [sessionsRes, progressRes] = await Promise.all([
-          supabaseClient.from("quiz_sessions").select("id,level,score,total,accuracy,completed_at").eq("user_id", authUser.id).order("completed_at", {ascending:false}).limit(500),
-          supabaseClient.from("word_progress").select("level,word,correct_count,wrong_count,last_status").eq("user_id", authUser.id)
-        ]);
-        if (sessionsRes.error || progressRes.error) { console.warn("İlerleme alınamadı:", sessionsRes.error?.message || progressRes.error?.message); return; }
-        const sessions = sessionsRes.data || [], progress = progressRes.data || [];
-        const accuracyTotal = sessions.reduce((a,s)=>a+Number(s.score||0),0);
-        const questionTotal = sessions.reduce((a,s)=>a+Number(s.total||0),0);
-        const days = [...new Set(sessions.map(s => new Date(s.completed_at).toLocaleDateString("en-CA", {timeZone:"Europe/Istanbul"})))].sort().reverse();
-        let streak = 0;
-        const today = new Date().toLocaleDateString("en-CA", {timeZone:"Europe/Istanbul"});
-        const ydayDate = new Date(Date.now()-86400000).toLocaleDateString("en-CA", {timeZone:"Europe/Istanbul"});
-        let cursor = days.includes(today) ? today : ydayDate;
-        if (days.includes(cursor)) { while (days.includes(cursor)) { streak++; const d = new Date(cursor+"T12:00:00Z"); d.setUTCDate(d.getUTCDate()-1); cursor = d.toISOString().slice(0,10); } }
-        document.getElementById("progress-sessions").textContent = sessions.length;
-        document.getElementById("progress-accuracy").textContent = questionTotal ? `${Math.round(accuracyTotal/questionTotal*100)}%` : "—";
-        document.getElementById("progress-streak").textContent = streak;
-        document.getElementById("progress-learned").textContent = progress.filter(w=>Number(w.correct_count)>0).length;
-        const levels = LEVEL_KEYS.map(lvl => { const list=sessions.filter(s=>s.level===lvl); const ok=list.reduce((n,s)=>n+Number(s.score||0),0); const total=list.reduce((n,s)=>n+Number(s.total||0),0); return `${lvl}: ${list.length ? Math.round(ok/Math.max(total,1)*100)+"%" : "—"}`; }).join(" · ");
-        document.getElementById("progress-levels").textContent = "Seviyelere göre doğruluk: " + levels;
-      }
-      async function saveCloudQuizResult(result) {
-        if (!supabaseClient || !authUser || !result || result.words.length === 0) return;
-        const score = result.words.filter(w=>w.status === "ok").length;
-        const total = result.words.length;
-        const { error: sessionError } = await supabaseClient.from("quiz_sessions").insert({ user_id:authUser.id, level:result.level, score, total, accuracy:Math.round(score/total*100), duration_seconds:Math.round(result.durationMs/1000), completed_at:result.date });
-        if (sessionError) { console.warn("Quiz sonucu buluta kaydedilemedi:", sessionError.message); return; }
-        for (const w of result.words) {
-          const { data: old } = await supabaseClient.from("word_progress").select("correct_count,wrong_count,passed_count").eq("user_id",authUser.id).eq("level",result.level).eq("word",w.word).maybeSingle();
-          await supabaseClient.from("word_progress").upsert({ user_id:authUser.id, level:result.level, word:w.word, correct_count:Number(old?.correct_count||0)+(w.status==="ok"?1:0), wrong_count:Number(old?.wrong_count||0)+(w.status==="no"?1:0), passed_count:Number(old?.passed_count||0)+(w.status==="ps"?1:0), last_status:w.status, updated_at:new Date().toISOString() }, {onConflict:"user_id,level,word"});
+
+      async function syncWithGoogleSheets() {
+        if (!SHEETS_CONFIGURED) return;
+        try {
+          const data = await sheetsGetInit();
+          if (!data || !data.ok) return;
+
+          if (Array.isArray(data.words) && data.words.length > 0) {
+            const merged = new Map(adminWords.map(w => [`${w.level}:${w.word.toLowerCase()}`, w]));
+            data.words.forEach(w => {
+              let level = String(w.level || "").trim().toUpperCase();
+              if (level === "KOLAY") level = "EASY";
+              if (level === "ORTA") level = "MEDIUM";
+              if (level === "ZOR") level = "HARD";
+              merged.set(`${level}:${w.word.toLowerCase()}`, {
+                level,
+                word: w.word,
+                def: w.def,
+                defEn: w.defEn || w.word,
+                sent: w.sent || ""
+              });
+            });
+            adminWords = Array.from(merged.values());
+            rebuildDatabase();
+            cloudWordsLoaded = true;
+            refreshAdminCount();
+
+            const hasProgress = !isGameOver && words.some(w => w.status !== "pending");
+            if (!isGameOver && !hasProgress && !notebookPracticeMode) {
+              words = getDailyWordsForLevel(currentLevel);
+              renderCurrentQuestion();
+            }
+          }
+
+          if (Array.isArray(data.sessions)) {
+            cachedSessions = data.sessions;
+          }
+        } catch (err) {
+          console.warn("Google Sheets verisi alınamadı:", err);
         }
-        await refreshCloudProgress();
       }
-      async function saveCloudWords(entries) {
-        if (!supabaseClient || authRole !== "admin") return;
-        const rows = entries.filter(w=>w && w.level && w.word && w.def).map(w=>({level:w.level,word:w.word,meaning_tr:w.def,definition_en:w.defEn||w.word,sentence:w.sent||"",updated_at:new Date().toISOString()}));
-        if (!rows.length) return;
-        const { error } = await supabaseClient.from("word_entries").upsert(rows, {onConflict:"level,word"});
-        if (error) { console.warn("Ortak kelime listesi kaydedilemedi:",error.message); setAdminStatus("Yerel kaydedildi ancak ortak veritabanına yazılamadı: "+error.message,true); }
-        else { cloudWordsLoaded = false; await loadCloudWords(); setAdminStatus("Kelime listesi ortak veritabanına kaydedildi."); }
+
+      async function refreshProgressView() {
+        await syncWithGoogleSheets();
+        const localHistory = readStoredJSON("bm_words_history", []);
+        const userSessions = (cachedSessions && authUser)
+          ? cachedSessions.filter(s => s.user_id === authUser.id)
+          : localHistory;
+
+        const accuracyTotal = userSessions.reduce((a, s) => a + Number(s.score || 0), 0);
+        const questionTotal = userSessions.reduce((a, s) => a + Number(s.total || 26), 0);
+        const days = [...new Set(userSessions.map(s => getTrDateStr(s.completed_at || s.date)))].sort().reverse();
+        let streak = 0;
+        const today = getTrDateStr();
+        const ydayDate = getTrDateStr(Date.now() - 86400000);
+        let cursor = days.includes(today) ? today : ydayDate;
+        if (days.includes(cursor)) {
+          while (days.includes(cursor)) {
+            streak++;
+            const d = new Date(cursor + "T12:00:00Z");
+            d.setUTCDate(d.getUTCDate() - 1);
+            cursor = d.toISOString().slice(0, 10);
+          }
+        }
+
+        const learnedMap = readStoredJSON("bm_words_learned_map", {});
+        document.getElementById("progress-sessions").textContent = userSessions.length;
+        document.getElementById("progress-accuracy").textContent = questionTotal ? `${Math.round(accuracyTotal / questionTotal * 100)}%` : "—";
+        document.getElementById("progress-streak").textContent = streak;
+        document.getElementById("progress-learned").textContent = Object.keys(learnedMap).length;
+        document.getElementById("progress-levels").textContent = formatProgressLevelsText(userSessions);
       }
-      async function initSupabase() {
-        if (!SUPABASE_CONFIGURED || !window.supabase?.createClient) {
-          document.getElementById("auth-open").title = "Kurulum için HTML içindeki Supabase URL ve publishable key alanlarını doldur.";
+
+      function getPeriodStartIso(period) {
+        if (period === "alltime") return null;
+        const todayTrStr = getTrDateStr();
+        const todayStartMs = new Date(`${todayTrStr}T00:00:00+03:00`).getTime();
+
+        if (period === "daily") return new Date(todayStartMs).toISOString();
+        if (period === "weekly") return new Date(todayStartMs - 6 * 86400000).toISOString();
+        if (period === "monthly") return new Date(todayStartMs - 29 * 86400000).toISOString();
+        return null;
+      }
+
+      async function loadLeaderboard(levelFilter = currentLbFilter, periodFilter = currentLbPeriod) {
+        currentLbFilter = levelFilter;
+        currentLbPeriod = periodFilter;
+        const t = I18N[currentLang];
+        const statusEl = document.getElementById("leaderboard-status");
+        const listEl = document.getElementById("leaderboard-list");
+
+        document.querySelectorAll("#lb-filter-bar .lb-filter-pill").forEach(btn => {
+          btn.classList.toggle("active", btn.getAttribute("data-lb-level") === levelFilter);
+        });
+        document.querySelectorAll("#lb-period-bar .lb-filter-pill").forEach(btn => {
+          btn.classList.toggle("active", btn.getAttribute("data-lb-period") === periodFilter);
+        });
+
+        if (statusEl) statusEl.textContent = t.lbLoading;
+        if (listEl) listEl.innerHTML = "";
+
+        await syncWithGoogleSheets();
+
+        const periodStartIso = getPeriodStartIso(periodFilter);
+        let rawSessions = Array.isArray(cachedSessions) ? [...cachedSessions] : [];
+
+        const localHistory = readStoredJSON("bm_words_history", []);
+        const localChronological = [...localHistory].reverse();
+        localChronological.forEach(h => {
+          const uid = authUser ? authUser.id : "local-me";
+          const uname = window.bmUsername || (authUser?.email ? authUser.email.split("@")[0] : (currentLang === "en" ? "You" : "Sen"));
+          const alreadyInCloud = rawSessions.some(s => s.user_id === uid && Math.abs(new Date(s.completed_at).getTime() - new Date(h.date).getTime()) < 5000);
+          if (!alreadyInCloud) {
+            rawSessions.push({
+              user_id: uid,
+              username: uname,
+              level: h.level,
+              score: h.score,
+              total: h.total || 26,
+              duration_seconds: Math.round(Number(h.durationMs || 600000) / 1000),
+              completed_at: h.date
+            });
+          }
+        });
+
+        rawSessions = rawSessions.filter(s => {
+          if (levelFilter !== "all" && String(s.level).toLowerCase() !== levelFilter) return false;
+          if (periodStartIso && String(s.completed_at) < periodStartIso) return false;
+          return true;
+        });
+
+        rawSessions.sort((a, b) => new Date(a.completed_at).getTime() - new Date(b.completed_at).getTime());
+
+        const seenDailyAttempt = new Set();
+        const validFirstSessions = [];
+
+        rawSessions.forEach(s => {
+          if (Number(s.total || 26) < 26) return;
+          const uid = s.user_id || "anon";
+          const dayKey = getTrDateStr(s.completed_at);
+          const lvlKey = String(s.level || "easy").toLowerCase();
+          const uniqueDailyKey = `${uid}:${dayKey}:${lvlKey}`;
+
+          if (!seenDailyAttempt.has(uniqueDailyKey)) {
+            seenDailyAttempt.add(uniqueDailyKey);
+            validFirstSessions.push(s);
+          }
+        });
+
+        const byUser = new Map();
+        validFirstSessions.forEach(s => {
+          const uid = s.user_id || "anon";
+          if (!byUser.has(uid)) {
+            const defaultName = uid === "local-me"
+              ? (currentLang === "en" ? "You" : "Sen")
+              : `Player-${String(uid).slice(0, 5)}`;
+            byUser.set(uid, {
+              userId: uid,
+              username: s.username || (authUser && uid === authUser.id ? (window.bmUsername || authUser.email?.split("@")[0]) : null) || defaultName,
+              bestScore: 0,
+              totalCorrect: 0,
+              totalQuestions: 0,
+              gamesCount: 0,
+              fastestSec: Infinity
+            });
+          }
+          const entry = byUser.get(uid);
+          if (s.username) entry.username = s.username; // en son oyundaki (güncel) ad
+          const sc = Number(s.score || 0);
+          const tot = Number(s.total || 26);
+          const dur = Number(s.duration_seconds || 600);
+
+          entry.gamesCount++;
+          entry.totalCorrect += sc;
+          entry.totalQuestions += tot;
+          if (sc > entry.bestScore || (sc === entry.bestScore && dur < entry.fastestSec)) {
+            entry.bestScore = sc;
+            entry.fastestSec = dur;
+          }
+        });
+
+        const rows = Array.from(byUser.values());
+
+        rows.sort((a, b) => {
+          if (periodFilter === "daily" && levelFilter !== "all") {
+            if (b.bestScore !== a.bestScore) return b.bestScore - a.bestScore;
+            return a.fastestSec - b.fastestSec;
+          }
+          if (b.totalCorrect !== a.totalCorrect) return b.totalCorrect - a.totalCorrect;
+          if (b.bestScore !== a.bestScore) return b.bestScore - a.bestScore;
+          return a.fastestSec - b.fastestSec;
+        });
+
+        if (rows.length === 0) {
+          if (statusEl) statusEl.textContent = t.lbEmpty;
           return;
         }
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-        const { data } = await supabaseClient.auth.getSession();
-        authUser = data.session?.user || null;
-        await loadProfileRole(); await loadCloudWords(); await refreshCloudProgress();
-        // Supabase auth callback içinde yeni Supabase isteklerini doğrudan başlatmamak için kuyruğa al.
-        supabaseClient.auth.onAuthStateChange((_event, session) => {
-          authUser = session?.user || null; authRole = "member"; cloudWordsLoaded = false;
-          updateAuthUI();
-          setTimeout(async () => { await loadProfileRole(); await loadCloudWords(); await refreshCloudProgress(); }, 0);
+
+        if (statusEl) statusEl.textContent = "";
+
+        rows.slice(0, 50).forEach((item, idx) => {
+          const li = document.createElement("li");
+          const isMe = (authUser && item.userId === authUser.id) || item.userId === "local-me";
+          li.className = "lb-item" + (isMe ? " is-me" : "");
+
+          const avgAcc = item.totalQuestions > 0 ? Math.round((item.totalCorrect / item.totalQuestions) * 100) : 0;
+
+          li.innerHTML = `
+            <div class="lb-left">
+              <span class="lb-rank">${idx + 1}</span>
+              <div class="lb-user-info">
+                <span class="lb-username">${esc(item.username)} ${isMe ? `<small>${t.lbYou}</small>` : ""}</span>
+                <span class="lb-meta">${item.gamesCount} ${t.lbGames} · ${t.lbAvgAcc}: %${avgAcc}</span>
+              </div>
+            </div>
+            <div class="lb-right">
+              <div class="lb-score">${t.lbTotalPts}: ${item.totalCorrect} ${t.scoreSuffix}</div>
+              <div class="lb-sub">${t.lbBest}: ${item.bestScore}/26</div>
+            </div>
+          `;
+          listEl.appendChild(li);
         });
       }
-      document.getElementById("auth-open").addEventListener("click", () => {
-        if (authUser) { refreshCloudProgress(); authOverlay.classList.add("visible"); setAuthMode("login"); authNotice("Zaten giriş yaptın. Çıkış yapmak için üstteki Çıkış düğmesini kullanabilirsin."); }
-        else { authOverlay.classList.add("visible"); setAuthMode("login"); }
-      });
-      document.getElementById("auth-close").addEventListener("click",()=>authOverlay.classList.remove("visible"));
-      authOverlay.addEventListener("click",e=>{if(e.target===authOverlay)authOverlay.classList.remove("visible");});
-      document.getElementById("auth-tab-login").addEventListener("click",()=>setAuthMode("login"));
-      document.getElementById("auth-tab-signup").addEventListener("click",()=>setAuthMode("signup"));
-      document.getElementById("auth-form").addEventListener("submit",async e=>{
-        e.preventDefault();
-        if (!supabaseClient) { authNotice("Supabase bağlantısı ayarlanmamış. Kurulum dosyasındaki adımları tamamla.",true); return; }
-        const email=document.getElementById("auth-email").value.trim(); const password=document.getElementById("auth-password").value;
-        const submit=document.getElementById("auth-submit"); submit.disabled=true; authNotice("İşlem yapılıyor…");
-        try {
-          if(authMode==="signup") {
-            const {data,error}=await supabaseClient.auth.signUp({email,password}); if(error)throw error;
-            if(data.session){authNotice("Hesabın oluşturuldu ve giriş yapıldı.");authOverlay.classList.remove("visible");}
-            else authNotice("Kayıt isteği alındı. E-postana gelen doğrulama bağlantısını aç, sonra giriş yap.");
-          } else {
-            const {error}=await supabaseClient.auth.signInWithPassword({email,password}); if(error)throw error;
-            authNotice("Giriş başarılı.");authOverlay.classList.remove("visible");
-          }
-        } catch(err) { authNotice(err.message||"İşlem başarısız oldu.",true); }
-        finally { submit.disabled=false; }
-      });
-      document.getElementById("auth-logout").addEventListener("click",async()=>{if(supabaseClient)await supabaseClient.auth.signOut();authUser=null;authRole="member";updateAuthUI();});
-      updateAuthUI();
 
-      // Admin panel: bulk paste, single entry, local persistence, JSON backup.
+      async function saveSheetsQuizResult(result) {
+        if (!SHEETS_CONFIGURED || !authUser || !authUser.token || !result || result.words.length === 0 || result.reviewOnly) return;
+        const score = result.words.filter(w => w.status === "ok").length;
+        const total = result.words.length;
+        const uid = authUser ? authUser.id : "anon_" + (localStorage.getItem("bm_anon_id") || "guest");
+        const uname = window.bmUsername || (authUser?.email ? authUser.email.split("@")[0] : "Misafir");
+
+        await sheetsPost({
+          action: "saveSession",
+          userId: uid,
+          username: uname,
+          level: result.level,
+          score,
+          total,
+          accuracy: Math.round(score / total * 100),
+          durationSeconds: Math.round(result.durationMs / 1000),
+          completedAt: result.date
+        });
+      }
+
+      async function saveSheetsWords(entries) {
+        if (!SHEETS_CONFIGURED || authRole !== "admin") return;
+        const rows = entries.filter(w => w && w.level && w.word && w.def);
+        if (!rows.length) return;
+        const res = await sheetsPost({ action: "saveWords", entries: rows });
+        if (res && res.ok) {
+          setAdminStatus("Kelime listesi ortak Google Sheets tablosuna kaydedildi.");
+          await syncWithGoogleSheets();
+        }
+      }
+
+      document.getElementById("auth-open")?.addEventListener("click", () => {
+        document.getElementById("user-menu")?.removeAttribute("open");
+        if (authUser) {
+          document.getElementById("account-message").textContent = "";
+          document.getElementById("account-overlay")?.classList.add("visible");
+        } else {
+          authOverlay?.classList.add("visible");
+          setAuthMode("login");
+        }
+      });
+
+      document.getElementById("menu-progress")?.addEventListener("click", async () => {
+        document.getElementById("user-menu")?.removeAttribute("open");
+        showScreen("progress");
+        await refreshProgressView();
+      });
+
+      document.getElementById("menu-notebook")?.addEventListener("click", () => {
+        document.getElementById("user-menu")?.removeAttribute("open");
+        showScreen("notebook");
+        renderNotebookScreen();
+      });
+
+      document.getElementById("btn-practice-notebook")?.addEventListener("click", () => {
+        if (starredWords.length === 0) return;
+        showScreen("home");
+        initGame(currentLevel, { notebookMode: true });
+      });
+
+      document.getElementById("menu-leaderboard")?.addEventListener("click", async () => {
+        document.getElementById("user-menu")?.removeAttribute("open");
+        showScreen("leaderboard");
+        await loadLeaderboard(currentLbFilter, currentLbPeriod);
+      });
+
+      document.getElementById("lb-filter-bar")?.addEventListener("click", (e) => {
+        const btn = e.target.closest(".lb-filter-pill");
+        if (!btn) return;
+        const lvl = btn.getAttribute("data-lb-level") || "all";
+        loadLeaderboard(lvl, currentLbPeriod);
+      });
+
+      document.getElementById("lb-period-bar")?.addEventListener("click", (e) => {
+        const btn = e.target.closest(".lb-filter-pill");
+        if (!btn) return;
+        const prd = btn.getAttribute("data-lb-period") || "daily";
+        loadLeaderboard(currentLbFilter, prd);
+      });
+
+      document.getElementById("progress-back")?.addEventListener("click", () => showScreen("home"));
+      document.getElementById("notebook-back")?.addEventListener("click", () => showScreen("home"));
+      document.getElementById("leaderboard-back")?.addEventListener("click", () => showScreen("home"));
+
+      document.getElementById("auth-close")?.addEventListener("click", () => authOverlay?.classList.remove("visible"));
+      document.getElementById("account-close")?.addEventListener("click", () => document.getElementById("account-overlay")?.classList.remove("visible"));
+      document.getElementById("account-overlay")?.addEventListener("click", e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove("visible"); });
+      authOverlay?.addEventListener("click", e => { if (e.target === authOverlay) authOverlay.classList.remove("visible"); });
+
+      document.getElementById("auth-tab-login")?.addEventListener("click", () => setAuthMode("login"));
+      document.getElementById("auth-tab-signup")?.addEventListener("click", () => setAuthMode("signup"));
+
+      document.getElementById("username-form")?.addEventListener("submit", async e => {
+        e.preventDefault();
+        if (!authUser) return;
+        const username = document.getElementById("account-username").value.trim();
+        const message = document.getElementById("account-message");
+        const saveButton = document.getElementById("username-save");
+        const lang = currentLang === "en";
+        const t = I18N[currentLang];
+
+        message.classList.remove("error");
+        if (username.length < 3) {
+          message.classList.add("error");
+          message.textContent = lang ? "Username must be at least 3 characters." : "Kullanıcı adı en az 3 karakter olmalı.";
+          return;
+        }
+
+        saveButton.disabled = true;
+        message.textContent = lang ? "Saving..." : "Kaydediliyor...";
+        try {
+          if (SHEETS_CONFIGURED) {
+            const res = await sheetsPost({ action: "updateUsername", userId: authUser.id, username });
+            if (!res.ok) throw new Error(res.error || t.usernameLimitError);
+          }
+          window.bmUsername = username;
+          authUser.username = username;
+          writeStoredJSON("bm_words_auth_user", authUser);
+          updateAuthUI();
+          message.textContent = lang ? "Username saved successfully." : "Kullanıcı adı kaydedildi.";
+        } catch (err) {
+          message.classList.add("error");
+          message.textContent = err.message || (lang ? "Could not save." : "Kaydedilemedi.");
+        } finally {
+          saveButton.disabled = false;
+        }
+      });
+
+      document.getElementById("password-form")?.addEventListener("submit", async e => {
+        e.preventDefault();
+        if (!authUser) return;
+        const passwordInput = document.getElementById("account-new-password");
+        const confirmInput = document.getElementById("account-confirm-password");
+        const message = document.getElementById("account-message");
+        const saveButton = document.getElementById("password-save");
+        const lang = currentLang === "en";
+        const t = I18N[currentLang];
+        const newPassword = passwordInput.value;
+        const confirmPassword = confirmInput.value;
+
+        message.classList.remove("error");
+
+        if (newPassword.length < 6) {
+          message.classList.add("error");
+          message.textContent = lang ? "Password must be at least 6 characters." : "Şifre en az 6 karakter olmalı.";
+          return;
+        }
+
+        if (newPassword !== confirmPassword) {
+          message.classList.add("error");
+          message.textContent = t.passMismatch;
+          return;
+        }
+
+        saveButton.disabled = true;
+        message.textContent = lang ? "Changing password..." : "Şifre değiştiriliyor...";
+        try {
+          const passwordHash = await hashPassword(newPassword);
+          if (SHEETS_CONFIGURED) {
+            const res = await sheetsPost({ action: "updatePassword", userId: authUser.id, passwordHash });
+            if (!res.ok) throw new Error(res.error);
+          }
+          passwordInput.value = "";
+          confirmInput.value = "";
+          message.textContent = lang ? "Password changed successfully." : "Şifre başarıyla değiştirildi.";
+        } catch (err) {
+          message.classList.add("error");
+          message.textContent = (lang ? "Could not change password: " : "Şifre değiştirilemedi: ") + (err.message || "Unknown error");
+        } finally {
+          saveButton.disabled = false;
+        }
+      });
+
+      document.getElementById("auth-form")?.addEventListener("submit", async e => {
+        e.preventDefault();
+        const lang = currentLang === "en";
+        const t = I18N[currentLang];
+        const email = document.getElementById("auth-email").value.trim().toLowerCase();
+        const password = document.getElementById("auth-password").value;
+        const confirmPassword = document.getElementById("auth-password-confirm")?.value || "";
+
+        if (authMode === "signup" && password !== confirmPassword) {
+          authNotice(t.passMismatch, true);
+          return;
+        }
+
+        const submit = document.getElementById("auth-submit");
+        submit.disabled = true;
+        authNotice(lang ? "Processing…" : "İşlem yapılıyor…");
+        try {
+          const passwordHash = await hashPassword(password);
+          if (SHEETS_CONFIGURED) {
+            const res = await sheetsPost({
+              action: authMode === "signup" ? "signup" : "login",
+              email,
+              passwordHash
+            });
+            if (!res.ok) throw new Error(res.error);
+            authUser = { ...res.user, token: res.token };
+            authRole = res.user.role || "member";
+            window.bmUsername = res.user.username || email.split("@")[0];
+          } else {
+            authUser = { id: "local_" + email, email, username: email.split("@")[0], role: "admin" };
+            authRole = "admin";
+            window.bmUsername = authUser.username;
+          }
+          writeStoredJSON("bm_words_auth_user", authUser);
+          updateAuthUI();
+          authOverlay.classList.remove("visible");
+        } catch (err) {
+          authNotice(err.message || (lang ? "Action failed." : "İşlem başarısız oldu."), true);
+        } finally {
+          submit.disabled = false;
+        }
+      });
+
+      document.getElementById("auth-logout")?.addEventListener("click", () => {
+        document.getElementById("user-menu")?.removeAttribute("open");
+        if (SHEETS_CONFIGURED && authUser) sheetsPost({ action: "logout" }).catch(() => {});
+        authUser = null;
+        authRole = "member";
+        window.bmUsername = "";
+        try { localStorage.removeItem("bm_words_auth_user"); } catch (_) {}
+        showScreen("home");
+        updateAuthUI();
+      });
+
+      // Admin Paneli
       const adminOverlay = document.getElementById("admin-overlay");
       const adminStatus = document.getElementById("admin-status");
       const adminCount = document.getElementById("admin-count");
       const adminBulk = document.getElementById("admin-bulk");
+
       function setAdminStatus(message, isError = false) {
+        if (!adminStatus) return;
         adminStatus.textContent = message;
         adminStatus.classList.toggle("error", isError);
       }
+
       function refreshAdminCount() {
+        if (!adminCount) return;
         const total = LEVEL_KEYS.reduce((sum, lvl) => sum + Object.values(PARSED_DB[lvl]).reduce((n, list) => n + list.length, 0), 0);
-        adminCount.textContent = `${adminWords.length} özel kayıt · ${total} toplam kelime kaydı (aynı kelimenin üzerine yazılanlar tek kayıt sayılır)`;
+        adminCount.textContent = `${adminWords.length} özel kayıt · ${total} toplam kelime kaydı`;
       }
+
       function persistAdminWords() {
         try { localStorage.setItem(ADMIN_WORDS_KEY, JSON.stringify(adminWords)); return true; }
-        catch (_) { setAdminStatus("Tarayıcı depolaması dolu veya kullanılamıyor. JSON yedeği indirip sakla.", true); return false; }
+        catch (_) { setAdminStatus("Tarayıcı depolaması dolu.", true); return false; }
       }
+
       function saveAdminEntries(entries) {
         let added = 0, replaced = 0, invalid = 0;
+
         entries.forEach(entry => {
-          const level = String(entry.level || "").trim().toUpperCase();
+          let level = String(entry.level || "").trim().toUpperCase();
           const word = String(entry.word || "").trim();
           const def = String(entry.def || "").trim();
           const defEn = String(entry.defEn || "").trim();
           const sent = String(entry.sent || "").trim();
-          if (!LEVEL_KEYS.includes(level) || !word || !def || !/^[a-z]/i.test(word) || !ALPHABET.includes(word[0].toLowerCase())) { invalid++; return; }
+
+          if (level === "KOLAY") level = "EASY";
+          if (level === "ORTA") level = "MEDIUM";
+          if (level === "ZOR") level = "HARD";
+
+          if (![...LEVEL_KEYS, "EASY", "MEDIUM", "HARD", "YDS"].includes(level) || !word || !def || !/^[a-z]/i.test(word)) {
+            invalid++;
+            return;
+          }
+
           const idx = adminWords.findIndex(w => w.level === level && w.word.toLowerCase() === word.toLowerCase());
           const record = { level, word, def, defEn: defEn || word, sent };
-          if (idx >= 0) { adminWords[idx] = record; replaced++; } else { adminWords.push(record); added++; }
+
+          if (idx >= 0) {
+            adminWords[idx] = record;
+            replaced++;
+          } else {
+            adminWords.push(record);
+            added++;
+          }
         });
+
         rebuildDatabase();
         const saved = persistAdminWords();
         refreshAdminCount();
-        if (saved) setAdminStatus(`${added} eklendi, ${replaced} güncellendi${invalid ? `, ${invalid} geçersiz satır atlandı` : ""}. Değişikliklerin oyuna uygulanması için mevcut tur yeniden başlatılıyor.`);
+
+        if (saved) {
+          setAdminStatus(`${added} eklendi, ${replaced} güncellendi${invalid ? `, ${invalid} geçersiz satır atlandı` : ""}.`);
+        }
+
         if (added || replaced) {
           initGame(currentLevel);
-          if (authUser && authRole === "admin") saveCloudWords(entries.map(entry => ({level:String(entry.level||"").trim().toUpperCase(),word:String(entry.word||"").trim(),def:String(entry.def||"").trim(),defEn:String(entry.defEn||"").trim(),sent:String(entry.sent||"").trim()}))).catch(err=>console.warn(err));
+          if (authUser && authRole === "admin") {
+            saveSheetsWords(entries).catch(err => console.warn(err));
+          }
         }
         return { added, replaced, invalid };
       }
-      document.getElementById("admin-open").addEventListener("click", async () => {
-        if (!authUser || authRole !== "admin") { alert("Kelime yönetimi yalnızca giriş yapmış admin hesaplarına açıktır."); return; }
-        await loadCloudWords(); refreshAdminCount(); adminOverlay.classList.add("visible"); setAdminStatus("");
+
+      document.getElementById("admin-open")?.addEventListener("click", async () => {
+        if (!authUser || authRole !== "admin") { alert("Kelime yönetimi yalnızca admin hesaplarına açıktır."); return; }
+        await syncWithGoogleSheets();
+        refreshAdminCount();
+        adminOverlay.classList.add("visible");
+        setAdminStatus("");
       });
-      document.getElementById("admin-close").addEventListener("click", () => adminOverlay.classList.remove("visible"));
-      adminOverlay.addEventListener("click", e => { if (e.target === adminOverlay) adminOverlay.classList.remove("visible"); });
-      document.addEventListener("keydown", e => { if (e.key === "Escape") adminOverlay.classList.remove("visible"); });
+
+      document.getElementById("admin-close")?.addEventListener("click", () => adminOverlay.classList.remove("visible"));
+      adminOverlay?.addEventListener("click", e => { if (e.target === adminOverlay) adminOverlay.classList.remove("visible"); });
+      document.addEventListener("keydown", e => { if (e.key === "Escape") adminOverlay?.classList.remove("visible"); });
+
       document.querySelectorAll(".admin-tab").forEach(btn => btn.addEventListener("click", () => {
         document.querySelectorAll(".admin-tab").forEach(b => b.classList.toggle("active", b === btn));
         document.querySelectorAll(".admin-pane").forEach(pane => pane.classList.toggle("active", pane.id === `pane-${btn.dataset.pane}`));
         setAdminStatus("");
       }));
-      document.getElementById("admin-example").addEventListener("click", () => {
-        adminBulk.value = "B1;achieve;başarmak;To succeed in doing something;She worked hard to achieve her goal.\nB2;alleviate;hafifletmek;To make pain or a problem less severe;This medicine can alleviate pain.";
+
+      document.getElementById("admin-example")?.addEventListener("click", () => {
+        adminBulk.value = "YDS;achieve;başarmak;To succeed in doing something;She worked hard to achieve her goal.\nYDS;alleviate;hafifletmek;To make pain or a problem less severe;This medicine can alleviate pain.";
       });
-      document.getElementById("admin-import-bulk").addEventListener("click", () => {
+
+      document.getElementById("admin-import-bulk")?.addEventListener("click", () => {
         const entries = [];
         adminBulk.value.split(/\r?\n/).forEach(line => {
-          const trimmed = line.trim(); if (!trimmed || trimmed.startsWith("#")) return;
+          const trimmed = line.trim();
+          if (!trimmed || trimmed.startsWith("#")) return;
           const parts = trimmed.split(";");
           if (parts.length < 3) { entries.push({}); return; }
-          // Also accept short format LEVEL;WORD;TR;EXAMPLE (English definition becomes word fallback).
-          entries.push({ level: parts[0], word: parts[1], def: parts[2], defEn: parts.length >= 5 ? parts[3] : (parts.length === 4 ? "" : parts[3]), sent: parts.length >= 5 ? parts.slice(4).join(";") : (parts.length === 4 ? parts[3] : "") });
+          entries.push({
+            level: parts[0],
+            word: parts[1],
+            def: parts[2],
+            defEn: parts.length >= 5 ? parts[3] : (parts.length === 4 ? "" : parts[3]),
+            sent: parts.length >= 5 ? parts.slice(4).join(";") : (parts.length === 4 ? parts[3] : "")
+          });
         });
         if (!entries.length) { setAdminStatus("Önce en az bir satır yapıştır.", true); return; }
         saveAdminEntries(entries);
       });
-      document.getElementById("admin-add-single").addEventListener("click", () => {
-        const entry = { level: document.getElementById("admin-level").value, word: document.getElementById("admin-word").value, def: document.getElementById("admin-def").value, defEn: document.getElementById("admin-def-en").value, sent: document.getElementById("admin-sentence").value };
+
+      document.getElementById("admin-add-single")?.addEventListener("click", () => {
+        const entry = {
+          level: document.getElementById("admin-level").value,
+          word: document.getElementById("admin-word").value,
+          def: document.getElementById("admin-def").value,
+          defEn: document.getElementById("admin-def-en").value,
+          sent: document.getElementById("admin-sentence").value
+        };
         if (!entry.word.trim() || !entry.def.trim()) { setAdminStatus("Kelime ve Türkçe anlam alanları gerekli.", true); return; }
         const result = saveAdminEntries([entry]);
-        if (result.added || result.replaced) { document.getElementById("admin-word").value = ""; document.getElementById("admin-def").value = ""; document.getElementById("admin-def-en").value = ""; document.getElementById("admin-sentence").value = ""; }
+        if (result.added || result.replaced) {
+          document.getElementById("admin-word").value = "";
+          document.getElementById("admin-def").value = "";
+          document.getElementById("admin-def-en").value = "";
+          document.getElementById("admin-sentence").value = "";
+        }
       });
-      document.getElementById("admin-export").addEventListener("click", () => {
-        const blob = new Blob([JSON.stringify({ app: "BM Words", version: 1, words: adminWords }, null, 2)], { type: "application/json" });
-        const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = "bm-words-kelime-yedegi.json"; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+
+      document.getElementById("admin-export")?.addEventListener("click", () => {
+        const blob = new Blob([JSON.stringify({ app: "BM Words", version: 2, words: adminWords }, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "bm-words-kelime-yedegi.json";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
         setAdminStatus("JSON yedeği indirildi.");
       });
-      document.getElementById("admin-file").addEventListener("change", async e => {
-        const file = e.target.files && e.target.files[0]; if (!file) return;
+
+      document.getElementById("admin-file")?.addEventListener("change", async e => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
         try {
           const parsed = JSON.parse(await file.text());
           const imported = Array.isArray(parsed) ? parsed : parsed.words;
           if (!Array.isArray(imported)) throw new Error("Dosyada words listesi bulunamadı.");
-          const valid = imported.filter(w => w && LEVEL_KEYS.includes(String(w.level).toUpperCase()) && w.word && w.def).map(w => ({ level: String(w.level).toUpperCase(), word: String(w.word), def: String(w.def), defEn: String(w.defEn || ""), sent: String(w.sent || "") }));
+          const valid = imported.filter(w => w && w.level && w.word && w.def).map(w => ({
+            level: String(w.level).toUpperCase(),
+            word: String(w.word),
+            def: String(w.def),
+            defEn: String(w.defEn || ""),
+            sent: String(w.sent || "")
+          }));
           if (!valid.length) throw new Error("Geçerli kelime kaydı bulunamadı.");
-          adminWords = valid; rebuildDatabase();
-          if (persistAdminWords()) { refreshAdminCount(); initGame(currentLevel); if (authUser && authRole === "admin") saveCloudWords(valid).catch(err=>console.warn(err)); setAdminStatus(`${valid.length} kayıt yedekten içe aktarıldı.`); }
-        } catch (err) { setAdminStatus(`Yedek yüklenemedi: ${err.message}`, true); }
+          adminWords = valid;
+          rebuildDatabase();
+          if (persistAdminWords()) {
+            refreshAdminCount();
+            initGame(currentLevel);
+            if (authUser && authRole === "admin") saveSheetsWords(valid).catch(err => console.warn(err));
+            setAdminStatus(`${valid.length} kayıt yedekten içe aktarıldı.`);
+          }
+        } catch (err) {
+          setAdminStatus(`Yedek yüklenemedi: ${err.message}`, true);
+        }
         e.target.value = "";
       });
+
+      /* =====================================================================
+         10. BAŞLATMA
+         ===================================================================== */
       refreshAdminCount();
+
+      const savedUser = readStoredJSON("bm_words_auth_user", null);
+      if (savedUser && savedUser.id && (savedUser.token || !SHEETS_CONFIGURED)) {
+        authUser = savedUser;
+        authRole = savedUser.role || "member";
+        window.bmUsername = savedUser.username || "";
+        const usernameInput = document.getElementById("account-username");
+        if (usernameInput) usernameInput.value = window.bmUsername;
+      }
 
       try {
         const savedTheme = localStorage.getItem("bm_words_theme");
@@ -2156,9 +3618,10 @@ if (userVal === "end") {
         if (savedLang === "en" || savedLang === "tr") currentLang = savedLang;
       } catch (e) {}
 
+      initGame("easy");
       applyLanguage(currentLang);
-      initGame("A1");
-      initSupabase().catch(err => console.warn("Supabase başlatılamadı:", err));
+      updateAuthUI();
+      syncWithGoogleSheets();
       setInterval(updateDailyCountdown, 60000);
     })();
   </script>
