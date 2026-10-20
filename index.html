@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="midnight">
+<html lang="tr" data-theme="classic">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,8 +22,9 @@
       --ps: #f2a33a;
     }
 
-    /* Varsayılan Ana Renk: Midnight (Gece Mavisi) */
-    :root[data-theme="midnight"] {
+    @media (prefers-color-scheme: dark) {
+/* Varsayılan Ana Renk: Midnight (Gece Mavisi) */
+    :root, :root[data-theme="midnight"] {
       --bg: #0f172a;
       --ink: #f8fafc;
       --mut: #94a3b8;
@@ -2110,7 +2111,11 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
 
 function applyTheme(theme) {
         currentTheme = theme;
-        document.documentElement.setAttribute("data-theme", theme);
+        if (theme === "midnight") {
+          document.documentElement.removeAttribute("data-theme");
+        } else {
+          document.documentElement.setAttribute("data-theme", theme);
+        }
         document.querySelectorAll(".theme-swatch").forEach((btn) => {
           const isMatch = btn.getAttribute("data-theme-val") === theme;
           btn.setAttribute("aria-pressed", isMatch ? "true" : "false");
@@ -2836,19 +2841,6 @@ function applyTheme(theme) {
       /* =====================================================================
          9. GOOGLE SHEETS API İŞLEMLERİ, EKRAN GEÇİŞLERİ VE LEADERBOARD
          ===================================================================== */
-      function esc(s) {
-        return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-      }
-
-      function forceLogout() {
-        authUser = null;
-        authRole = "member";
-        window.bmUsername = "";
-        try { localStorage.removeItem("bm_words_auth_user"); } catch (_) {}
-        showScreen("home");
-        updateAuthUI();
-      }
-
       async function hashPassword(str) {
         try {
           const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
@@ -2863,11 +2855,9 @@ function applyTheme(theme) {
         const res = await fetch(GOOGLE_SHEETS_WEBAPP_URL, {
           method: "POST",
           headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({ ...payload, token: (authUser && authUser.token) || "" })
+          body: JSON.stringify(payload)
         });
-        const data = await res.json();
-        if (data && data.code === "AUTH" && authUser) forceLogout();
-        return data;
+        return await res.json();
       }
 
       async function sheetsGetInit() {
@@ -3132,7 +3122,6 @@ function applyTheme(theme) {
             });
           }
           const entry = byUser.get(uid);
-          if (s.username) entry.username = s.username; // en son oyundaki (güncel) ad
           const sc = Number(s.score || 0);
           const tot = Number(s.total || 26);
           const dur = Number(s.duration_seconds || 600);
@@ -3176,7 +3165,7 @@ function applyTheme(theme) {
             <div class="lb-left">
               <span class="lb-rank">${idx + 1}</span>
               <div class="lb-user-info">
-                <span class="lb-username">${esc(item.username)} ${isMe ? `<small>${t.lbYou}</small>` : ""}</span>
+                <span class="lb-username">${item.username} ${isMe ? `<small>${t.lbYou}</small>` : ""}</span>
                 <span class="lb-meta">${item.gamesCount} ${t.lbGames} · ${t.lbAvgAcc}: %${avgAcc}</span>
               </div>
             </div>
@@ -3190,7 +3179,7 @@ function applyTheme(theme) {
       }
 
       async function saveSheetsQuizResult(result) {
-        if (!SHEETS_CONFIGURED || !authUser || !authUser.token || !result || result.words.length === 0 || result.reviewOnly) return;
+        if (!SHEETS_CONFIGURED || !result || result.words.length === 0 || result.reviewOnly) return;
         const score = result.words.filter(w => w.status === "ok").length;
         const total = result.words.length;
         const uid = authUser ? authUser.id : "anon_" + (localStorage.getItem("bm_anon_id") || "guest");
@@ -3387,7 +3376,7 @@ function applyTheme(theme) {
               passwordHash
             });
             if (!res.ok) throw new Error(res.error);
-            authUser = { ...res.user, token: res.token };
+            authUser = res.user;
             authRole = res.user.role || "member";
             window.bmUsername = res.user.username || email.split("@")[0];
           } else {
@@ -3407,7 +3396,6 @@ function applyTheme(theme) {
 
       document.getElementById("auth-logout")?.addEventListener("click", () => {
         document.getElementById("user-menu")?.removeAttribute("open");
-        if (SHEETS_CONFIGURED && authUser) sheetsPost({ action: "logout" }).catch(() => {});
         authUser = null;
         authRole = "member";
         window.bmUsername = "";
@@ -3594,7 +3582,7 @@ function applyTheme(theme) {
       refreshAdminCount();
 
       const savedUser = readStoredJSON("bm_words_auth_user", null);
-      if (savedUser && savedUser.id && (savedUser.token || !SHEETS_CONFIGURED)) {
+      if (savedUser && savedUser.id) {
         authUser = savedUser;
         authRole = savedUser.role || "member";
         window.bmUsername = savedUser.username || "";
