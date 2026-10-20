@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="classic">
+<html lang="tr" data-theme="midnight">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +22,8 @@
       --ps: #f2a33a;
     }
 
-    @media (prefers-color-scheme: dark) {
-/* Varsayılan Ana Renk: Midnight (Gece Mavisi) */
-    :root, :root[data-theme="midnight"] {
+    /* Varsayılan Ana Renk: Midnight (Gece Mavisi) */
+    :root[data-theme="midnight"] {
       --bg: #0f172a;
       --ink: #f8fafc;
       --mut: #94a3b8;
@@ -48,7 +47,6 @@
       --no: #f43f5e;
       --ps: #fbbf24;
     }
-    } /* @media (prefers-color-scheme: dark) kapanışı */
 
     :root[data-theme="lavender"] {
       --bg: #efeaff;
@@ -1246,7 +1244,7 @@
       /* =====================================================================
          0. GOOGLE SHEETS WEB APP AYARI VE GLOBAL DEĞİŞKENLER
          ===================================================================== */
-      const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxcmbNA9CzAjYJAFGDLyIYvX0lXyuWQwT41QOl-L0ev68zDTAqXjN8opoaJ3DsHJTf6/exec";
+      const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbz6ijV6lP_g-SKmmWKIIvIsZKgZlJrBXlhznrCsyERlg5e-s0DsTbmZlEn63PPnvQfg/exec";
       const SHEETS_CONFIGURED = GOOGLE_SHEETS_WEBAPP_URL.startsWith("https://script.google.com/");
 
       let authUser = null;
@@ -2112,11 +2110,7 @@ zeitgeist;Bir çağın genel düşünce, duygu ve kültür iklimi, zamanın ruhu
 
 function applyTheme(theme) {
         currentTheme = theme;
-        if (theme === "midnight") {
-          document.documentElement.removeAttribute("data-theme");
-        } else {
-          document.documentElement.setAttribute("data-theme", theme);
-        }
+        document.documentElement.setAttribute("data-theme", theme);
         document.querySelectorAll(".theme-swatch").forEach((btn) => {
           const isMatch = btn.getAttribute("data-theme-val") === theme;
           btn.setAttribute("aria-pressed", isMatch ? "true" : "false");
